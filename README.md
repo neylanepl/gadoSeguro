@@ -1,4 +1,4 @@
-# gadoSeguro
+# Gado Seguro
 Projeto desenvolvido para a disciplina Banco de dados.
 
 ## Executando o servidor
