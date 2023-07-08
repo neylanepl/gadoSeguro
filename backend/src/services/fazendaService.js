@@ -11,13 +11,13 @@ async  addFazenda(fazendaTemp) {
     VALUES (?,?,?,?,?,?,?)
     `;
     const values = [
-      fazendaTemp.getId(), 
-      fazendaTemp.getNome(), 
-      fazendaTemp.getSitio(), 
-      fazendaTemp.getCidade(), 
-      fazendaTemp.getCep(), 
-      fazendaTemp.getComplemento(), 
-      fazendaTemp.getNumeros()
+      fazendaTemp.idFazenda, 
+      fazendaTemp.nome, 
+      fazendaTemp.sitio, 
+      fazendaTemp.cidade, 
+      fazendaTemp.cep, 
+      fazendaTemp.complemento, 
+      fazendaTemp.numero
     ];
     await connection.execute(query, values);
     console.log("Objeto fazenda adicionado com sucesso!");
