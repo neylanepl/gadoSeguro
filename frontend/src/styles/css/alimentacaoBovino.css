@@ -6,7 +6,9 @@
     margin-bottom: 50px;
 }
 
-.formularioLogin,
+.formularioIngrediente,
+.formularioAlimentacao,
+.formularioDieta,
 .formulario,
 .sub-div {
     display: flex;
@@ -16,7 +18,9 @@
     justify-content: center;
 }
 
-.formularioLogin {
+.formularioAlimentacao,
+.formularioIngrediente,
+.formularioDieta {
     margin: 0 auto;
     width: 600px;
     background-color: #E0E7CA;
@@ -30,21 +34,22 @@
 }
 
 .id_ {
-    width: 30em;
+    width: 40em;
     font-weight: bold;
     margin-top: 1em;
 }
 
-.nomePessoa,
-.emailPessoa,
-.cargoPessoa,
-.senhaPessoa,
-.nomeFazenda,
-.sitioFazenda,
-.cidadeFazenda,
-.cepFazenda,
-.numeroFazenda,
-.complementoFazenda {
+.nomeDieta,
+.restricaoAlimentarDieta,
+.idIngrediente,
+.nomeIngrediente,
+.qtdEstoqueIngrediente,
+.unidadeIngrediente,
+.nomeAlimentacao,
+.faltaConsumirAlimentacao,
+.qntDiariaRecomendadaAlimentacao,
+.descricaoDieta,
+.restricaoAlimentar {
     width: 30em;
     border-radius: 1em;
     border: solid 1.5px #6D3B00;

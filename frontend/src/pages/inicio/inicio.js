@@ -19,6 +19,19 @@ const Inicio = () => {
     window.location.href = '/fazendas/fazendaHome';
   };
 
+  const redirectToIngredienteHome = () => {
+    window.location.href = '/ingredientes/ingredienteHome';
+  };
+
+  const redirectToAlimentacaoHome = () => {
+    window.location.href = '/alimentacao/alimentacaoHome';
+  };
+
+  const redirectToDietaHome = () => {
+    window.location.href = '/dieta/dietaHome';
+  };
+
+
   return (
 
     <div id="wrapper" style={{ background: "#F0F1DF" }}>
@@ -36,6 +49,12 @@ const Inicio = () => {
           <button className='botao' type='submit' onClick={redirectToPessoaHome}>Pessoas</button>
 
           <button className='botao' type='submit' onClick={redirectToFazendaHome}>Fazenda</button>
+
+          <button className='botao' type='submit' onClick={redirectToIngredienteHome}>Ingrediente</button>
+
+          <button className='botao' type='submit' onClick={redirectToAlimentacaoHome}>Alimentação</button>
+
+          <button className='botao' type='submit' onClick={redirectToDietaHome}>Dieta</button>
 
         </div>
 
