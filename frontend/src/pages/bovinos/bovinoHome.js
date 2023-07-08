@@ -8,11 +8,11 @@ const BovinoHome = () => {
     const navigate = useNavigate();
 
     const handleClickCadastro = () => {
-        navigate('/bovinos/cadastrarBovinos');
+        navigate('/bovinos/cadastrarBovino');
     };
 
     const handleClickEdicao = () => {
-        navigate('/bovinos/editarBovinos');
+        navigate('/bovinos/editarBovino');
     };
 
     const handleClickListar = () => {
