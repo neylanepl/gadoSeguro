@@ -15,6 +15,10 @@ const BovinoHome = () => {
         navigate('/bovinos/editarBovinos');
     };
 
+    const handleClickListar = () => {
+        navigate('/bovinos/listarBovino');
+    };
+
 
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>
@@ -27,6 +31,8 @@ const BovinoHome = () => {
                     <button className="botao" onClick={handleClickCadastro}>Cadastrar Bovinos</button>
 
                     <button className="botao" onClick={handleClickEdicao}>Editar Bovinos</button>
+
+                    <button className="botao" onClick={handleClickListar}>Listar Bovinos</button>
                 </div>
             </div>
         </div>
