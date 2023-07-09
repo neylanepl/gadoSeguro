@@ -6,12 +6,13 @@ class FazendaService {
 async  addFazenda(fazendaTemp) {
   try {
     const connection = await dbConnection();
+    let idFazenda = 1;
     const query = `
     INSERT INTO GadoSeguro.Fazenda (idFazenda, nome, sitio, cidade, cep, complemento, numero) 
     VALUES (?,?,?,?,?,?,?)
     `;
     const values = [
-      fazendaTemp.idFazenda, 
+      idFazenda, 
       fazendaTemp.nome, 
       fazendaTemp.sitio, 
       fazendaTemp.cidade, 
