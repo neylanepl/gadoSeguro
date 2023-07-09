@@ -56,6 +56,7 @@ class FazendaController {
                 msg: "Fazenda deletada com sucesso"
             })
         } catch (error) {
+            console.log("nao foi possivel deletar")
             return response.status(400).json({
                 error: error
             })
