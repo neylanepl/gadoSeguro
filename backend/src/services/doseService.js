@@ -1,5 +1,4 @@
 const dbConnection = require("../database/Conect");
-const Dose = require("../entity/Dose");
 
 class DoseService{
 

@@ -1,5 +1,4 @@
 const dbConnection = require("../database/Conect");
-const Vacina = require("../entity/Vacina");
 
 const vacinaTeste = new Vacina();
 
