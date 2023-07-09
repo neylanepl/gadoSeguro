@@ -4,10 +4,10 @@ const routesFazenda = require('./api/routes/fazendaRoutes')
 const fazendaS = require('./services/fazendaService')
 
 const app = express()
-const port = 3004
+const port = 3001
 
 //Exemplo de Adição da Fazenda
-let fazendaTemp = {idFazenda: 1, nome:"Teste",sitio:"Amarelo",cidade:"Montana",cep:"555-42",complemento:"Duas casas",numero:58}
+let fazendaTemp = { nome: "Teste", sitio: "Amarelo", cidade: "Montana", cep: "555-42", complemento: "Duas casas", numero: 58 }
 fazendaS.addFazenda(fazendaTemp)
 
 app.use('/static', express.static('public'));
@@ -21,6 +21,6 @@ app.use((req, res, next) => {
 
 app.use(routesFazenda)
 
-app.listen(port, () => { 
+app.listen(port, () => {
     console.log('Servidor rodando na porta ', port)
 })

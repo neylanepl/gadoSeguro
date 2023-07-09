@@ -27,6 +27,7 @@ import LoginPessoa from './pages/pessoas/loginPessoa.js';
 
 import CadastrarFazenda from './pages/fazendas/cadastrarFazenda.js';
 import EditarFazenda from './pages/fazendas/editarFazenda.js';
+import ListarFazenda from './pages/fazendas/listarFazenda.js';
 
 import CadastrarIngrediente from './pages/ingredientes/cadastrarIngrediente.js';
 import EditarIngrediente from './pages/ingredientes/editarIngrediente.js';
@@ -75,6 +76,7 @@ function App() {
 
         <Route path="/fazendas/cadastrarFazenda" element={<CadastrarFazenda />} />
         <Route path="/fazendas/editarFazenda" element={<EditarFazenda />} />
+        <Route path="/fazendas/listarFazenda" element={<ListarFazenda />} />
 
         <Route path="/ingredientes/cadastrarIngrediente" element={<CadastrarIngrediente />} />
         <Route path="/ingredientes/editarIngrediente" element={<EditarIngrediente />} />

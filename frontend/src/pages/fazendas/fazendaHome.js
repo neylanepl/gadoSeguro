@@ -14,6 +14,10 @@ const FazendaHome = () => {
         navigate('/fazendas/editarFazenda');
     };
 
+    const handleClickListar = () => {
+        navigate('/fazendas/listarFazenda');
+    };
+
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
@@ -26,6 +30,7 @@ const FazendaHome = () => {
 
                     <button className="botao" onClick={handleClickEdicao}>Editar Fazenda</button>
 
+                    <button className="botao" onClick={handleClickListar}>Listar Fazenda</button>
                 </div>
             </div>
         </div>
