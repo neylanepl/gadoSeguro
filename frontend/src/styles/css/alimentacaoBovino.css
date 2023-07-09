@@ -78,3 +78,15 @@
 .bi {
     color: black;
 }
+
+.checkboxContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 70px;
+}
+
+.checkboxItem {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
