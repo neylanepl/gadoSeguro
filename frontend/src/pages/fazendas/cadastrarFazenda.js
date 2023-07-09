@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/css/cadastrarPessoa.css';
 import Menu from '../../components/menu';
@@ -26,6 +26,15 @@ const CadastrarFazenda = () => {
             complemento: complementoForm,
             numero: numeroForm
         };
+
+        try{
+            const { data } = await axios.post('http://localhost:3004/fazenda', payload);
+            console.log("Cadastro realizado com sucesso!")
+            navigate('/');
+      
+          } catch(error) {
+            console.log("Cadastro falhou!", error)
+          }
     };
 
     return (
