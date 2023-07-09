@@ -3,25 +3,26 @@ import { useNavigate } from 'react-router-dom';
 import Menu from '../../components/menu';
 import '../../styles/css/listarVacinas.css';
 
-const ListarVacinas = () => {
-
+const ListarDose = () => {
     const navigate = useNavigate();
 
     return (
         <div>
             <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Vacinas cadastradas no sistema</h1>
+            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Doses cadastradas no sistema</h1>
             <div style={{ margin: "5%", marginLeft: "20%", marginRight: "20%" }}>
-                <div className="text-center" style={{ marginBottom: "5%" }}><button className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} variant="warning" onClick={e => navigate('/vacinas/cadastrarVacinas')}>Cadastrar Vacina</button></div>
+                <div className="text-center" style={{ marginBottom: "5%" }}><button className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} variant="warning" onClick={e => navigate('/dose/cadastrarDose')}>CadastrarDose</button></div>
 
                 <table className="table table-bordered table-bordered" >
                     <thead style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
-                            <th scope="col" >Identificador</th>
+
                             <th scope="col" >Nome</th>
-                            <th scope="col" >Fabricante</th>
+                            <th scope="col" >Lote</th>
+
                             <th scope="col" >Informação Extra</th>
-                            <th scope="col"></th>
+                            <th scope="col" >Data Aplicada</th>
+                            <th scope="col" >Data Prev</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,9 +31,10 @@ const ListarVacinas = () => {
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                             <td style={{ display: "flex", justifyContent: "space-evenly" }}>
                                 <button className="botaoEditar btn btn-primary"
-                                    style={{ color: "white", textDecoration: "none" }} variant="warning" onClick={e => navigate('/vacinas/editarVacinas')}>
+                                    style={{ color: "white", textDecoration: "none" }} variant="warning" onClick={e => navigate('/dose/editarDose')}>
                                     Editar
                                     <span className="editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" color='white' viewBox="0 0 16 16">
@@ -59,4 +61,4 @@ const ListarVacinas = () => {
     );
 };
 
-export default ListarVacinas;
+export default ListarDose;

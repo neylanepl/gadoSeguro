@@ -2,7 +2,11 @@
     margin: 0%;
 }
 
-.formularioCadastroBovino,
+.fs-1 {
+    margin-bottom: 50px;
+}
+
+.formularioLogin,
 .formulario,
 .sub-div {
     display: flex;
@@ -12,7 +16,7 @@
     justify-content: center;
 }
 
-.formularioCadastroBovino {
+.formularioLogin {
     margin: 0 auto;
     width: 600px;
     background-color: #E0E7CA;
@@ -27,20 +31,13 @@
 }
 
 .id_ {
-    width: 40em;
+    width: 30em;
     font-weight: bold;
     margin-top: 1em;
 }
 
-.idBovino,
-.nomeBovino,
-.racaBovino,
-.pesoBovino,
-.idadeBovino,
-.sexoBovino,
-.reprodutorBovino,
-.chifreBovino,
-.corBovino {
+.nomePessoa,
+.senhaPessoa {
     width: 30em;
     border-radius: 1em;
     border: solid 1.5px #6D3B00;
@@ -48,21 +45,6 @@
     margin-top: -1em;
     padding: 0.3em;
 }
-
-.producaoLeite,
-.dandoLeiteBovino,
-.gravidaBovino,
-.dataInicioBovino,
-.diasGestacaoBovino,
-.dataNascimentoBovino {
-    width: 20em;
-    border-radius: 1em;
-    border: solid 1.5px #6D3B00;
-    background-color: #eaece2;
-    margin-top: -1em;
-    padding: 0.3em;
-}
-
 
 .botao {
     background-color: #83A93A;

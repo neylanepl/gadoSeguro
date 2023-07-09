@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import Menu from '../../components/menu';
 import '../../styles/css/listarVacinas.css';

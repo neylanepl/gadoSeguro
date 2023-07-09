@@ -11,7 +11,7 @@ const ListarAlimentacao = () => {
     return (
         <div>
             <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Alimentacao cadastrados no sistema</h1>
+            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Alimentação cadastrada no sistema</h1>
             <div className="t" style={{ margin: "5%", marginLeft: "10%", marginRight: "20%" }}>
                 <div className="text-center" style={{ marginBottom: "5%" }}><button className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} variant="warning" onClick={e => navigate('/alimentacao/cadastrarAlimentacao')}>Cadastrar Alimentacao</button></div>
 

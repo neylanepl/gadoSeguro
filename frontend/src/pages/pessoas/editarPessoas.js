@@ -14,7 +14,7 @@ const EditarPessoa = () => {
     return (
         <div>
             <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastro Usuário </h1>
+            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Editar Usuário </h1>
             <div className="formularioLogin" style={{ marginBottom: "10%" }}>
                 <form className="formulario" onSubmit={e => { handleSubmitForm(e) }}>
                     <div className="sub-div">

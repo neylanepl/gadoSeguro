@@ -10,6 +10,7 @@ import FazendaHome from './pages/fazendas/fazendaHome.js';
 import IngredienteHome from './pages/ingredientes/ingredienteHome.js';
 import AlimentacaoHome from './pages/alimentacao/alimentacaoHome.js';
 import DietaHome from './pages/dieta/dietaHome.js';
+import DoseHome from './pages/dose/doseHome.js';
 
 import CadastrarBovino from './pages/bovinos/cadastrarBovino.js';
 import EditarBovino from './pages/bovinos/editarBovino.js';
@@ -22,6 +23,7 @@ import ListarVacina from './pages/vacinas/listarVacinas.js';
 import CadastrarPessoa from './pages/pessoas/cadastrarPessoas.js';
 import EditarPessoa from './pages/pessoas/editarPessoas.js';
 import ListarPessoa from './pages/pessoas/listarPessoas.js';
+import LoginPessoa from './pages/pessoas/loginPessoa.js';
 
 import CadastrarFazenda from './pages/fazendas/cadastrarFazenda.js';
 import EditarFazenda from './pages/fazendas/editarFazenda.js';
@@ -38,12 +40,17 @@ import CadastrarDieta from './pages/dieta/cadastrarDieta.js';
 import EditarDieta from './pages/dieta/editarDieta.js';
 import ListarDieta from './pages/dieta/listarDieta.js';
 
+import CadastrarDose from './pages/dose/cadastrarDose.js';
+import EditarDose from './pages/dose/editarDose.js';
+import ListarDose from './pages/dose/listarDose.js';
+
 function App() {
   return (
 
     <Router>
       <Routes>
-        <Route path="/" element={<Inicio />} />
+        <Route path="/" element={<LoginPessoa />} />
+        <Route path="/inicio/inicio" element={<Inicio />} />
         <Route path="/bovinos/bovinoHome" element={<BovinoHome />} />
         <Route path="/vacinas/vacinaHome" element={<VacinaHome />} />
         <Route path="/pessoas/pessoaHome" element={<PessoaHome />} />
@@ -51,6 +58,7 @@ function App() {
         <Route path="/ingredientes/ingredienteHome" element={<IngredienteHome />} />
         <Route path="/alimentacao/alimentacaoHome" element={<AlimentacaoHome />} />
         <Route path="/dieta/dietaHome" element={<DietaHome />} />
+        <Route path="/dose/doseHome" element={<DoseHome />} />
 
         <Route path="/bovinos/cadastrarBovino" element={<CadastrarBovino />} />
         <Route path="/bovinos/editarBovino" element={<EditarBovino />} />
@@ -63,6 +71,7 @@ function App() {
         <Route path="/pessoas/cadastrarPessoas" element={<CadastrarPessoa />} />
         <Route path="/pessoas/editarPessoas" element={<EditarPessoa />} />
         <Route path="/pessoas/listarPessoas" element={<ListarPessoa />} />
+        <Route path="/pessoas/loginPessoa" element={<LoginPessoa />} />
 
         <Route path="/fazendas/cadastrarFazenda" element={<CadastrarFazenda />} />
         <Route path="/fazendas/editarFazenda" element={<EditarFazenda />} />
@@ -78,6 +87,10 @@ function App() {
         <Route path="/dieta/cadastrarDieta" element={<CadastrarDieta />} />
         <Route path="/dieta/editarDieta" element={<EditarDieta />} />
         <Route path="/dieta/listarDieta" element={<ListarDieta />} />
+
+        <Route path="/dose/cadastrarDose" element={<CadastrarDose />} />
+        <Route path="/dose/editarDose" element={<EditarDose />} />
+        <Route path="/dose/listarDose" element={<ListarDose />} />
 
       </Routes>
     </Router>

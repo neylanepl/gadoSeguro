@@ -75,7 +75,7 @@ const CadastrarAlimentacao = () => {
     return (
         <div>
             <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> CADASTRAR ALIMENTAÇÃO </h1>
+            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastrar Alimentação </h1>
             <div className="formularioAlimentacao" style={{ marginBottom: "10%" }}>
                 <form className="formulario" onSubmit={handleSubmitForm}>
                     <div className="sub-div">

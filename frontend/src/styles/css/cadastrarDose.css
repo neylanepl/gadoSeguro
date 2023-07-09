@@ -2,7 +2,7 @@
     margin: 0%;
 }
 
-.formularioCadastroBovino,
+.formularioCadastroDose,
 .formulario,
 .sub-div {
     display: flex;
@@ -12,7 +12,7 @@
     justify-content: center;
 }
 
-.formularioCadastroBovino {
+.formularioCadastroDose {
     margin: 0 auto;
     width: 600px;
     background-color: #E0E7CA;
@@ -33,14 +33,11 @@
 }
 
 .idBovino,
-.nomeBovino,
-.racaBovino,
-.pesoBovino,
-.idadeBovino,
-.sexoBovino,
-.reprodutorBovino,
-.chifreBovino,
-.corBovino {
+.nomeDose,
+.infoDose,
+.dataAplicadaDose,
+.dataPrevDose,
+.loteDose {
     width: 30em;
     border-radius: 1em;
     border: solid 1.5px #6D3B00;
@@ -48,21 +45,6 @@
     margin-top: -1em;
     padding: 0.3em;
 }
-
-.producaoLeite,
-.dandoLeiteBovino,
-.gravidaBovino,
-.dataInicioBovino,
-.diasGestacaoBovino,
-.dataNascimentoBovino {
-    width: 20em;
-    border-radius: 1em;
-    border: solid 1.5px #6D3B00;
-    background-color: #eaece2;
-    margin-top: -1em;
-    padding: 0.3em;
-}
-
 
 .botao {
     background-color: #83A93A;

@@ -31,6 +31,10 @@ const Inicio = () => {
     window.location.href = '/dieta/dietaHome';
   };
 
+  const redirectToDoseHome = () => {
+    window.location.href = '/dose/doseHome';
+  };
+
 
   return (
 
@@ -45,6 +49,8 @@ const Inicio = () => {
           <button className="botao" type="submit" onClick={redirectToBovinoHome}>Bovinos</button>
 
           <button className='botao' type='submit' onClick={redirectToVacinaHome}>Vacinas</button>
+
+          <button className='botao' type='submit' onClick={redirectToDoseHome}>Dose</button>
 
           <button className='botao' type='submit' onClick={redirectToPessoaHome}>Pessoas</button>
 

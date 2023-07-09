@@ -27,7 +27,7 @@ const CadastrarPessoa = () => {
     return (
         <div>
             <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> CADASTRE-SE </h1>
+            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Casdastro </h1>
             <div className="formularioLogin" style={{ marginBottom: "10%" }}>
                 <form className="formulario" onSubmit={e => { handleSubmitForm(e) }}>
                     <div className="sub-div">
@@ -47,11 +47,6 @@ const CadastrarPessoa = () => {
                             <button variant="warning" type="submit" value="submit" className="btn btn-success"
                                 style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
                                 Cadastre-se
-                            </button>
-                            <button className="btn btn-success"
-                                style={{ backgroundColor: "#6D3B00", borderColor: "#6D3B00", marginTop: "30px" }} variant="warning"
-                                onClick={e => navigate('/login')}>
-                                Login
                             </button>
                         </div>
                     </div>
