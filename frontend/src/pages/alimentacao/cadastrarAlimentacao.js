@@ -28,7 +28,9 @@ const CadastrarAlimentacao = () => {
             qntDiariaRecomendada: qntDiariaRecomendadaForm,
             ingredientesSelecionados: ingredientesSelecionados
         };
-        // Resto do código...
+        salvarAlimentacao(payload);
+
+        navigate('/', { state: { alimentacao: payload } });
     };
 
     const handleSelecionarIngrediente = (ingrediente) => {
@@ -39,12 +41,43 @@ const CadastrarAlimentacao = () => {
         }
     };
 
+
+    const salvarAlimentacao = (dados) => {
+        // Obtém os dados existentes do armazenamento local (se houver)
+        const dadosExistentes = localStorage.getItem('dadosAlimentacao');
+
+        let novosDadosAlimentacao = [];
+
+        if (dadosExistentes) {
+            // Se já houver dados salvos, converte para um array
+            novosDadosAlimentacao = JSON.parse(dadosExistentes);
+        }
+
+        // Adiciona os novos dados ao array
+        novosDadosAlimentacao.push(dados);
+
+        // Salva o array atualizado no armazenamento local
+        localStorage.setItem('dadosAlimentacao', JSON.stringify(novosDadosAlimentacao));
+
+        // Limpa os campos do formulário
+        setNomeForm('');
+        setFaltaConsumirForm('');
+        setQntDiariaRecomendadaForm('');
+
+        // Exibe os dados salvos no console
+        console.log('Dados salvos Alimentacao:', novosDadosAlimentacao);
+
+        // Navega para a página desejada após cadastrar os dados
+        navigate('/');
+    };
+
+
     return (
         <div>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> CADASTRAR ALIMENTAÇÃO </h1>
             <div className="formularioAlimentacao" style={{ marginBottom: "10%" }}>
-                <form className="formulario" onSubmit={e => { handleSubmitForm(e) }}>
+                <form className="formulario" onSubmit={handleSubmitForm}>
                     <div className="sub-div">
                         <div className="id_">
                             <p>Nome</p>
