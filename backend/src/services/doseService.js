@@ -9,16 +9,15 @@ async  addDose(doseTemp) {
     console.log(doseTemp);
     const connection = await dbConnection();
     const query = `
-    INSERT INTO GadoSeguro.Dose (idDose, nome_vacina, lote, info, data_aplicada, data_prev) 
-    VALUES (?,?,?,?,?,?)
+    INSERT INTO GadoSeguro.Dose (nome_vacina, lote, info, data_aplicada, data_prev) 
+    VALUES (?,?,?,?,?)
     `;
     const values = [
-      doseTemp.getIdDose(),
-      doseTemp.getNomeVacina(),
-      doseTemp.getLote(),
-      doseTemp.getInfo(),
-      doseTemp.getDataAplicada(),
-      doseTemp.getDataPrev()
+      doseTemp.nome_vacina,
+      doseTemp.lote,
+      doseTemp.info,
+      doseTemp.data_aplicada,
+      doseTemp.data_prev
     ];
     await connection.execute(query, values);
     console.log("Objeto Dose adicionado com sucesso!");
@@ -66,11 +65,11 @@ async getUpdateDose(idDose, doseTemp) {
     WHERE idDose=?
     `;
     const values = [
-      doseTemp.getNomeVacina(),
-      doseTemp.getLote(),
-      doseTemp.getInfo(),
-      doseTemp.getDataAplicada(),
-      doseTemp.getDataPrev(),
+      doseTemp.nome_vacina,
+      doseTemp.lote,
+      doseTemp.info,
+      doseTemp.data_aplicada,
+      doseTemp.data_prev,
       idDose
     ];
     await connection.execute(query, values);

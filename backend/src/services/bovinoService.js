@@ -6,19 +6,18 @@ class BovinoService {
   async addBovino(bovinoTemp){
     try{
       const connection = await dbConnection();
-      const query = `INSERT INTO GadoSeguro.Bovino (idBovino, Fazenda_idFazenda, Vaca_idVaca, reprodutor, sexo, data_nascimento, chifre, nome, peso, cor)
-      VALUES (?,?,?,?,?,?,?,?,?,?)`;
+      const query = `INSERT INTO GadoSeguro.Bovino (Fazenda_idFazenda, Vaca_idVaca, reprodutor, sexo, data_nascimento, chifre, nome, peso, cor)
+      VALUES (?,?,?,?,?,?,?,?,?)`;
       const values = [
-        bovinoTemp.getId(),
-        bovinoTemp.getFazendaIdFazenda(),
-        bovinoTemp.getVacaIdVaca(),
-        bovinoTemp.getReprodutor(),
-        bovinoTemp.getSexo(),
-        bovinoTemp.getDataNascimento(),
-        bovinoTemp.getChifre(),
-        bovinoTemp.getNome(),
-        bovinoTemp.getPeso(),
-        bovinoTemp.getCor()
+        bovinoTemp.Fazenda_idFazenda,
+        bovinoTemp.Vaca_idVaca,
+        bovinoTemp.reprodutor,
+        bovinoTemp.sexo,
+        bovinoTemp.data_nascimento,
+        bovinoTemp.chifre,
+        bovinoTemp.nome,
+        bovinoTemp.peso,
+        bovinoTemp.cor
       ];
       await connection.execute(query, values);
       console.log("Bovino Adicionado");    
@@ -63,15 +62,15 @@ class BovinoService {
       const connection = await dbConnection();
       const query = `UPDATE GadoSeguro.Bovino SET Fazenda_idFazenda=?, Vaca_idVaca=?, reprodutor=?, sexo=?, data_nascimento=?, chifre=?, nome=?, peso=?, cor=? WHERE idBovino=?`;
       const values = [
-        bovinoTemp.getFazendaIdFazenda(),
-        bovinoTemp.getVacaIdVaca(),
-        bovinoTemp.getReprodutor(),
-        bovinoTemp.getSexo(),
-        bovinoTemp.getDataNascimento(),
-        bovinoTemp.getChifre(),
-        bovinoTemp.getNome(),
-        bovinoTemp.getPeso(),
-        bovinoTemp.getCor(),
+        bovinoTemp.Fazenda_idFazenda,
+        bovinoTemp.Vaca_idVaca,
+        bovinoTemp.reprodutor,
+        bovinoTemp.sexo,
+        bovinoTemp.data_nascimento,
+        bovinoTemp.chifre,
+        bovinoTemp.nome,
+        bovinoTemp.peso,
+        bovinoTemp.cor,
         idBovino
       ];
       await connection.execute(query, values);

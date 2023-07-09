@@ -13,9 +13,9 @@ class VacinaServices{
       VALUES (?,?,?)
       `;
       const values = [
-        vacinaTemp.getNome(),
-        vacinaTemp.getInfo(),
-        vacinaTemp.getFabricante()
+        vacinaTemp.nome_vacina,
+        vacinaTemp.info,
+        vacinaTemp.fabricante
       ];
       await connection.execute(query, values);
       console.log("Vacina Adicionada com sucesso");
@@ -64,8 +64,8 @@ class VacinaServices{
       WHERE nome_vacina=?
       `;
       const values = [
-        vacinaTemp.getInfo(),
-        vacinaTemp.getFabricante(),
+        vacinaTemp.info,
+        vacinaTemp.fabricante,
         vacinaNome
       ];
       await connection.execute(query, values);

@@ -1,5 +1,4 @@
 const dbConnection = require("../database/Conect");
-const Fazenda = require("../entity/Fazenda");
 
 class FazendaService {
   //Adicionar Fazenda
@@ -8,11 +7,10 @@ async  addFazenda(fazendaTemp) {
     const connection = await dbConnection();
     let idFazenda = 1;
     const query = `
-    INSERT INTO GadoSeguro.Fazenda (idFazenda, nome, sitio, cidade, cep, complemento, numero) 
-    VALUES (?,?,?,?,?,?,?)
+    INSERT INTO GadoSeguro.Fazenda (nome, sitio, cidade, cep, complemento, numero) 
+    VALUES (?,?,?,?,?,?)
     `;
     const values = [
-      idFazenda, 
       fazendaTemp.nome, 
       fazendaTemp.sitio, 
       fazendaTemp.cidade, 
@@ -57,12 +55,12 @@ async updateFazenda(idFazenda, fazendaTemp){
     const connection = await dbConnection();
     const query = `UPDATE GadoSeguro.Fazenda SET nome=?, sitio=?, cidade=?, cep=?, complemento=?, numero=? WHERE idFazenda=?`;
     const values = [
-      fazendaTemp.getNome(),
-      fazendaTemp.getSitio(),
-      fazendaTemp.getCidade(),
-      fazendaTemp.getCep(),
-      fazendaTemp.getComplemento(),
-      fazendaTemp.getNumeros(),
+      fazendaTemp.nome, 
+      fazendaTemp.sitio, 
+      fazendaTemp.cidade, 
+      fazendaTemp.cep, 
+      fazendaTemp.complemento, 
+      fazendaTemp.numero,
       idFazenda
     ];
     await connection.execute(query, values);

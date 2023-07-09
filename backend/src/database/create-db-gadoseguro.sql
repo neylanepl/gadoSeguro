@@ -29,7 +29,7 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Dose`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Dose` (
-  `idDose` INT NOT NULL,
+  `idDose` INT NOT NULL AUTO_INCREMENT,
   `nome_vacina` VARCHAR(45) NOT NULL,
   `lote` VARCHAR(15) NOT NULL,
   `info` VARCHAR(45) NOT NULL,
@@ -48,7 +48,7 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Fazenda`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Fazenda` (
-  `idFazenda` INT NOT NULL,
+  `idFazenda` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `sitio` VARCHAR(45) NOT NULL,
   `cidade` VARCHAR(45) NOT NULL,
@@ -80,9 +80,9 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Bovino`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Bovino` (
-  `idBovino` INT NOT NULL,
+  `idBovino` INT NOT NULL AUTO_INCREMENT,
   `Fazenda_idFazenda` INT NOT NULL,
-  `Vaca_idVaca` INT NOT NULL,
+  `Vaca_idVaca` INT NULL,
   `reprodutor` TINYINT NOT NULL,
   `sexo` VARCHAR(45) NOT NULL,
   `data_nascimento` DATE NOT NULL,
@@ -123,7 +123,7 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Ingrediente`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Ingrediente` (
-  `idIngrediente` INT NOT NULL,
+  `idIngrediente` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `qnt_estoque` FLOAT NOT NULL,
   `unidade` VARCHAR(45) NOT NULL,
@@ -232,7 +232,7 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Dieta`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Dieta` (
-  `idDieta` INT NOT NULL,
+  `idDieta` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NOT NULL,
   `restricao_alimentar` VARCHAR(45) NULL,
   PRIMARY KEY (`idDieta`))
@@ -243,7 +243,7 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Racas`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Racas` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
@@ -275,7 +275,7 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Instancia_Dieta`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Instancia_Dieta` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Dieta_idDieta` INT NOT NULL,
   `Bovino_idBovino` INT NOT NULL,
   `data_inicio` DATE NOT NULL,
@@ -300,7 +300,7 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Alimentação`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Alimentação` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `falta_consumir` DOUBLE NOT NULL,
   `qnt_diaria_recomendada` DOUBLE NOT NULL,
@@ -357,7 +357,7 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Instancia_Alimentacao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Instancia_Alimentacao` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `Alimentação_id` INT NOT NULL,
   `Bovino_idBovino` INT NOT NULL,
   `Pessoa_cpf` INT NOT NULL,
