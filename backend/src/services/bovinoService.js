@@ -1,5 +1,4 @@
 const dbConnection = require("../database/Conect");
-const Bovino = require("../entity/Bovino");
 
 class BovinoService {
   //Adicionar Bovino

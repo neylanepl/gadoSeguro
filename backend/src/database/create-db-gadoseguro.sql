@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Vaca` (
   `idVaca` INT NOT NULL,
   `dar_leite` TINYINT NOT NULL,
   `gravida` TINYINT NOT NULL,
-  `producao_leit` DOUBLE NOT NULL,
+  `producao_leite` DOUBLE NOT NULL,
   PRIMARY KEY (`idVaca`),
   CONSTRAINT `fk_vaca_Bovino1`
     FOREIGN KEY (`idVaca`)
