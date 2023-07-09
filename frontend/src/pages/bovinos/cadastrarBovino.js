@@ -207,7 +207,7 @@ const CadastrarBovino = () => {
             <button
               type="submit"
               className="btn btn-success"
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }} onSubmit={e => navigate('/inicio/inicio')}
             >
               Cadastrar
             </button>

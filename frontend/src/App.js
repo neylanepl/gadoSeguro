@@ -75,8 +75,10 @@ function App() {
         <Route path="/pessoas/loginPessoa" element={<LoginPessoa />} />
 
         <Route path="/fazendas/cadastrarFazenda" element={<CadastrarFazenda />} />
-        <Route path="/fazendas/editarFazenda" element={<EditarFazenda />} />
         <Route path="/fazendas/listarFazenda" element={<ListarFazenda />} />
+        <Route path="/fazendas/editarFazenda/:id" element={<EditarFazenda />} />
+
+
 
         <Route path="/ingredientes/cadastrarIngrediente" element={<CadastrarIngrediente />} />
         <Route path="/ingredientes/editarIngrediente" element={<EditarIngrediente />} />

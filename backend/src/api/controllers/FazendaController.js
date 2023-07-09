@@ -2,7 +2,7 @@ const FazendaService = require('../../services/fazendaService')
 
 class FazendaController {
 
-    async create_fazenda(request,response){
+    async create_fazenda(request, response) {
         const fazendaTemp = {
             nome: request.body.nome,
             sitio: request.body.sitio,
@@ -48,9 +48,9 @@ class FazendaController {
     }
 
 
-    async delete_fazenda(request,response){
+    async delete_fazenda(request, response) {
         try {
-            const {idFazenda} = request.params.idFazenda
+            const { idFazenda } = request.params.idFazenda
             FazendaService.deleteFazenda(idFazenda);
             response.status(200).json({
                 msg: "Fazenda deletada com sucesso"
@@ -61,6 +61,7 @@ class FazendaController {
             })
         }
     }
+
 }
 
 module.exports = new FazendaController()
