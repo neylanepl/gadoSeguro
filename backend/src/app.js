@@ -10,15 +10,15 @@ const app = express()
 const port = 3001
 
 //Exemplo de Adição da Fazenda
-let fazendaTemp = {nome:"Feliz",sitio:"Pica-Pau",cidade:"Montana",cep:"555-42",complemento:"Uma Casa",numero:50}
+let fazendaTemp = { nome: "Feliz", sitio: "Pica-Pau", cidade: "Montana", cep: "555-42", complemento: "Uma Casa", numero: 50 }
 //fazendaS.addFazenda(fazendaTemp)
 
 //Exemplo de Adição de Bovino
-let bovinoTemp = {Fazenda_idFazenda:2,Vaca_idVaca:null,reprodutor:false,sexo:"Fem",data_nascimento:"2001-12-03",chifre:false,nome:"Mimosa",peso:251.6,cor:"Pintada"}
+let bovinoTemp = { Vaca_idVaca: null, reprodutor: false, sexo: "Fem", data_nascimento: "2001-12-03", chifre: false, nome: "Mimosa", peso: 251.6, cor: "Pintada" }
 //bovinoS.addBovino(bovinoTemp)
 
 //Exemplo de Adição de Vaca
-let vacaTemp = {idVaca:1,dar_leite:true,gravida:false,producao_leite:3}
+let vacaTemp = { dar_leite: true, gravida: false, producao_leite: 3 }
 //vacaS.addVaca(vacaTemp)
 
 app.use('/static', express.static('public'));
@@ -32,6 +32,6 @@ app.use((req, res, next) => {
 
 app.use(routesFazenda)
 
-app.listen(port, () => { 
+app.listen(port, () => {
     console.log('Servidor rodando na porta ', port)
 })

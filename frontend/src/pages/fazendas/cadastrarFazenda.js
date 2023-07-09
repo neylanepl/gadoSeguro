@@ -16,7 +16,7 @@ const CadastrarFazenda = () => {
 
     const navigate = useNavigate();
 
-    const handleSubmitForm = async e => {
+    const handleSubmitForm = async (e) => {
         e.preventDefault();
         const payload = {
             nome: nomeForm,
@@ -27,14 +27,14 @@ const CadastrarFazenda = () => {
             numero: numeroForm
         };
 
-        try{
-            const { data } = await axios.post('http://localhost:3004/fazenda', payload);
+        try {
+            const { data } = await axios.post('http://localhost:3001/fazenda', payload);
             console.log("Cadastro realizado com sucesso!")
             navigate('/');
-      
-          } catch(error) {
+
+        } catch (error) {
             console.log("Cadastro falhou!", error)
-          }
+        }
     };
 
     return (
@@ -64,15 +64,11 @@ const CadastrarFazenda = () => {
 
                         <div>
                             <button variant="warning" type="submit" value="submit" className="btn btn-success"
-                                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
-                                Cadastre-se
-                            </button>
-                            <button className="btn btn-success"
-                                style={{ backgroundColor: "#6D3B00", borderColor: "#6D3B00", marginTop: "30px" }} variant="warning"
-                                onClick={e => navigate('/login')}>
-                                Login
+                                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }} onSubmit={e => navigate('/inicio/inicio')}>
+                                Cadastrar
                             </button>
                         </div>
+
                     </div>
                 </form>
             </div>
