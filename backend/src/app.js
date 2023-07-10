@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors');
 
 const routesFazenda = require('./api/routes/fazendaRoutes')
 const routesDose = require('./api/routes/doseRoutes')
@@ -60,12 +61,16 @@ pessoaS.getPessoaCPF(123123)
   .catch((error) => {
     console.error("Erro ao buscar o objeto fazenda:", error);
   });
+
+app.use(cors());
 app.use('/static', express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.header("Access-Control-Allow-Methods", "GET, PUT, PATCH, POST, DELETE");
+    res.header("Access-Control-Allow-Headers", req.header('access-control-request-headers'));
     next();
 });
 
