@@ -4,12 +4,14 @@ const routesFazenda = require('./api/routes/fazendaRoutes')
 const routesDose = require('./api/routes/doseRoutes')
 const routesBovino = require('./api/routes/bovinoRoutes')
 const routesIngrediente = require('./api/routes/ingredienteRoutes')
+const routesVacina = require('./api/routes/vacinaRoutes')
 
 const fazendaS = require('./services/fazendaService')
 const bovinoS = require('./services/bovinoService')
 const vacaS = require('./services/vacaService')
 const dosesS = require('./services/doseService')
 const ingredienteS = require('./services/ingredienteService')
+const vacinaS = require('./services/vacinaServices')
 
 const app = express()
 const port = 3001
@@ -26,7 +28,9 @@ let bovinoTemp = { Fazenda_idFazenda: 1, Vaca_idVaca: null, reprodutor: false, s
 let vacaTemp = { dar_leite: true, gravida: false, producao_leite: 3 }
 //vacaS.addVaca(vacaTemp)
 
-//exemplo adição de ingrediente
+//exemplo adição de vacina
+let vacinaTemp = { nome_vacina: "seila", info: "febre", fabricante: "blabla" }
+//vacinaS.addVacina(vacinaTemp)
 
 app.use('/static', express.static('public'));
 app.use(express.json());

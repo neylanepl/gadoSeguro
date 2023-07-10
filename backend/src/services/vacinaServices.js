@@ -1,10 +1,10 @@
 const dbConnection = require("../database/Conect");
 
-const vacinaTeste = new Vacina();
+//const vacinaTeste = new Vacina();
 
-class VacinaServices{
+class VacinaServices {
   //Adicionar Vacina
-  async addVacina(vacinaTemp){
+  async addVacina(vacinaTemp) {
     try {
       const connection = await dbConnection();
       const query = `
@@ -20,16 +20,16 @@ class VacinaServices{
       console.log("Vacina Adicionada com sucesso");
     } catch (error) {
       console.log("Erro ao Adicionar vacina", error);
-      
+
     }
   }
 
   //Adicionar Vacina
-  async getAllVacinas(){
+  async getAllVacinas() {
     try {
       const connection = await dbConnection();
       const [vacinas] = await connection.query(`SELECT * FROM GadoSeguro.Vacina`);
-      if(vacinas.length > 0){
+      if (vacinas.length > 0) {
         console.log(vacinas);
         return vacinas;
       }
@@ -40,11 +40,11 @@ class VacinaServices{
   }
 
   //Adicionar Vacina
-  async getVacinaNome(vacinaNome){
+  async getVacinaNome(vacinaNome) {
     try {
       const connection = await dbConnection();
       const [vacinas] = await connection.query(`SELECT * FROM GadoSeguro.Vacina WHERE nome_vacina=?`, vacinaNome);
-      if(vacinas.length > 0){
+      if (vacinas.length > 0) {
         console.log(vacinas[0]);
         return vacinas[0];
       }
@@ -55,7 +55,7 @@ class VacinaServices{
   }
 
   //Atualizar Vacina
-  async updateVacina(vacinaNome, vacinaTemp){
+  async updateVacina(vacinaNome, vacinaTemp) {
     try {
       const connection = await dbConnection();
       const query = `
@@ -71,19 +71,19 @@ class VacinaServices{
       console.log("Vacina Atualizada com sucesso");
     } catch (error) {
       console.log("erro ao Atualizar a Vacina", error);
-      
+
     }
   }
 
   //Deletar Vacina pelo nome
-async  deleteVacina(vacinaNome) {
-  try {
-    const connection = await dbConnection();
-    await connection.query('DELETE FROM GadoSeguro.Vacina WHERE nome_vacina=?;', vacinaNome);
-  } catch (error) {
-    console.error("Erro ao deletar o objeto Vacina:", error);
+  async deleteVacina(vacinaNome) {
+    try {
+      const connection = await dbConnection();
+      await connection.query('DELETE FROM GadoSeguro.Vacina WHERE nome_vacina=?;', vacinaNome);
+    } catch (error) {
+      console.error("Erro ao deletar o objeto Vacina:", error);
+    }
   }
-}
 }
 
 module.exports = new VacinaServices();
