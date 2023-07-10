@@ -30,7 +30,8 @@ class BovinoService {
     try {
       const connection = await dbConnection();
       const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino;`);
-      return bovinos;
+      console.log("Lista de Bovinos");
+      return bovinos[0];
     } catch (error) {
       console.log("Erro a resgatar a lista bovino:", error);
     }
@@ -41,9 +42,10 @@ class BovinoService {
     try {
       const connection = await dbConnection();
       const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino WHERE Fazenda_idFazenda=?;`,idFazenda);
+      console.log("Lista de Bovinos da Fazenda: " + idFazenda);
       return bovinos;
     } catch (error) {
-      console.log("Erro a resgatar a lista bovino:", error);
+      console.log("Erro a resgatar a lista bovino da fazenda:", idFazenda + "|" + error);
     }
   }
 
@@ -53,11 +55,11 @@ class BovinoService {
       const connection = await dbConnection();
       const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino WHERE idBovino=?;`, idBovino);
       if (bovinos.length > 0) {
-        return bovinos;
+        return bovinos[0];
       }
-      console.log("Lista de bovinos");
+      console.log("Bovino do ID",idBovino);
     } catch (error) {
-      console.log("Erro a resgatar a lista bovino:", error);
+      console.log("Erro a resgatar o bovino com ID:", idBovino + "|" + error);
     }
   }
 

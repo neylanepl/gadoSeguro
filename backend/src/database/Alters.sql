@@ -1,0 +1,1 @@
+ALTER TABLE gadoseguro.pessoa MODIFY COLUMN senha VARCHAR(100);

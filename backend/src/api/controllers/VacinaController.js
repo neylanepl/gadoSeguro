@@ -36,7 +36,7 @@ class VacinaController {
 
     //Retornar uma vacina pelo nome 
     async show_vacinaNome(request, response) {
-        const { nome_vacina } = request.params
+        const nome_vacina = request.params.nome
         try {
             const bovino = await VacinaService.getVacinaNome(nome_vacina)
             return response.status(200).json(bovino)

@@ -1,19 +1,24 @@
 const dbConnection = require("../database/Conect");
+const encrypt = require("../utils/encrypt");
 
 class PessoaService {
   //Adicionar Pessoa
   async addPessoa(pessoaTemp) {
     try {
       const connection = await dbConnection();
+      
+      const senhaEncrypt = await encrypt.hashingPassword(pessoaTemp.senha);
+      console.log("Senha A Encrip: ", senhaEncrypt);
       const query = `INSERT INTO GadoSeguro.Pessoa (cpf, nome, email, senha, cargo)
       VALUES (?,?,?,?,?)`;
       const values = [
         pessoaTemp.cpf,
         pessoaTemp.nome,
         pessoaTemp.email,
-        pessoaTemp.senha,
+        senhaEncrypt,
         pessoaTemp.cargo
       ];
+      console.log(query, values);
       await connection.execute(query, values);
       console.log("Pessoa Adicionado");
     } catch (error) {
@@ -71,15 +76,38 @@ class PessoaService {
     }
   }
 
+  //Retornar Pessoa por Email
+  async getAcess(email, senha) {
+    try {
+      const connection = await dbConnection();
+      const query = `SELECT * FROM  GadoSeguro.Pessoa WHERE email=?;`;
+      const values = [email];
+      const [pessoas] = await connection.execute(query, values);
+      if(pessoas.length > 0){
+        console.log("Lista de pessoas: ",pessoas[0]);
+        const pessoa = pessoas[0];
+        console.log("Objeto Pessoa: ",pessoa);
+        const acesso = await encrypt.comparePassword(senha, pessoa.senha);
+        console.log("Resultado: ", acesso);
+
+        if(acesso){
+          return pessoa;
+        }
+      }
+      console.log("Lista de pessoas");
+    } catch (error) {
+      console.log("Erro a resgatar a lista pessoa:", error);
+    }
+  }
+
   //Atualizar Pessoa
   async updatePessoa(cpf, pessoaTemp) {
     try {
       const connection = await dbConnection();
-      const query = `UPDATE GadoSeguro.Pessoa SET Fazenda_idFazenda=?, nome=?, email=?, senha=?, cargo=? WHERE cpf=?`;
+      const query = `UPDATE GadoSeguro.Pessoa SET Fazenda_idFazenda=?, nome=?, email=?, cargo=? WHERE cpf=?`;
       const values = [
         pessoaTemp.nome,
         pessoaTemp.email,
-        pessoaTemp.senha,
         pessoaTemp.cargo,
         cpf
       ];
@@ -89,6 +117,21 @@ class PessoaService {
       console.log("Erro ao atualizar pessoa:", error);
     }
   }
+
+  //Alterar Senha
+  async changePassword(newPassword, cpf) {
+    //const senhaEncrypt = await encrypt.hashingPassword(newPassword);
+    try {
+        const connection = await dbConnection();
+        const updateQuery = 'UPDATE GadoSeguro.Pessoa SET senha=? WHERE cpf=?;';
+        const values = [newPassword, cpf];
+        await connection.query(updateQuery, values);
+        console.log("Senha Alterada");
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}
 
   //Deletar Pessoa
   async deletePessoa(cpf) {
