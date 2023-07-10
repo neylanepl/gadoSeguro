@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+import gadoSeguro from '../../services/connectionGadoSeguro';
 import Menu from '../../components/menu';
 
 const EditarFazenda = () => {
@@ -36,7 +36,7 @@ const EditarFazenda = () => {
 
         try {
             // Faz a requisição para atualizar os dados da fazenda
-            await axios.put(`/api/fazendas/${fazenda.id}`, payload);
+            await gadoSeguro.put(`/api/fazendas/${fazenda.id}`, payload);
             // Redireciona para outra página ou faz alguma ação de sucesso
             console.log('Dados atualizados com sucesso!');
         } catch (error) {

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import Menu from '../../components/menu';
 import '../../styles/css/alimentacaoBovino.css';
-import axios from 'axios';
+import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const ListarFazenda = () => {
     const [fazendas, setFazendas] = useState([]);
@@ -12,7 +12,7 @@ const ListarFazenda = () => {
     useEffect(() => {
         const fetchFazendas = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/fazenda');
+                const response = await gadoSeguro.get('/fazenda');
                 console.log("response: " + response.data);
                 setFazendas(response.data);
             } catch (error) {
@@ -29,7 +29,7 @@ const ListarFazenda = () => {
     const deletarFazenda = async (fazendaId) => {
         console.log("--ID: ", fazendaId);
         try {
-            const response = await axios.delete(`/fazenda/${fazendaId}`);
+            const response = await gadoSeguro.delete(`/fazenda/${fazendaId}`);
             console.log("eita apagou: ", response.data);
 
             console.log("apagou com sucesso");
