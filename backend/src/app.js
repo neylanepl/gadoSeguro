@@ -35,7 +35,7 @@ let vacinaTemp = { nome_vacina: "ESF-12/51", info: "Vacina para gripe", fabrican
 //vacinaS.addVacina(vacinaTemp)
 
 //exemplo adição de Pessoa
-let pessoaTemp = { cpf: "123123", nome: "Daniel Dantas Damasceno", email: "DDD@gmail.com", senha: "senha123", cargo: "Veterinario" }
+let pessoaTemp = { cpf: "123456", nome: "Raissa Ramires Ruth", email: "RRR@gmail.com", senha: "senha321", cargo: "funcionario" }
 //pessoaS.addPessoa(pessoaTemp)
 /*
 bovinoS.getBovinoFromFazenda(2)
@@ -54,14 +54,14 @@ bovinoS.getBovinoFromFazenda(2)
     console.error("Erro ao buscar o objeto fazenda:", error);
   });
 */
-/*pessoaS.changePassword("senha123", 123123);
-pessoaS.getAcess("DDD@gmail.com", "senha123")
+/*pessoaS.changePassword("senha123", 123123);*/
+pessoaS.getAcess("RRR@gmail.com", "senha321")
   .then((pessoa) => {
     console.log("Acesso: ",pessoa);
   })
   .catch((error) => {
     console.error("Erro ao buscar o objeto fazenda:", error);
-  });*/
+  });
 
 app.use(cors());
 app.use('/static', express.static('public'));

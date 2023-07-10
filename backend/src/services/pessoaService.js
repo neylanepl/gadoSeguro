@@ -6,14 +6,16 @@ class PessoaService {
   async addPessoa(pessoaTemp) {
     try {
       const connection = await dbConnection();
-      //const senhaEncrypt = await encrypt.hashingPassword(pessoaTemp.senha);
+      
+      const senhaEncrypt = await encrypt.hashingPassword(pessoaTemp.senha);
+      console.log("Senha A Encrip: ", senhaEncrypt);
       const query = `INSERT INTO GadoSeguro.Pessoa (cpf, nome, email, senha, cargo)
       VALUES (?,?,?,?,?)`;
       const values = [
         pessoaTemp.cpf,
         pessoaTemp.nome,
         pessoaTemp.email,
-        pessoaTemp.senha,
+        senhaEncrypt,
         pessoaTemp.cargo
       ];
       console.log(query, values);
@@ -76,16 +78,22 @@ class PessoaService {
 
   //Retornar Pessoa por Email
   async getAcess(email, senha) {
-    //const senhaEncrypt = await encrypt.hashingPassword(senha);
     try {
       const connection = await dbConnection();
-      const query = `SELECT * FROM  GadoSeguro.Pessoa WHERE email=? AND senha=?;`;
-      const values = [email, senha];
-      const [pessoa] = await connection.execute(query, values);
-      const [pessoas] = await connection.query(`SELECT * FROM GadoSeguro.Pessoa WHERE email=? AND senha=?;`, [email, senha]);
-      console.log(email + " " + senha);
-      console.log(pessoas);
-      return pessoa[0];
+      const query = `SELECT * FROM  GadoSeguro.Pessoa WHERE email=?;`;
+      const values = [email];
+      const [pessoas] = await connection.execute(query, values);
+      if(pessoas.length > 0){
+        console.log("Lista de pessoas: ",pessoas[0]);
+        const pessoa = pessoas[0];
+        console.log("Objeto Pessoa: ",pessoa);
+        const acesso = await encrypt.comparePassword(senha, pessoa.senha);
+        console.log("Resultado: ", acesso);
+
+        if(acesso){
+          return pessoa;
+        }
+      }
       console.log("Lista de pessoas");
     } catch (error) {
       console.log("Erro a resgatar a lista pessoa:", error);
