@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/css/cadastrarPessoa.css';
 import Menu from '../../components/menu';
+import gadoSeguro from '../../services/connectionGadoSeguro';
 
 
 const CadastrarPessoa = () => {
@@ -22,6 +23,15 @@ const CadastrarPessoa = () => {
             cargo: cargoForm,
             senha: senhaForm
         };
+
+        try {
+            const { data } = await gadoSeguro.post('/pessoa', payload);
+            console.log("Cadastro realizado com sucesso!")
+            navigate('/login');
+
+        } catch (error) {
+            console.log("Cadastro falhou!", error)
+        }
     };
 
     return (

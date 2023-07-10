@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/css/login.css';
 import Menu from '../../components/menu';
+import { login } from '../../services/auth';
+import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const Login = () => {
 
@@ -17,6 +19,16 @@ const Login = () => {
             login: loginForm,
             senha: senhaForm
         };
+
+        try{
+            const { data } = await gadoSeguro.post('/login', payload);
+            login(data.token, data.role, data.id);
+            navigate('/inicio/inicio');
+      
+        } catch(error) {
+            console.log("Email ou senha inválido!", error);
+        }
+      
 
     };
 

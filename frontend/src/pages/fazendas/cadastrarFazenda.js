@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import gadoSeguro from '../../services/connectionGadoSeguro';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/css/cadastrarPessoa.css';
 import Menu from '../../components/menu';
@@ -28,9 +28,9 @@ const CadastrarFazenda = () => {
         };
 
         try {
-            const { data } = await axios.post('http://localhost:3001/fazenda', payload);
+            const { data } = await gadoSeguro.post('/fazenda', payload);
             console.log("Cadastro realizado com sucesso!")
-            navigate('/');
+            navigate('/fazendas/fazendaHome');
 
         } catch (error) {
             console.log("Cadastro falhou!", error)
