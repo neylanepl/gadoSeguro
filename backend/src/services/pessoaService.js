@@ -1,19 +1,22 @@
 const dbConnection = require("../database/Conect");
+const encrypt = require("../utils/encrypt");
 
 class PessoaService {
   //Adicionar Pessoa
   async addPessoa(pessoaTemp) {
     try {
       const connection = await dbConnection();
+      const senhaEncrypt = await encrypt.hashingPassword(pessoaTemp.senha);
       const query = `INSERT INTO GadoSeguro.Pessoa (cpf, nome, email, senha, cargo)
       VALUES (?,?,?,?,?)`;
       const values = [
         pessoaTemp.cpf,
         pessoaTemp.nome,
         pessoaTemp.email,
-        pessoaTemp.senha,
+        senhaEncrypt,
         pessoaTemp.cargo
       ];
+      console.log(query, values);
       await connection.execute(query, values);
       console.log("Pessoa Adicionado");
     } catch (error) {
@@ -75,11 +78,10 @@ class PessoaService {
   async updatePessoa(cpf, pessoaTemp) {
     try {
       const connection = await dbConnection();
-      const query = `UPDATE GadoSeguro.Pessoa SET Fazenda_idFazenda=?, nome=?, email=?, senha=?, cargo=? WHERE cpf=?`;
+      const query = `UPDATE GadoSeguro.Pessoa SET Fazenda_idFazenda=?, nome=?, email=?, cargo=? WHERE cpf=?`;
       const values = [
         pessoaTemp.nome,
         pessoaTemp.email,
-        pessoaTemp.senha,
         pessoaTemp.cargo,
         cpf
       ];
@@ -89,6 +91,20 @@ class PessoaService {
       console.log("Erro ao atualizar pessoa:", error);
     }
   }
+
+  //Alterar Senha
+  async changePassword(newPassword, cpf) {
+    const senhaEncrypt = await encrypt.hashingPassword(newPassword);
+    try {
+        const connection = await dbConnection();
+        const updateQuery = 'UPDATE GadoSeguro.Pessoa SET senha=? WHERE cpf=?;';
+        const values = [passwordEncrypted, id];
+        await database.query(updateQuery, values);
+    } catch (error) {
+        console.log(error);
+        return error;
+    }
+}
 
   //Deletar Pessoa
   async deletePessoa(cpf) {

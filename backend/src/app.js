@@ -35,7 +35,7 @@ let vacinaTemp = { nome_vacina: "ESF-12/51", info: "Vacina para gripe", fabrican
 
 //exemplo adição de Pessoa
 let pessoaTemp = { cpf: "123123", nome: "Daniel Dantas Damasceno", email: "DDD@gmail.com", senha: "senha123", cargo: "Veterinario" }
-//pessoaS.addPessoa(pessoaTemp)
+pessoaS.addPessoa(pessoaTemp)
 /*
 bovinoS.getBovinoFromFazenda(2)
   .then((bovino) => {

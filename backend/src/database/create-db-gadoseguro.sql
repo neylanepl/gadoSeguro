@@ -110,10 +110,10 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Pessoa`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Pessoa` (
-  `cpf` INT NOT NULL,
+  `cpf` VARCHAR(45) NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
-  `senha` VARCHAR(45) NOT NULL,
+  `senha` VARCHAR(100) NOT NULL,
   `cargo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`cpf`))
 ENGINE = InnoDB;
@@ -211,7 +211,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Empregados` (
   `Fazenda_idFazenda` INT NOT NULL,
-  `Pessoa_cpf` INT NOT NULL,
+  `Pessoa_cpf` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`Fazenda_idFazenda`, `Pessoa_cpf`),
   INDEX `fk_Fazenda_has_Pessoa_Pessoa1_idx` (`Pessoa_cpf` ASC) VISIBLE,
   INDEX `fk_Fazenda_has_Pessoa_Fazenda1_idx` (`Fazenda_idFazenda` ASC) VISIBLE,
