@@ -22,7 +22,7 @@ class IngredienteController {
         }
     }
 
-    //Retornar todas as Ingredientess de uma vacina
+    //Retornar todas as Ingredientess
     async show_ingredientes(request, response) {
         try {
             const ingrediente = await IngredienteService.getAllIngrediente()

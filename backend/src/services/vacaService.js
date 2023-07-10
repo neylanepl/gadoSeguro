@@ -39,7 +39,7 @@ async getAllVacas() {
 }
 
 //Retornar uma vaca pelo ID 
-async getAllDosesId(id) {
+async getVacaId(id) {
   try {
       const connection = await dbConnection()
       const [doses] = await connection.query('SELECT * FROM GadoSeguro.Vaca WHERE idVaca=?;', id)
@@ -54,7 +54,7 @@ async getAllDosesId(id) {
 }
 
 //Atualiza uma Vaca pelo ID 
-async getUpdateDose(id, vacaTemp) {
+async updateVaca(id, vacaTemp) {
   try {
     const connection = await dbConnection();
     const query = `
