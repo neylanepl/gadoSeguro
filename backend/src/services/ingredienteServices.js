@@ -6,6 +6,7 @@ class IngredienteService{
 async  addIngrediente(ingredienteTemp) {
   try {
     const connection = await dbConnection();
+    console.log("Adicionando: ",ingredienteTemp)
     const query = `
     INSERT INTO GadoSeguro.Ingrediente (nome, qnt_estoque, unidade)
     VALUES (?,?,?)

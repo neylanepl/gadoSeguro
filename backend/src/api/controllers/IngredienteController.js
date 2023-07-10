@@ -1,4 +1,4 @@
-const IngredienteService = require('../../services/ingredienteService')
+const IngredienteService = require('../../services/ingredienteServices')
 
 class IngredienteController {
 
@@ -6,7 +6,6 @@ class IngredienteController {
     create_ingrediente(request, response) {
         const ingredienteTemp = {
             nome: request.body.nome,
-            quantidade: request.body.quantidade,
             qnt_estoque: request.body.qnt_estoque,
             unidade: request.body.unidade
         }
@@ -52,7 +51,6 @@ class IngredienteController {
     async update_ingrediente(request, response) {
         const ingredienteTemp = {
             nome: request.body.nome,
-            quantidade: request.body.quantidade,
             qnt_estoque: request.body.qnt_estoque,
             unidade: request.body.unidade
         }
