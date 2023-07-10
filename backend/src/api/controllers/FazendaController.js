@@ -63,17 +63,13 @@ class FazendaController {
 
     //Atualiza uma Fazenda pelo ID 
     async update_fazenda(request, response) {
+        const { id } = request.params;
         const fazendaTemp = {
-            nome: request.body.nome,
-            sitio: request.body.sitio,
-            cidade: request.body.cidade,
-            cep: request.body.cep,
-            complemento: request.body.complemento,
-            numero: request.body.numero
+            ...request.body
         }
 
         try {
-            fazendaService.updateFazenda(fazendaTemp)
+            fazendaService.updateFazenda(id, fazendaTemp)
             response.status(200).json({
                 msg: "Fazenda atualizada com sucesso"
             })

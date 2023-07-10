@@ -36,7 +36,7 @@ const EditarFazenda = () => {
 
         try {
             // Faz a requisição para atualizar os dados da fazenda
-            await gadoSeguro.put(`/api/fazendas/${fazenda.id}`, payload);
+            await gadoSeguro.put(`/fazenda/${fazenda.id}`, payload);
             // Redireciona para outra página ou faz alguma ação de sucesso
             console.log('Dados atualizados com sucesso!');
         } catch (error) {
