@@ -360,7 +360,7 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Instancia_Alimentacao` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `Alimentação_id` INT NOT NULL,
   `Bovino_idBovino` INT NOT NULL,
-  `Pessoa_cpf` INT NOT NULL,
+  `Pessoa_cpf` VARCHAR(45) NOT NULL,
   `hora` TIME NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_Instancia_Alimentacao_Alimentação1_idx` (`Alimentação_id` ASC) VISIBLE,

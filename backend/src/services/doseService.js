@@ -46,7 +46,7 @@ async getAllDosesId(idDose) {
       const connection = await dbConnection()
       const [doses] = await connection.query('SELECT * FROM Dose WHERE idDose=?;', idDose)
       if(doses.length > 0){
-        Console.log(doses);
+        console.log(doses);
       }
       return doses
   } catch (error) {

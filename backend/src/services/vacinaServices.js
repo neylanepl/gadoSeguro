@@ -40,7 +40,7 @@ class VacinaServices {
   async getVacinaNome(vacinaNome) {
     try {
       const connection = await dbConnection();
-      console.log(`SELECT * FROM GadoSeguro.Vacina WHERE nome_vacina=?`, vacinaNome);
+      console.log(`SELECT * FROM GadoSeguro.Vacina WHERE nome_vacina=?`, [vacinaNome]);
       const [vacinas] = await connection.query(`SELECT * FROM GadoSeguro.Vacina WHERE nome_vacina=?;`,vacinaNome);
       return vacinas[0];
       console.log("Vacina Encontrada");

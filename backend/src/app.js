@@ -14,59 +14,40 @@ const dosesS = require('./services/doseService')
 const ingredienteS = require('./services/ingredienteService')
 const vacinaS = require('./services/vacinaServices')
 const pessoaS = require('./services/pessoaService')
+const carteiraS = require('./services/carteiraVacServices')
+const registraS = require('./services/registraServices')
 
 const app = express()
 const port = 3001
-
-//Exemplo de Adição da Fazenda
-let fazendaTemp = { nome: "tristeza", sitio: "rivotril", cidade: "dipirona", cep: "369-25", complemento: "Uma remedio", numero: 4 }
-//fazendaS.addFazenda(fazendaTemp)
-
-//Exemplo de Adição de Bovino
-let bovinoTemp = { Fazenda_idFazenda: 1, Vaca_idVaca: null, reprodutor: false, sexo: "Fem", data_nascimento: "2001-12-03", chifre: false, nome: "Mimosa", peso: 251.6, cor: "Pintada" }
-//bovinoS.addBovino(bovinoTemp)
-
-//Exemplo de Adição de Vaca
-let vacaTemp = { dar_leite: true, gravida: false, producao_leite: 3 }
-//vacaS.addVaca(vacaTemp)
-
-//exemplo adição de vacina
-let vacinaTemp = { nome_vacina: "ESF-12/51", info: "Vacina para gripe", fabricante: "Instituto Raissa Feia" }
-//vacinaS.addVacina(vacinaTemp)
-
-//exemplo adição de Pessoa
-let pessoaTemp = { cpf: "123456", nome: "Raissa Ramires Ruth", email: "RRR@gmail.com", senha: "senha321", cargo: "funcionario" }
-//pessoaS.addPessoa(pessoaTemp)
-/*
-bovinoS.getBovinoFromFazenda(2)
-  .then((bovino) => {
-    console.log(bovino);
-  })
-  .catch((error) => {
-    console.error("Erro ao buscar o objeto fazenda:", error);
-  });
-*/
-/*vacinaS.getVacinaNome("ESF-12/51")
-  .then((vacina) => {
-    console.log(vacina);
-  })
-  .catch((error) => {
-    console.error("Erro ao buscar o objeto fazenda:", error);
-  });
-*/
-/*pessoaS.changePassword("senha123", 123123);*/
-pessoaS.getAcess("RRR@gmail.com", "senha321")
-  .then((pessoa) => {
-    console.log("Acesso: ",pessoa);
-  })
-  .catch((error) => {
-    console.error("Erro ao buscar o objeto fazenda:", error);
-  });
 
 app.use(cors());
 app.use('/static', express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const doseTemp = { nome_vacina:"" , lote:"56-A" , info:"" , data_aplicada: "2001-12-04", data_prev: null};
+const registroTemp = { CarteiraVacinacao_Bovino_idBovino: 1, Dose_id: null};
+
+vacinaS.getAllVacinas()
+    .then((vacina) => {
+        console.log(vacina[0])
+        doseTemp.nome_vacina = vacina[0].nome_vacina
+        doseTemp.info = vacina[0].info
+        //dosesS.addDose(doseTemp)
+        dosesS.getAllDosesId(1)
+            .then((dose) =>{
+                console.log("Dose que quero: ",dose[0])
+                registroTemp.Dose_id = dose[0].idDose;
+                //console.log(registroTemp)
+                registraS.addRegistro(registroTemp);
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+      })
+      .catch((error) => {
+        console.error("Erro ao buscar o objeto fazenda:", error);
+      });
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

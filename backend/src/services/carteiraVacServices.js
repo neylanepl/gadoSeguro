@@ -14,9 +14,9 @@ async  addCarteiraVac(CarteiraVacTemp) {
         CarteiraVacTemp.Bovino_idBovino
     ];
     await connection.execute(query, values);
-    console.log("Objeto Ingrediente adicionado com sucesso!");
+    console.log("Objeto Carteira adicionado com sucesso!");
   } catch (error) {
-    console.error("Erro ao adicionar o objeto Ingrediente:", error);
+    console.error("Erro ao adicionar o objeto Carteira:", error);
   }
 }
 
@@ -25,9 +25,7 @@ async getAllCarteiras() {
   try {
       const connection = await dbConnection()
       const [Carteiras] = await connection.query('SELECT * FROM GadoSeguro.CarteiraVacinacao;')
-      if(Carteiras.length > 0){
-        Console.log(Carteiras);
-      }
+      console.log("Carteira encontradas com sucesso!");
       return Carteiras
   } catch (error) {
       console.log(error);
@@ -38,12 +36,10 @@ async getAllCarteiras() {
 //Retornar uma Carteiras pelo ID 
 async getCarteiraVacId(id) {
   try {
-      const connection = await dbConnection()
-      const [Carteiras] = await connection.query('SELECT * FROM GadoSeguro.Ingrediente WHERE idIngrediente=?;', id)
-      if(Carteiras.length > 0){
-        Console.log(Carteiras);
-      }
-      return Carteiras
+      const connection = await dbConnection();
+      const [Carteiras] = await connection.query('SELECT * FROM GadoSeguro.Ingrediente WHERE Bovino_idBovino=?;', id);
+      console.log("Carteira achada com sucesso!");
+      return Carteiras[0];
   } catch (error) {
       console.log(error);
       return error
@@ -51,12 +47,13 @@ async getCarteiraVacId(id) {
 }
 
 //Deletar Carteira pelo ID
-async  deleteIngrediente(id) {
+async  deleteCarteira(id) {
   try {
     const connection = await dbConnection();
     await connection.query('DELETE FROM GadoSeguro.CarteiraVacinacao WHERE Bovino_idBovino=?;', id);
+    console.log("Carteira excluida com sucesso!");
   } catch (error) {
-    console.error("Erro ao deletar o objeto CarteiraVacinacao:", error);
+    console.log("Erro ao deletar o objeto CarteiraVacinacao:", error);
   }
 }
 }
