@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Menu from '../../components/menu';
-
 import '../../styles/css/homeGenerica.css';
 
 const BovinoHome = () => {
@@ -11,14 +10,9 @@ const BovinoHome = () => {
         navigate('/bovinos/cadastrarBovino');
     };
 
-    const handleClickEdicao = () => {
-        navigate('/bovinos/editarBovino');
-    };
-
     const handleClickListar = () => {
         navigate('/bovinos/listarBovino');
     };
-
 
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>
@@ -27,14 +21,12 @@ const BovinoHome = () => {
 
             <div className="container" style={{ background: "#F0F1DF" }}>
                 <div className="formulario">
-                    {/* Botão para navegar para a página cadastrarBovinos */}
                     <button className="botao" onClick={handleClickCadastro}>Cadastrar Bovinos</button>
-
-                    <button className="botao" onClick={handleClickEdicao}>Editar Bovinos</button>
 
                     <button className="botao" onClick={handleClickListar}>Listar Bovinos</button>
                 </div>
             </div>
+
         </div>
     );
 };

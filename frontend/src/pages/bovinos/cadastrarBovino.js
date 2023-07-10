@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/css/cadastrarBovino.css';
+//import '../../styles/css/cadastrarBovino.css';
+import '../../styles/css/global.css';
 import Menu from '../../components/menu';
+import axios from 'axios';
 
 const CadastrarBovino = () => {
   const [nomeForm, setNomeForm] = useState('');
@@ -23,7 +25,7 @@ const CadastrarBovino = () => {
 
   const navigate = useNavigate();
 
-  const handleSubmitForm = e => {
+  const handleSubmitForm = async e => {
     e.preventDefault();
     const payload = {
       nome: nomeForm,
@@ -42,19 +44,31 @@ const CadastrarBovino = () => {
       dataNascimento: dataNascimentoForm
     };
 
-    // Aqui você pode adicionar sua lógica de envio de dados para a API
-    // e manipular a resposta conforme necessário
+    try {
+      const { data } = await axios.post('http://localhost:3001/bovino', payload);
+      console.log("Cadastro realizado com sucesso!")
+      navigate('/');
+
+    } catch (error) {
+      console.log("Cadastro falhou!", error)
+    }
+
+
 
     // Navegar para outra página após o envio do formulário
     navigate('/');
   };
 
   return (
-    <div style={{ background: "#F0F1DF" }}>
+    <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
       <Menu />
+
       <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Cadastrar Bovinos</h1>
+
       <div className="formularioCadastroBovino" style={{ marginBottom: "10%" }}>
+
         <form className="formulario" onSubmit={handleSubmitForm}>
+
           <div className="sub-div">
             <div className="id_"><p>Nome</p></div>
             <input type="text" className="nomeBovino" required onChange={e => setNomeForm(e.target.value)} />
@@ -206,14 +220,18 @@ const CadastrarBovino = () => {
 
             <button
               type="submit"
-              className="btn btn-success"
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }} onSubmit={e => navigate('/inicio/inicio')}
+              className="botaoCadastrar btn btn-success"
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px", width: "80px", margin: "40px", padding: 4, borderRadius: "5px" }} onSubmit={e => navigate('/inicio/inicio')}
             >
               Cadastrar
             </button>
           </div>
+
         </form>
+
+
       </div>
+
     </div>
   );
 };

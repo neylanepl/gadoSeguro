@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import '../../styles/css/global.css';
 import '../../styles/css/alimentacaoBovino.css';
 import Menu from '../../components/menu';
 
@@ -11,7 +11,7 @@ const EditarIngrediente = () => {
     const handleSubmitForm = async e => { }
 
     return (
-        <div>
+        <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Editar Ingrediente </h1>
             <div className="formularioLogin" style={{ marginBottom: "10%" }}>
@@ -26,7 +26,7 @@ const EditarIngrediente = () => {
                         <div className="id_"><p>Unidade</p></div>
                         <input type="text" className="unidadeIngrediente" onChange={e => setCargoForm(e.target.value)} />
 
-                        <button variant="warning" type="submit" value="submit" className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
+                        <button variant="warning" type="submit" value="submit" className="botaoEditar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/css/alimentacaoBovino.css';
+//import '../../styles/css/alimentacaoBovino.css';
+import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 
 const CadastrarAlimentacao = () => {
@@ -73,7 +74,7 @@ const CadastrarAlimentacao = () => {
 
 
     return (
-        <div>
+        <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastrar Alimentação </h1>
             <div className="formularioAlimentacao" style={{ marginBottom: "10%" }}>
@@ -136,7 +137,7 @@ const CadastrarAlimentacao = () => {
                                 type="submit"
                                 value="submit"
                                 className="btn btn-success"
-                                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}
+                                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0", padding: 4, borderRadius: "5px" }}
                             >
                                 Cadastrar
                             </button>

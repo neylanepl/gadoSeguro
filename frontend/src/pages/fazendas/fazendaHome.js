@@ -10,10 +10,6 @@ const FazendaHome = () => {
         navigate('/fazendas/cadastrarFazenda');
     };
 
-    const handleClickEdicao = () => {
-        navigate('/fazendas/editarFazenda');
-    };
-
     const handleClickListar = () => {
         navigate('/fazendas/listarFazenda');
     };
@@ -27,8 +23,6 @@ const FazendaHome = () => {
                 <div className="formulario">
                     {/* Botão para navegar para a página cadastrarBovinos */}
                     <button className="botao" onClick={handleClickCadastro}>Cadastrar Fazenda</button>
-
-                    <button className="botao" onClick={handleClickEdicao}>Editar Fazenda</button>
 
                     <button className="botao" onClick={handleClickListar}>Listar Fazenda</button>
                 </div>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/css/alimentacaoBovino.css';
+//import '../../styles/css/alimentacaoBovino.css';
+import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 
 const CadastrarIngrediente = () => {
@@ -54,7 +55,7 @@ const CadastrarIngrediente = () => {
 
 
     return (
-        <div>
+        <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastrar Ingrediente </h1>
             <div className="formularioIngrediente" style={{ marginBottom: "10%" }}>
@@ -70,7 +71,7 @@ const CadastrarIngrediente = () => {
                         <input type="text" className="unidadeIngrediente" required onChange={e => setUnidadeForm(e.target.value)} />
 
                         <div>
-                            <button variant="warning" type="submit" value="submit" className="btn btn-success"
+                            <button variant="warning" type="submit" value="submit" className="botaoCadastrar btn btn-success"
                                 style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
                                 Cadastrar
                             </button>

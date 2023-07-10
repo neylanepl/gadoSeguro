@@ -1,7 +1,8 @@
 import React from 'react';
 import Menu from '../../components/menu';
-import '../../styles/css/inicio.css';
-
+import Footer from '../../components/footer';
+//import '../../styles/css/inicio.css';
+import '../../styles/css/global.css';
 const Inicio = () => {
   const redirectToBovinoHome = () => {
     window.location.href = '/bovinos/bovinoHome';
@@ -38,9 +39,10 @@ const Inicio = () => {
 
   return (
 
-    <div id="wrapper" style={{ background: "#F0F1DF" }}>
+    <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
       <Menu />
-      <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px", marginBottom: "5%" }}> Vacinação de Bovinos</h1>
+
+      <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px", marginBottom: "5%" }}> Administração de Bovinos</h1>
 
       <div className="container" style={{ background: "#F0F1DF" }}>
 
@@ -65,8 +67,9 @@ const Inicio = () => {
         </div>
 
       </div>
-    </div>
 
+      <Footer />
+    </div>
   );
 };
 

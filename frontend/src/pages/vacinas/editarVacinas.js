@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import '../../styles/css/global.css';
 import { Form } from 'react-bootstrap';
 import Menu from '../../components/menu';
 
@@ -12,7 +12,7 @@ const EditarVacina = () => {
     const handleSubmitForm = async e => { }
 
     return (
-        <div>
+        <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Editar Vacina </h1>
             <div className="formularioCadastroVacina" >
@@ -27,7 +27,7 @@ const EditarVacina = () => {
                         <div className="id_"><p>Informações Extras</p></div>
                         <input style={{ padding: "5px", paddingLeft: "10px" }} type="text" className="informacaoVacina" onChange={e => setInformacoesExtrasForm(e.target.value)} />
 
-                        <button variant="warning" type="submit" value="submit" className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
+                        <button variant="warning" type="submit" value="submit" className="botaoEditar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
                     </div>
                 </form>
             </div>

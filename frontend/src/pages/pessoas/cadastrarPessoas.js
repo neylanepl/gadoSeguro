@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-
+import '../../styles/css/global.css';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/css/cadastrarPessoa.css';
+//import '../../styles/css/cadastrarPessoa.css';
 import Menu from '../../components/menu';
 import gadoSeguro from '../../services/connectionGadoSeguro';
 
@@ -35,7 +35,7 @@ const CadastrarPessoa = () => {
     };
 
     return (
-        <div>
+        <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Casdastro </h1>
             <div className="formularioLogin" style={{ marginBottom: "10%" }}>
@@ -54,9 +54,9 @@ const CadastrarPessoa = () => {
                         <input type="password" className="senhaPessoa" required onChange={e => setSenhaForm(e.target.value)} />
 
                         <div>
-                            <button variant="warning" type="submit" value="submit" className="btn btn-success"
+                            <button variant="warning" type="submit" value="submit" className="botaoCadastrar btn btn-success"
                                 style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
-                                Cadastre-se
+                                Cadastrar
                             </button>
                         </div>
                     </div>

@@ -20,20 +20,20 @@ const Login = () => {
             senha: senhaForm
         };
 
-        try{
+        try {
             const { data } = await gadoSeguro.post('/login', payload);
             login(data.token, data.role, data.id);
             navigate('/inicio/inicio');
-      
-        } catch(error) {
+
+        } catch (error) {
             console.log("Email ou senha inválido!", error);
         }
-      
+
 
     };
 
     return (
-        <div>
+        <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Login </h1>
             <div className="formularioLogin" style={{ marginBottom: "10%" }}>
@@ -45,9 +45,9 @@ const Login = () => {
                         <div className="id_"><p>Senha</p></div>
                         <input type="password" className="senhaPessoa" required onChange={e => setSenhaForm(e.target.value)} />
 
-                        <button type="submit" value="submit" className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px 0 20px 0" }} variant="warning" onClick={e => navigate('/inicio/inicio')}  >Entrar</button>
+                        <button type="submit" value="submit" className="botaoCadastrar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px 0 20px 0" }} variant="warning" onClick={e => navigate('/inicio/inicio')}  >Entrar</button>
 
-                        <button className="btn btn-success" style={{ backgroundColor: "#6D3B00", borderColor: "#6D3B00", marginBottom: "5%" }} variant="warning" onClick={e => navigate('/pessoas/cadastrarPessoas')}>Cadastre-se</button>
+                        <button className="botaoCadastrarS btn btn-success" style={{ color: "#dedede", backgroundColor: "#6D3B00", borderColor: "#6D3B00", marginBottom: "5%" }} variant="warning" onClick={e => navigate('/pessoas/cadastrarPessoas')}>Cadastre-se</button>
                     </div>
                 </form>
             </div>
@@ -56,4 +56,4 @@ const Login = () => {
 };
 
 
-export default Login;
+export default Login;   
