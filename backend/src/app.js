@@ -9,7 +9,7 @@ const fazendaS = require('./services/fazendaService')
 const bovinoS = require('./services/bovinoService')
 const vacaS = require('./services/vacaService')
 const dosesS = require('./services/doseService')
-const ingredienteS = require('./services/ingredienteServices')
+const ingredienteS = require('./services/ingredienteService')
 
 const app = express()
 const port = 3001
