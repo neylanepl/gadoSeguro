@@ -6,14 +6,14 @@ class PessoaService {
   async addPessoa(pessoaTemp) {
     try {
       const connection = await dbConnection();
-      const senhaEncrypt = await encrypt.hashingPassword(pessoaTemp.senha);
+      //const senhaEncrypt = await encrypt.hashingPassword(pessoaTemp.senha);
       const query = `INSERT INTO GadoSeguro.Pessoa (cpf, nome, email, senha, cargo)
       VALUES (?,?,?,?,?)`;
       const values = [
         pessoaTemp.cpf,
         pessoaTemp.nome,
         pessoaTemp.email,
-        senhaEncrypt,
+        pessoaTemp.senha,
         pessoaTemp.cargo
       ];
       console.log(query, values);
@@ -74,6 +74,24 @@ class PessoaService {
     }
   }
 
+  //Retornar Pessoa por Email
+  async getAcess(email, senha) {
+    //const senhaEncrypt = await encrypt.hashingPassword(senha);
+    try {
+      const connection = await dbConnection();
+      const query = `SELECT * FROM  GadoSeguro.Pessoa WHERE email=? AND senha=?;`;
+      const values = [email, senha];
+      const [pessoa] = await connection.execute(query, values);
+      const [pessoas] = await connection.query(`SELECT * FROM GadoSeguro.Pessoa WHERE email=? AND senha=?;`, [email, senha]);
+      console.log(email + " " + senha);
+      console.log(pessoas);
+      return pessoa[0];
+      console.log("Lista de pessoas");
+    } catch (error) {
+      console.log("Erro a resgatar a lista pessoa:", error);
+    }
+  }
+
   //Atualizar Pessoa
   async updatePessoa(cpf, pessoaTemp) {
     try {
@@ -94,12 +112,13 @@ class PessoaService {
 
   //Alterar Senha
   async changePassword(newPassword, cpf) {
-    const senhaEncrypt = await encrypt.hashingPassword(newPassword);
+    //const senhaEncrypt = await encrypt.hashingPassword(newPassword);
     try {
         const connection = await dbConnection();
         const updateQuery = 'UPDATE GadoSeguro.Pessoa SET senha=? WHERE cpf=?;';
-        const values = [passwordEncrypted, id];
-        await database.query(updateQuery, values);
+        const values = [newPassword, cpf];
+        await connection.query(updateQuery, values);
+        console.log("Senha Alterada");
     } catch (error) {
         console.log(error);
         return error;
