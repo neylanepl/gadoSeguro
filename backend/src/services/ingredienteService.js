@@ -84,5 +84,3 @@ class IngredienteService {
     }
   }
 }
-
-module.exports = new IngredienteService();

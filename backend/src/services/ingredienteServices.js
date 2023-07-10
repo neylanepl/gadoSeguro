@@ -7,8 +7,8 @@ async  addIngrediente(ingredienteTemp) {
   try {
     const connection = await dbConnection();
     const query = `
-    INSERT INTO GadoSeguro.Ingrediente (idIngrediente, nome, qnt_estoque, unidade)
-    VALUES (?,?,?,?)
+    INSERT INTO GadoSeguro.Ingrediente (nome, qnt_estoque, unidade)
+    VALUES (?,?,?)
     `;
     const values = [
         ingredienteTemp.nome,
