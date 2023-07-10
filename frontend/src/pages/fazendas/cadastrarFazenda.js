@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import gadoSeguro from '../../services/connectionGadoSeguro';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/css/cadastrarPessoa.css';
+//import '../../styles/css/cadastrarPessoa.css';
+import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 
 
@@ -38,9 +39,9 @@ const CadastrarFazenda = () => {
     };
 
     return (
-        <div>
+        <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
             <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastrar fazenda </h1>
+            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastrar Fazenda </h1>
             <div className="formularioLogin" style={{ marginBottom: "10%" }}>
                 <form className="formulario" onSubmit={e => { handleSubmitForm(e) }}>
                     <div className="sub-div">
@@ -63,7 +64,7 @@ const CadastrarFazenda = () => {
                         <input type="text" className="numeroFazenda" required onChange={e => setNumeroForm(e.target.value)} />
 
                         <div>
-                            <button variant="warning" type="submit" value="submit" className="btn btn-success"
+                            <button variant="warning" type="submit" value="submit" className="botaoCadastrar btn btn-success"
                                 style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }} onSubmit={e => navigate('/inicio/inicio')}>
                                 Cadastrar
                             </button>

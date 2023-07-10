@@ -2,18 +2,15 @@
     margin: 0;
 }
 
-#wrapper{
-    min-height: 100vh;
+#wrapper {
+    /*min-height: 100vh;*/
 }
 
 .container {
-    /*margin-top: 10%;
-    margin-bottom: 10%;*/
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
 }
 
 .formulario {
@@ -45,15 +42,16 @@
 }
 
 .link:hover {
-    color:#6D3B00
+    color: #6D3B00
 }
 
 .botaoVoltar {
     margin-left: 10px;
     background-color: Transparent;
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     border: none;
 }
+
 .bi {
     color: black;
 }

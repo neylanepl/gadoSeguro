@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
-import '../../styles/css/cadastrarPessoa.css';
+import '../../styles/css/global.css';
+//import '../../styles/css/cadastrarPessoa.css';
 import Menu from '../../components/menu';
 
 const EditarPessoa = () => {
@@ -12,7 +12,7 @@ const EditarPessoa = () => {
     const handleSubmitForm = async e => { }
 
     return (
-        <div>
+        <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Editar Usuário </h1>
             <div className="formularioLogin" style={{ marginBottom: "10%" }}>
@@ -30,7 +30,7 @@ const EditarPessoa = () => {
                         <div className="id_"><p>Senha</p></div>
                         <input type="text" className="senhaPessoa" disabled onChange={e => setSenhaForm(e.target.value)} />
 
-                        <button variant="warning" type="submit" value="submit" className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
+                        <button variant="warning" type="submit" value="submit" className="botaoEditar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
                     </div>
                 </form>
             </div>

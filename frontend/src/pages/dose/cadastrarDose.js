@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/css/cadastrarDose.css';
-import '../../styles/css/alimentacaoBovino.css';
+//import '../../styles/css/cadastrarDose.css';
+import '../../styles/css/global.css';
+//import '../../styles/css/cadastrarBovino.css';
 import Menu from '../../components/menu';
 
 const CadastrarDose = () => {
@@ -53,10 +54,12 @@ const CadastrarDose = () => {
 
 
     return (
-        <div>
+        <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastrar Dose </h1>
+
             <div className="formularioCadastroDose" >
+
                 <form className="formulario" onSubmit={e => { handleSubmitForm(e) }}>
                     <div className="sub-div">
 
@@ -94,7 +97,7 @@ const CadastrarDose = () => {
                         <div className="id_"><p>Data Prev</p></div>
                         <input style={{ padding: "5px", paddingLeft: "10px" }} required type="text" className="dataPrevDose" onChange={e => setDataPrevForm(e.target.value)} />
 
-                        <button variant="warning" type="submit" value="submit" className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Cadastrar</button>
+                        <button variant="warning" type="submit" value="submit" className="botaoCadastrar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Cadastrar</button>
                     </div>
                 </form>
             </div>

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import Menu from '../../components/menu';
-import '../../styles/css/alimentacaoBovino.css';
+//import '../../styles/css/alimentacaoBovino.css';
+import '../../styles/css/global.css';
 import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const ListarFazenda = () => {
@@ -40,13 +41,13 @@ const ListarFazenda = () => {
 
 
     return (
-        <div>
+        <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Fazendas cadastradas no sistema</h1>
             <div className="t" style={{ margin: "5%", marginLeft: "10%", marginRight: "20%" }}>
                 <div className="text-center" style={{ marginBottom: "5%" }}>
                     <button
-                        className="btn btn-success"
+                        className="botaoCadastrarListarIngrediente  btn btn-success"
                         style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }}
                         variant="warning"
                         onClick={e => navigate('/fazendas/cadastrarFazenda')}
@@ -58,7 +59,6 @@ const ListarFazenda = () => {
                 <table className="table table-bordered table-bordered" >
                     <thead className="text-center" style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
-                            <th scope="col">id</th>
                             <th scope="col">Nome</th>
                             <th scope="col">Sitio</th>
                             <th scope="col">Cidade</th>
@@ -68,10 +68,9 @@ const ListarFazenda = () => {
                         </tr>
                     </thead>
 
-                    <tbody className="text-center">
+                    <tbody className="tabelaListagem text-center" >
                         {fazendas.map(fazenda => (
                             <tr key={fazenda.idFazenda}>
-                                <td>{fazenda.idFazenda}</td>
                                 <td>{fazenda.nome}</td>
                                 <td>{fazenda.sitio}</td>
                                 <td>{fazenda.cidade}</td>
@@ -81,7 +80,7 @@ const ListarFazenda = () => {
                                 <td style={{ display: "flex", justifyContent: "space-evenly" }}>
                                     <button
                                         className="botaoEditar btn btn-primary"
-                                        style={{ color: "white", textDecoration: "none", margin: "2%" }}
+                                        style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#47a2ed", border: "none" }}
                                         variant="warning"
                                         onClick={() => navigate(`/fazendas/editarFazenda/${fazenda.idFazenda}`, { state: { fazenda } })}
                                     >
@@ -96,7 +95,7 @@ const ListarFazenda = () => {
 
                                     <button
                                         className="botaoApagar   btn btn-danger"
-                                        style={{ color: "white", textDecoration: "none", margin: "2%" }}
+                                        style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#d10606", border: "none" }}
                                         variant="warning"
                                         onClick={() => deletarFazenda(fazenda.idFazenda)}
                                     >

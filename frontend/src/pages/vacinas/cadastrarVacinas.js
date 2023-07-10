@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/css/cadastrarVacinas.css';
+//import '../../styles/css/cadastrarVacinas.css';
+import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 
 const CadastrarVacina = () => {
@@ -58,7 +59,7 @@ const CadastrarVacina = () => {
     };
 
     return (
-        <div>
+        <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastrar Vacina </h1>
             <div className="formularioCadastroVacina" >
@@ -73,7 +74,7 @@ const CadastrarVacina = () => {
                         <div className="id_"><p>Informações Extras</p></div>
                         <input style={{ padding: "5px", paddingLeft: "10px" }} required type="text" className="informacaoVacina" onChange={e => setInformacoesExtrasForm(e.target.value)} />
 
-                        <button variant="warning" type="submit" value="submit" className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Cadastrar</button>
+                        <button variant="warning" type="submit" value="submit" className="botaoCadastrar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Cadastrar</button>
                     </div>
                 </form>
             </div>

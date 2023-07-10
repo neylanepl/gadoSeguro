@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-
-import '../../styles/css/alimentacaoBovino.css';
+import '../../styles/css/global.css';
+//import '../../styles/css/alimentacaoBovino.css';
 import Menu from '../../components/menu';
 
 const EditarAlimentacao = () => {
@@ -11,7 +11,7 @@ const EditarAlimentacao = () => {
     const handleSubmitForm = async e => { }
 
     return (
-        <div>
+        <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Editar Alimentação </h1>
             <div className="formularioAlimentacao" style={{ marginBottom: "10%" }}>
@@ -26,7 +26,7 @@ const EditarAlimentacao = () => {
                         <div className="id_"><p>Quantidade diária recomendada</p></div>
                         <input type="text" className="qntDiariaRecomendadaAlimentacao" onChange={e => setQntDiariaRecomendadaForm(e.target.value)} />
 
-                        <button variant="warning" type="submit" value="submit" className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
+                        <button variant="warning" type="submit" value="submit" className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px", padding: 4, borderRadius: "5px", width: "70px" }}>Editar</button>
                     </div>
                 </form>
             </div>

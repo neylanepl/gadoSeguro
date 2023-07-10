@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { Form } from 'react-bootstrap';
 import Menu from '../../components/menu';
+import '../../styles/css/global.css';
 
 const EditarDose = () => {
 
@@ -14,7 +15,7 @@ const EditarDose = () => {
     const handleSubmitForm = async e => { }
 
     return (
-        <div>
+        <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Editar Dose </h1>
             <div className="formularioCadastroDose" >
@@ -34,7 +35,7 @@ const EditarDose = () => {
 
                         <div className="id_"><p>Data Prev</p></div>
                         <input style={{ padding: "5px", paddingLeft: "10px" }} required type="text" className="dataPrevDose" onChange={e => setDataPrevForm(e.target.value)} />
-                        <button variant="warning" type="submit" value="submit" className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
+                        <button variant="warning" type="submit" value="submit" className="botaoEditar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
                     </div>
                 </form>
             </div>

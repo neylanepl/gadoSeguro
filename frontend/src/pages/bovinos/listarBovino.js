@@ -2,18 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import Menu from '../../components/menu';
-import '../../styles/css/alimentacaoBovino.css';
+//import '../../styles/css/alimentacaoBovino.css';
+import '../../styles/css/global.css';
 
 const ListarBovino = () => {
 
     const navigate = useNavigate();
 
     return (
-        <div>
+        <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Bovinos cadastradas no sistema</h1>
-            <div className="t" style={{ margin: "5%", marginLeft: "10%", marginRight: "20%" }}>
-                <div className="text-center" style={{ marginBottom: "5%" }}><button className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} variant="warning" onClick={e => navigate('/bovinos/cadastrarBovino')}>Cadastrar Bovino</button></div>
+
+            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Bovinos cadastrados no sistema</h1>
+
+            <div className="listarBovino" style={{ margin: "5%", marginLeft: "10%", marginRight: "20%" }}>
+
+                <div className="text-center" style={{ marginBottom: "5%" }}><button className="botaoCadastrarListar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} variant="warning" onClick={e => navigate('/bovinos/cadastrarBovino')}>Cadastrar Bovino</button></div>
 
                 <table className="table table-bordered table-bordered" >
                     <thead className="text-center" style={{ backgroundColor: "#E0E7CA" }}>
@@ -28,14 +32,20 @@ const ListarBovino = () => {
                         </tr>
                     </thead>
 
-                    <tbody className="text-center">
+                    <tbody className="tabelaListagem text-center" >
 
                         <tr>
                             <td ></td>
                             <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
+                            <td ></td>
                             <td style={{ display: "flex", justifyContent: "space-evenly" }}>
 
-                                <button className="botaoEditar btn btn-primary" style={{ color: "white", textDecoration: "none", margin: "2%" }} variant="warning" onClick={e => navigate('/bovinos/editarBovino')}>
+                                <button className="botaoEditar btn btn-primary" style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#47a2ed", border: "none" }} variant="warning" onClick={e => navigate('/bovinos/editarBovino')}>
                                     Editar
                                     <span className="editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" color='white' viewBox="0 0 16 16">
@@ -46,7 +56,7 @@ const ListarBovino = () => {
                                 </button>
 
                                 <button className="botaoApagar   btn btn-danger"
-                                    style={{ color: "white", textDecoration: "none", margin: "2%" }} variant="warning" onClick={e => navigate('/')}>
+                                    style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#d10606", border: "none" }} variant="warning" onClick={e => navigate('/')}>
                                     Deletar
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" color='white' viewBox="0 0 16 16">
@@ -54,18 +64,15 @@ const ListarBovino = () => {
                                         </svg>
                                     </span>
                                 </button>
+
                             </td>
-
                         </tr>
-
                     </tbody>
-
                 </table>
 
             </div>
         </div>
     );
-
 }
 
 

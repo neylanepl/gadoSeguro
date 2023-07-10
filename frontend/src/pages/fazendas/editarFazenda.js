@@ -46,7 +46,7 @@ const EditarFazenda = () => {
     };
 
     return (
-        <div>
+        <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastro Usuário </h1>
             <div className="formularioLogin" style={{ marginBottom: "10%" }}>
@@ -70,7 +70,7 @@ const EditarFazenda = () => {
                         <div className="id_"><p>Numero</p></div>
                         <input type="text" className="numeroFazenda" value={numeroForm} onChange={e => setNumeroForm(e.target.value)} />
 
-                        <button variant="warning" type="submit" value="submit" className="btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
+                        <button variant="warning" type="submit" value="submit" className="botaoEditar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
                     </div>
                 </form>
             </div>

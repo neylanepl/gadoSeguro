@@ -11,10 +11,6 @@ const IngredenteHome = () => {
         navigate('/ingredientes/cadastrarIngrediente');
     };
 
-    const handleClickEdicao = () => {
-        navigate('/ingredientes/editarIngrediente');
-    };
-
     const handleClickListar = () => {
         navigate('/ingredientes/listarIngrediente');
     };
@@ -29,8 +25,6 @@ const IngredenteHome = () => {
                 <div className="formulario">
                     {/* Botão para navegar para a página cadastrarBovinos */}
                     <button className="botao" onClick={handleClickCadastro}>Cadastrar Ingrediente</button>
-
-                    <button className="botao" onClick={handleClickEdicao}>Editar Ingrediente</button>
 
                     <button className="botao" onClick={handleClickListar}>Listar Ingrediente</button>
                 </div>

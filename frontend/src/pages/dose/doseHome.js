@@ -10,10 +10,6 @@ const VacinaHome = () => {
         navigate('/dose/cadastrarDose');
     };
 
-    const handleClickEdicao = () => {
-        navigate('/dose/editarDose');
-    };
-
     const handleClickListar = () => {
         navigate('/dose/listarDose');
     };
@@ -28,8 +24,6 @@ const VacinaHome = () => {
                 <div className="formulario">
                     {/* Botão para navegar para a página cadastrarBovinos */}
                     <button className="botao" onClick={handleClickCadastro}>Cadastrar Dose</button>
-
-                    <button className="botao" onClick={handleClickEdicao}>Editar Dose</button>
 
                     <button className="botao" onClick={handleClickListar}>Listar Dose</button>
                 </div>
