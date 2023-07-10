@@ -9,7 +9,7 @@ const fazendaS = require('./services/fazendaService')
 const bovinoS = require('./services/bovinoService')
 const vacaS = require('./services/vacaService')
 const dosesS = require('./services/doseService')
-const ingredienteS = require('./services/ingredienteService')
+const ingredienteS = require('./services/ingredienteServices')
 
 const app = express()
 const port = 3001
@@ -27,8 +27,6 @@ let vacaTemp = { dar_leite: true, gravida: false, producao_leite: 3 }
 //vacaS.addVaca(vacaTemp)
 
 //exemplo adição de ingrediente
-//let ingredienteTemp = { idIngrediente: 1, nome: "uva", qnt_estoque: 100, unidade: 20 }
-//ingredienteS.addIngrediente(ingredienteTemp)
 
 app.use('/static', express.static('public'));
 app.use(express.json());

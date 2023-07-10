@@ -4,7 +4,7 @@ class BovinoController {
 
     //adicionar bovino
     create_bovino(request, response) {
-        const doseTemp = {
+        const bovinoTemp = {
             Fazenda_idFazenda: request.body.Fazenda_idFazenda,
             Vaca_idVaca: request.body.Vaca_idVaca,
             reprodutor: request.body.reprodutor,
@@ -17,7 +17,7 @@ class BovinoController {
         }
 
         try {
-            BovinoService.addBovino(doseTemp);
+            BovinoService.addBovino(bovinoTemp);
             response.status(200).json({
                 msg: "Bovino cadastrada com sucesso"
             })
@@ -31,8 +31,8 @@ class BovinoController {
     //Retornar todas as Bovinos de uma vacina
     async show_bovinos(request, response) {
         try {
-            const doses = await BovinoService.getAllBovinos()
-            return response.status(200).json(doses)
+            const bovinos = await BovinoService.getAllBovino()
+            return response.status(200).json(bovinos)
         } catch (err) {
             return response.status(400).json({
                 error: err
@@ -44,8 +44,8 @@ class BovinoController {
     async show_bovinoId(request, response) {
         const { id } = request.params
         try {
-            const dose = await BovinoService.findBovinosId(id)
-            return response.status(200).json(dose)
+            const bovino = await BovinoService.findBovinosId(id)
+            return response.status(200).json(bovino)
         } catch (err) {
             return response.status(400).json({
                 error: err

@@ -26,15 +26,11 @@ class BovinoService {
   }
 
   //Pegar a lista de Bovinos de uma fazenda
-  async getAllBovino(idFazenda) {
+  async getAllBovino() {
     try {
       const connection = await dbConnection();
-      const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino WHERE Fazenda_idFazenda=?;`, idFazenda);
-      if (bovinos.length > 0) {
-        console.log(bovinos);
-        return bovinos;
-      }
-      console.log("Lista de bovinos");
+      const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino;`);
+      return bovinos;
     } catch (error) {
       console.log("Erro a resgatar a lista bovino:", error);
     }
