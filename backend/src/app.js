@@ -27,8 +27,8 @@ let vacaTemp = { dar_leite: true, gravida: false, producao_leite: 3 }
 //vacaS.addVaca(vacaTemp)
 
 //exemplo adição de ingrediente
-let ingredienteTemp = { nome: "uva", quantidade: 100, unidade: 20 }
-ingredienteS.addIngrediente(ingredienteTemp)
+//let ingredienteTemp = { idIngrediente: 1, nome: "uva", qnt_estoque: 100, unidade: 20 }
+//ingredienteS.addIngrediente(ingredienteTemp)
 
 app.use('/static', express.static('public'));
 app.use(express.json());

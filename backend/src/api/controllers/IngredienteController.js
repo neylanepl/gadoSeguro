@@ -6,7 +6,6 @@ class IngredienteController {
     create_ingrediente(request, response) {
         const ingredienteTemp = {
             nome: request.body.nome,
-            quantidade: request.body.quantidade,
             qnt_estoque: request.body.qnt_estoque,
             unidade: request.body.unidade
         }

@@ -11,9 +11,9 @@ class IngredienteService {
     VALUES (?,?,?,?)
     `;
       const values = [
-        vacaTemp.nome,
-        vacaTemp.qnt_estoque,
-        vacaTemp.unidade
+        ingredienteTemp.nome,
+        ingredienteTemp.qnt_estoque,
+        ingredienteTemp.unidade
       ];
       await connection.execute(query, values);
       console.log("Objeto Ingrediente adicionado com sucesso!");
@@ -38,7 +38,7 @@ class IngredienteService {
   }
 
   //Retornar um Ingrediente pelo ID 
-  async getAllIngredienteId(id) {
+  async getIngredienteId(id) {
     try {
       const connection = await dbConnection()
       const [Ingredientes] = await connection.query('SELECT * FROM GadoSeguro.Ingrediente WHERE idIngrediente=?;', id)
