@@ -27,17 +27,7 @@ let vacaTemp = { dar_leite: true, gravida: false, producao_leite: 3 }
 //vacaS.addVaca(vacaTemp)
 
 //exemplo adição de ingrediente
-let ingredienteTemp = { nome: "uva", qnt_estoque: 100, unidade: "20" }
-//ingredienteS.addIngrediente(ingredienteTemp)
-ingredienteS.getAllIngrediente();
-/*bovinoS.getAllBovino()
-  .then((bovinos) => {
-    console.log(bovinos);
-  })
-  .catch((error) => {
-    console.error("Erro ao buscar o objeto fazenda:", error);
-  });
-*/
+
 app.use('/static', express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
