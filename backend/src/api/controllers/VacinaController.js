@@ -25,8 +25,8 @@ class VacinaController {
     //Retornar todas as vacinas
     async show_vacinas(request, response) {
         try {
-            const vacinas = await VacinaService.getAllVacinas()
-            return response.status(200).json(vacinas)
+            const vacina = await VacinaService.getAllVacinas()
+            return response.status(200).json(vacina)
         } catch (err) {
             return response.status(400).json({
                 error: err
@@ -36,9 +36,9 @@ class VacinaController {
 
     //Retornar uma vacina pelo nome 
     async show_vacinaNome(request, response) {
-        const { id } = request.params
+        const { nome_vacina } = request.params
         try {
-            const bovino = await BovinoService.getVacinaNome(id)
+            const bovino = await VacinaService.getVacinaNome(nome_vacina)
             return response.status(200).json(bovino)
         } catch (err) {
             return response.status(400).json({

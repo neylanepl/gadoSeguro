@@ -44,7 +44,7 @@ class BovinoController {
     async show_bovinoId(request, response) {
         const { id } = request.params
         try {
-            const bovino = await BovinoService.findBovinosId(id)
+            const bovino = await BovinoService.getBovinoId(id)
             return response.status(200).json(bovino)
         } catch (err) {
             return response.status(400).json({

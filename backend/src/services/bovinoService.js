@@ -25,7 +25,7 @@ class BovinoService {
     }
   }
 
-  //Pegar a lista de Bovinos de uma fazenda
+  //Pegar a lista de Bovinos 
   async getAllBovino() {
     try {
       const connection = await dbConnection();
@@ -36,13 +36,23 @@ class BovinoService {
     }
   }
 
+   //Pegar a lista de Bovinos de uma fazenda
+   async getBovinoFromFazenda(idFazenda) {
+    try {
+      const connection = await dbConnection();
+      const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino WHERE Fazenda_idFazenda=?;`,idFazenda);
+      return bovinos;
+    } catch (error) {
+      console.log("Erro a resgatar a lista bovino:", error);
+    }
+  }
+
   //Achar Bovino pelo ID
-  async findBovinoId(idBovino) {
+  async getBovinoId(idBovino) {
     try {
       const connection = await dbConnection();
       const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino WHERE idBovino=?;`, idBovino);
       if (bovinos.length > 0) {
-        console.log(bovinos);
         return bovinos;
       }
       console.log("Lista de bovinos");

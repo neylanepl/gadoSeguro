@@ -29,9 +29,24 @@ let vacaTemp = { dar_leite: true, gravida: false, producao_leite: 3 }
 //vacaS.addVaca(vacaTemp)
 
 //exemplo adição de vacina
-let vacinaTemp = { nome_vacina: "seila", info: "febre", fabricante: "blabla" }
+let vacinaTemp = { nome_vacina: "ESF-12/51", info: "Vacina para gripe", fabricante: "Instituto Raissa Feia" }
 //vacinaS.addVacina(vacinaTemp)
-
+/*
+bovinoS.getBovinoFromFazenda(2)
+  .then((bovino) => {
+    console.log(bovino);
+  })
+  .catch((error) => {
+    console.error("Erro ao buscar o objeto fazenda:", error);
+  });
+*/
+vacinaS.getVacinaNome("ESF-12/51")
+  .then((vacina) => {
+    console.log(vacina);
+  })
+  .catch((error) => {
+    console.error("Erro ao buscar o objeto fazenda:", error);
+  });
 app.use('/static', express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -45,6 +60,7 @@ app.use(routesFazenda)
 app.use(routesDose)
 app.use(routesBovino)
 app.use(routesIngrediente)
+app.use(routesVacina)
 
 app.listen(port, () => {
     console.log('Servidor rodando na porta ', port)

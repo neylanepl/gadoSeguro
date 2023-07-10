@@ -29,10 +29,7 @@ class VacinaServices {
     try {
       const connection = await dbConnection();
       const [vacinas] = await connection.query(`SELECT * FROM GadoSeguro.Vacina`);
-      if (vacinas.length > 0) {
-        console.log(vacinas);
-        return vacinas;
-      }
+      return vacinas;
       console.log("Lista das Vacinas");
     } catch (error) {
       console.log("Falha ao buscar a lista das vacinas", error);
@@ -43,11 +40,9 @@ class VacinaServices {
   async getVacinaNome(vacinaNome) {
     try {
       const connection = await dbConnection();
-      const [vacinas] = await connection.query(`SELECT * FROM GadoSeguro.Vacina WHERE nome_vacina=?`, vacinaNome);
-      if (vacinas.length > 0) {
-        console.log(vacinas[0]);
-        return vacinas[0];
-      }
+      console.log(`SELECT * FROM GadoSeguro.Vacina WHERE nome_vacina=?`, vacinaNome);
+      const [vacinas] = await connection.query(`SELECT * FROM GadoSeguro.Vacina WHERE nome_vacina=?;`,vacinaNome);
+      return vacinas[0];
       console.log("Vacina Encontrada");
     } catch (error) {
       console.log("Falha ao buscar a vacina", error);

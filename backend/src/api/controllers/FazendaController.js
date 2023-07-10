@@ -1,4 +1,5 @@
 const fazendaService = require('../../services/fazendaService');
+const bovinoService = require('../../services/bovinoService')
 
 class FazendaController {
 
@@ -46,6 +47,19 @@ class FazendaController {
             })
         }
     }
+
+    async show_bovinos_fazenda(request, response) {
+        const fazendaId = request.params.idFazenda;
+      
+        try {
+          const bovinos = await bovinoService.getBovinoFromFazenda(fazendaId);
+          return response.status(200).json(bovinos);
+        } catch (error) {
+          return response.status(400).json({
+            error: error.message
+          });
+        }
+      }
 
     //Atualiza uma Fazenda pelo ID 
     async update_fazenda(request, response) {
