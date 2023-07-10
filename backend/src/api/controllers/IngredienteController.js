@@ -1,4 +1,4 @@
-const IngredienteService = require('../../services/ingredienteServices')
+const IngredienteService = require('../../services/ingredienteService')
 
 class IngredienteController {
 
