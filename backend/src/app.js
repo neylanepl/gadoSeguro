@@ -12,6 +12,7 @@ const vacaS = require('./services/vacaService')
 const dosesS = require('./services/doseService')
 const ingredienteS = require('./services/ingredienteService')
 const vacinaS = require('./services/vacinaServices')
+const pessoaS = require('./services/pessoaService')
 
 const app = express()
 const port = 3001
@@ -31,6 +32,10 @@ let vacaTemp = { dar_leite: true, gravida: false, producao_leite: 3 }
 //exemplo adição de vacina
 let vacinaTemp = { nome_vacina: "ESF-12/51", info: "Vacina para gripe", fabricante: "Instituto Raissa Feia" }
 //vacinaS.addVacina(vacinaTemp)
+
+//exemplo adição de Pessoa
+let pessoaTemp = { cpf: "123123", nome: "Daniel Dantas Damasceno", email: "DDD@gmail.com", senha: "senha123", cargo: "Veterinario" }
+//pessoaS.addPessoa(pessoaTemp)
 /*
 bovinoS.getBovinoFromFazenda(2)
   .then((bovino) => {
@@ -40,9 +45,17 @@ bovinoS.getBovinoFromFazenda(2)
     console.error("Erro ao buscar o objeto fazenda:", error);
   });
 */
-vacinaS.getVacinaNome("ESF-12/51")
+/*vacinaS.getVacinaNome("ESF-12/51")
   .then((vacina) => {
     console.log(vacina);
+  })
+  .catch((error) => {
+    console.error("Erro ao buscar o objeto fazenda:", error);
+  });
+*/
+pessoaS.getPessoaCPF(123123)
+  .then((pessoa) => {
+    console.log(pessoa);
   })
   .catch((error) => {
     console.error("Erro ao buscar o objeto fazenda:", error);
