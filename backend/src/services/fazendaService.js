@@ -5,7 +5,7 @@ class FazendaService {
   async addFazenda(fazendaTemp) {
     try {
       const connection = await dbConnection();
-      let idFazenda = 1;
+      //let idFazenda = 1;
       const query = `
     INSERT INTO GadoSeguro.Fazenda (nome, sitio, cidade, cep, complemento, numero) 
     VALUES (?,?,?,?,?,?)
