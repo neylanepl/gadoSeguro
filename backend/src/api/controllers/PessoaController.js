@@ -1,4 +1,4 @@
-/*const pessoaService = require('../../services/pessoaService');
+const pessoaService = require('../../services/pessoaService');
 
 class PessoaController {
 
@@ -24,16 +24,14 @@ class PessoaController {
     }
 
     async login(request, response) {
-        const { email, password } = request.body;
-        var credentialStatus = await pessoaService.validateCredentials(email, password);
-
+        const { email, senha } = request.body;
+        var credentialStatus = await pessoaService.validateCredentials(email, senha);
         if (credentialStatus.status) {
             const token = await pessoaService.generateSignInToken(email, credentialStatus.role);
             response.header('Authorization', token);
             return response.status(200).json({
                 msg: credentialStatus.msg,
                 role: credentialStatus.role,
-                id: credentialStatus.id,
                 token: token
             });
         } else {
@@ -48,4 +46,3 @@ class PessoaController {
 }
 
 module.exports = new PessoaController()
-*/

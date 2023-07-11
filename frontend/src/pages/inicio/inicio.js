@@ -1,6 +1,8 @@
 import React from 'react';
 import Menu from '../../components/menu';
+import NaoAutenticado from '../../components/naoAutenticado';
 import '../../styles/css/global.css';
+import { isAuthenticated } from '../../services/auth';
 const Inicio = () => {
   const redirectToBovinoHome = () => {
     window.location.href = '/bovinos/bovinoHome';
@@ -34,8 +36,9 @@ const Inicio = () => {
     window.location.href = '/dose/doseHome';
   };
 
+  if(isAuthenticated()) {
+    
   return (
-
     <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
       <Menu />
 
@@ -65,6 +68,10 @@ const Inicio = () => {
       </div>
     </div>
   );
+} 
+  return (
+    <NaoAutenticado />
+  )
 };
 
 export default Inicio;

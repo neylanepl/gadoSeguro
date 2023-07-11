@@ -15,13 +15,14 @@ const Login = () => {
     const handleSubmitForm = async e => {
         e.preventDefault();
         const payload = {
-            login: loginForm,
+            email: loginForm,
             senha: senhaForm
         };
 
         try {
             const { data } = await gadoSeguro.post('/login', payload);
-            login(data.token, data.role, data.id);
+            login(data.token, data.role);
+            console.log("Login válido!");
             navigate('/inicio/inicio');
 
         } catch (error) {
@@ -44,7 +45,7 @@ const Login = () => {
                         <div className="id_"><p>Senha</p></div>
                         <input type="password" className="senhaPessoa" required onChange={e => setSenhaForm(e.target.value)} />
 
-                        <button type="submit" value="submit" className="botaoCadastrar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px 0 20px 0" }} variant="warning" onClick={e => navigate('/inicio/inicio')}  >Entrar</button>
+                        <button type="submit" value="submit" className="botaoCadastrar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px 0 20px 0" }} variant="warning"  >Entrar</button>
 
                         <button className="botaoCadastrarS btn btn-success" style={{ color: "#dedede", backgroundColor: "#6D3B00", borderColor: "#6D3B00", marginBottom: "5%" }} variant="warning" onClick={e => navigate('/pessoas/cadastrarPessoas')}>Cadastre-se</button>
                     </div>
