@@ -20,7 +20,7 @@ class CarteiraController {
         }
     }
 
-    //Retornar todas as Carteiras de uma vacina
+    //Retornar todas as Carteiras
     async show_carteiras(request, response) {
         try {
             const carteiras = await CarteiraService.getAllCarteiras()
