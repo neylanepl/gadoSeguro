@@ -23,6 +23,50 @@ class PessoaController {
         }
     }
 
+    async update_pessoa(request, response) {
+        
+        const pessoaTemp = {
+            ...request.body
+        }
+        const { cpf } = pessoaTemp.cpf;
+
+        try {
+            pessoaService.updatePessoa(cpf, pessoaTemp)
+            response.status(200).json({
+                msg: "Pessoa atualizada com sucesso"
+            })
+        } catch (error) {
+            return response.status(400).json({
+                error: error
+            })
+        }
+    }
+
+    async show_pessoas(request, response) {
+        try {
+            const pessoas = await pessoaService.getAllPessoa()
+            return response.status(200).json(pessoas)
+        } catch (err) {
+            return response.status(400).json({
+                error: err
+            })
+        }
+    }
+    async delete_pessoa(request, response) {
+        try {
+            const { cpf } = request.body.cpf
+            pessoaService.deletePessoa(cpf);
+            response.status(200).json({
+                msg: "Pessoa deletada com sucesso"
+            })
+        } catch (error) {
+            console.log("nao foi possivel deletar")
+            return response.status(400).json({
+                error: error
+            })
+        }
+    }
+
     async login(request, response) {
         const { email, senha } = request.body;
         var credentialStatus = await pessoaService.validateCredentials(email, senha);

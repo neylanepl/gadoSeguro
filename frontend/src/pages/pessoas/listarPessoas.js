@@ -2,9 +2,33 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Menu from '../../components/menu';
 import '../../styles/css/global.css';
-const ListaPessoa = () => {
+import gadoSeguro from '../../services/connectionGadoSeguro';
 
+const ListaPessoa = () => {
+    const [pessoas, setPessoas] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchPessoas = async () => {
+            try {
+                const response = await gadoSeguro.get('/pessoa');
+                console.log("response: " + response.data);
+                setPessoas(response.data);
+            } catch (error) {
+                console.error("erro ao listar pessoas: ", error);
+            }
+        };
+
+        fetchPessoas();
+    }, []);
+
+    const deletarPessoa = async (cpf) => {
+        try {
+            const response = await gadoSeguro.delete(`/pessoa/${cpf}`);
+        } catch (error) {
+            console.error("erro ao deletar pessoa: ", error);
+        }
+    };
 
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>
@@ -43,7 +67,7 @@ const ListaPessoa = () => {
                                 </button>
 
                                 <button className="botaoApagar   btn btn-danger"
-                                    style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#d10606", border: "none" }} variant="warning" onClick={e => navigate('/')}>
+                                    style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#d10606", border: "none" }} variant="warning" onClick={e => deletarPessoa(pessoas.cpf)}>
                                     Deletar
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" color='white' viewBox="0 0 16 16">
