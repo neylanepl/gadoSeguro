@@ -1,6 +1,8 @@
 const dbConnection = require("../database/Conect");
 const encrypt = require("../utils/encrypt");
+const jwt = require('jsonwebtoken');
 
+const secret = process.env.SECRET;
 class PessoaService {
   //Adicionar Pessoa
   async addPessoa(pessoaTemp) {
@@ -99,6 +101,37 @@ class PessoaService {
       console.log("Erro a resgatar a lista pessoa:", error);
     }
   }
+
+   //Retornar Pessoa por Email
+   async validateCredentials(email, senha) {
+    try {
+      const connection = await dbConnection();
+      var credentialsStatus = { status: false, err: 'Não validado...' };
+      const query = `SELECT * FROM  GadoSeguro.Pessoa WHERE email=?;`;
+      const values = [email];
+      const [pessoas] = await connection.execute(query, values);
+      if(pessoas.length > 0){
+        const pessoa = pessoas[0];
+        const acesso = await encrypt.comparePassword(senha, pessoa.senha);
+
+        if(acesso){
+          credentialsStatus = { status: true, msg: 'Credenciais válidas!', role: pessoa.cargo};
+        }
+      }
+      return credentialsStatus;
+    } catch (error) {
+      console.log("Erro a resgatar a lista pessoa:", error);
+    }
+  }
+
+  async generateSignInToken(emailReceived, roleReceived) {
+    const token = jwt.sign({
+        email: emailReceived,
+        role: roleReceived
+    }, secret, { expiresIn: "2 days" });
+    return token;
+  }
+
 
   //Atualizar Pessoa
   async updatePessoa(cpf, pessoaTemp) {
