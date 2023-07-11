@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import '../../styles/css/alimentacaoBovino.css';
 import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 
@@ -8,33 +7,12 @@ const CadastrarDieta = () => {
     const [descricaoForm, setDescricaoForm] = useState('');
     const [restricaoAlimentarForm, setRestricaoAlimentarForm] = useState('');
     const navigate = useNavigate();
-    const [alimentacao, setAlimentacao] = useState([]);
-    const [alimentacaoSelecionados, setAlimentacaoSelecionados] = useState([]);
-
-    useEffect(() => {
-        // Recupera os dados do armazenamento local
-        const dadosAlimentacao = localStorage.getItem('dadosAlimentacao');
-        if (dadosAlimentacao) {
-            const alimentacaoSalvos = JSON.parse(dadosAlimentacao);
-            setAlimentacao(alimentacaoSalvos);
-        }
-    }, []);
-
-    const handleSelecionarAlimentacao = (alimentacao) => {
-        if (alimentacaoSelecionados.includes(alimentacao)) {
-            setAlimentacaoSelecionados(alimentacaoSelecionados.filter(item => item !== alimentacao));
-        } else {
-            setAlimentacaoSelecionados([...alimentacaoSelecionados, alimentacao]);
-        }
-    };
-
 
     const handleSubmitForm = async e => {
         e.preventDefault();
         const payload = {
             descricao: descricaoForm,
-            restricaoAlimentar: restricaoAlimentarForm,
-            alimentacaoSelecionados: alimentacaoSelecionados
+            restricaoAlimentar: restricaoAlimentarForm
         };
     };
 
@@ -50,6 +28,7 @@ const CadastrarDieta = () => {
                         <div className="id_">
                             <p>Tipo Alimentação</p>
                         </div>
+                        {/** //ACRESCENTAR TIPOS DE ALIMENTAÇÃO
                         <div className='checkboxContainer'>
                             {alimentacao.map(alimentacao => (
                                 <div key={alimentacao.nome} className='checkboxItem'>
@@ -64,7 +43,7 @@ const CadastrarDieta = () => {
                                     </label>
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
 
                         <div className="id_"><p>Descrição</p></div>
                         <input type="text" className="descricaoDieta" required onChange={e => setDescricaoForm(e.target.value)} />

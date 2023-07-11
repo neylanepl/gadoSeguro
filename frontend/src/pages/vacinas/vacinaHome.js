@@ -22,7 +22,7 @@ const VacinaHome = () => {
 
             <div className="container" style={{ background: "#F0F1DF" }}>
                 <div className="formulario">
-                    {/* Botão para navegar para a página cadastrarBovinos */}
+                    
                     <button className="botao" onClick={handleClickCadastro}>Cadastrar Vacinas</button>
 
                     <button className="botao" onClick={handleClickListar}>Listar Vacinas</button>

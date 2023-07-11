@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import '../../styles/css/cadastrarVacinas.css';
 import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 
@@ -19,44 +18,11 @@ const CadastrarVacina = () => {
             fabricante: fabricanteForm
         };
 
-        // Função para salvar os dados no armazenamento local
-        salvarDadosVacina(payload);
-
-        // Aqui você pode adicionar sua lógica de envio de dados para a API
-        // e manipular a resposta conforme necessário
-
+       
         // Navegar para outra página após o envio do formulário
         navigate('/');
     };
 
-    const salvarDadosVacina = (dados) => {
-        // Obtém os dados existentes do armazenamento local (se houver)
-        const dadosExistentesVacinas = localStorage.getItem('dadosVacinas');
-
-        let novosDadosVacinas = [];
-
-        if (dadosExistentesVacinas) {
-            // Se já houver dados salvos, converte para um array
-            novosDadosVacinas = JSON.parse(dadosExistentesVacinas);
-        }
-
-        // Adiciona os novos dados ao array
-        novosDadosVacinas.push(dados);
-
-        // Salva o array atualizado no armazenamento local
-        localStorage.setItem('dadosVacinas', JSON.stringify(novosDadosVacinas));
-
-        // Limpa os campos do formulário
-        setNomeForm('');
-        setFabricanteForm('');
-        setFabricanteForm('');
-
-        // Exibe os dados salvos no console
-        console.log('Dados salvos:', novosDadosVacinas);
-
-        // Navega para a página desejada após cadastrar os dados
-        navigate('/');
-    };
 
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>

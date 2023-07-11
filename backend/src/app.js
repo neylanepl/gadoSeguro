@@ -25,18 +25,18 @@ app.use('/static', express.static('public'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const doseTemp = { nome_vacina:"" , lote:"56-A" , info:"" , data_aplicada: "2001-12-04", data_prev: null};
-const registroTemp = { CarteiraVacinacao_Bovino_idBovino: 1, Dose_id: null};
+const doseTemp = { nome_vacina: "", lote: "56-A", info: "", data_aplicada: "2001-12-04", data_prev: null };
+const registroTemp = { CarteiraVacinacao_Bovino_idBovino: 1, Dose_id: null };
 
-vacinaS.getAllVacinas()
+/*vacinaS.getAllVacinas()
     .then((vacina) => {
         console.log(vacina[0])
         doseTemp.nome_vacina = vacina[0].nome_vacina
         doseTemp.info = vacina[0].info
-        //dosesS.addDose(doseTemp)
+        dosesS.addDose(doseTemp)
         dosesS.getAllDosesId(1)
-            .then((dose) =>{
-                console.log("Dose que quero: ",dose[0])
+            .then((dose) => {
+                //console.log("Dose que quero: ",dose[0])
                 registroTemp.Dose_id = dose[0].idDose;
                 //console.log(registroTemp)
                 registraS.addRegistro(registroTemp);
@@ -44,10 +44,10 @@ vacinaS.getAllVacinas()
             .catch((error) => {
                 console.error(error);
             })
-      })
-      .catch((error) => {
+    })
+    .catch((error) => {
         console.error("Erro ao buscar o objeto fazenda:", error);
-      });
+    });*/
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');

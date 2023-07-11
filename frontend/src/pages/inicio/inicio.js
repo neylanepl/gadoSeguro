@@ -1,7 +1,5 @@
 import React from 'react';
 import Menu from '../../components/menu';
-import Footer from '../../components/footer';
-//import '../../styles/css/inicio.css';
 import '../../styles/css/global.css';
 const Inicio = () => {
   const redirectToBovinoHome = () => {
@@ -36,7 +34,6 @@ const Inicio = () => {
     window.location.href = '/dose/doseHome';
   };
 
-
   return (
 
     <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
@@ -65,10 +62,7 @@ const Inicio = () => {
           <button className='botao' type='submit' onClick={redirectToDietaHome}>Dieta</button>
 
         </div>
-
       </div>
-
-      <Footer />
     </div>
   );
 };

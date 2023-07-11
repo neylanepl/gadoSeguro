@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import '../../styles/css/alimentacaoBovino.css';
 import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 
@@ -8,68 +7,17 @@ const CadastrarAlimentacao = () => {
     const [nomeForm, setNomeForm] = useState('');
     const [faltaConsumirForm, setFaltaConsumirForm] = useState('');
     const [qntDiariaRecomendadaForm, setQntDiariaRecomendadaForm] = useState('');
-    const [ingredientes, setIngredientes] = useState([]);
-    const [ingredientesSelecionados, setIngredientesSelecionados] = useState([]);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        // Recupera os dados do armazenamento local
-        const dadosIngredientes = localStorage.getItem('dadosIngredientes');
-        if (dadosIngredientes) {
-            const ingredientesSalvos = JSON.parse(dadosIngredientes);
-            setIngredientes(ingredientesSalvos);
-        }
-    }, []);
 
     const handleSubmitForm = async (e) => {
         e.preventDefault();
         const payload = {
             nome: nomeForm,
             faltaConsumir: faltaConsumirForm,
-            qntDiariaRecomendada: qntDiariaRecomendadaForm,
-            ingredientesSelecionados: ingredientesSelecionados
+            qntDiariaRecomendada: qntDiariaRecomendadaForm
         };
-        salvarAlimentacao(payload);
 
         navigate('/', { state: { alimentacao: payload } });
-    };
-
-    const handleSelecionarIngrediente = (ingrediente) => {
-        if (ingredientesSelecionados.includes(ingrediente)) {
-            setIngredientesSelecionados(ingredientesSelecionados.filter(item => item !== ingrediente));
-        } else {
-            setIngredientesSelecionados([...ingredientesSelecionados, ingrediente]);
-        }
-    };
-
-
-    const salvarAlimentacao = (dados) => {
-        // Obtém os dados existentes do armazenamento local (se houver)
-        const dadosExistentes = localStorage.getItem('dadosAlimentacao');
-
-        let novosDadosAlimentacao = [];
-
-        if (dadosExistentes) {
-            // Se já houver dados salvos, converte para um array
-            novosDadosAlimentacao = JSON.parse(dadosExistentes);
-        }
-
-        // Adiciona os novos dados ao array
-        novosDadosAlimentacao.push(dados);
-
-        // Salva o array atualizado no armazenamento local
-        localStorage.setItem('dadosAlimentacao', JSON.stringify(novosDadosAlimentacao));
-
-        // Limpa os campos do formulário
-        setNomeForm('');
-        setFaltaConsumirForm('');
-        setQntDiariaRecomendadaForm('');
-
-        // Exibe os dados salvos no console
-        console.log('Dados salvos Alimentacao:', novosDadosAlimentacao);
-
-        // Navega para a página desejada após cadastrar os dados
-        navigate('/');
     };
 
 
@@ -116,6 +64,7 @@ const CadastrarAlimentacao = () => {
                         <div className="id_">
                             <p>Ingredientes</p>
                         </div>
+                        {/**  ACRESCENTAR OS INGREDIENTES
                         <div className='checkboxContainer'>
                             {ingredientes.map(ingrediente => (
                                 <div key={ingrediente.nome} className='checkboxItem'>
@@ -130,7 +79,8 @@ const CadastrarAlimentacao = () => {
                                     </label>
                                 </div>
                             ))}
-                        </div>
+                        </div> */}
+
                         <div>
                             <button
                                 variant="warning"

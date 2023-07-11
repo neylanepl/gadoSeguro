@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import gadoSeguro from '../../services/connectionGadoSeguro';
 import { useNavigate } from 'react-router-dom';
-//import '../../styles/css/cadastrarPessoa.css';
 import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 
