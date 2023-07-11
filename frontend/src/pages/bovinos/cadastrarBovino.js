@@ -5,6 +5,8 @@ import Menu from '../../components/menu';
 import axios from 'axios';
 
 const CadastrarBovino = () => {
+  const [idFazendaForm, setIdFazendaForm] = useState(0);
+  const [idVacaForm, setIdVacaForm] = useState(0);
   const [nomeForm, setNomeForm] = useState('');
   const [pesoForm, setPesoForm] = useState(0);
   const [dataForm, setDataForm] = useState('');
@@ -19,14 +21,14 @@ const CadastrarBovino = () => {
   const [dandoLeiteForm, setDandoLeiteForm] = useState('');
   const [exibirInputsGestacao, setExibirInputsGestacao] = useState(false);
   const [dataInicioForm, setDataInicioForm] = useState('');
-  const [diasGestacaoForm, setDiasGestacaoForm] = useState('');
-  const [dataNascimentoForm, setDataNascimentoForm] = useState('');
 
   const navigate = useNavigate();
 
   const handleSubmitForm = async e => {
     e.preventDefault();
     const payload = {
+      idFazenda: idFazendaForm,
+      idVaca: idVacaForm,
       nome: nomeForm,
       aniversario: dataForm,
       sexo: sexoForm,
@@ -35,12 +37,11 @@ const CadastrarBovino = () => {
       peso: pesoForm,
       chifre: chifreForm,
       raca: racaForm,
+
       producaoLeite: producaoLeiteForm,
       gravida: gravidaForm,
       dandoLeite: dandoLeiteForm,
-      dataInicio: dataInicioForm,
-      diasGestacao: diasGestacaoForm,
-      dataNascimento: dataNascimentoForm
+      dataInicio: dataInicioForm
     };
 
     try {
@@ -69,6 +70,20 @@ const CadastrarBovino = () => {
           <div className="sub-div">
             <div className="id_"><p>Nome</p></div>
             <input type="text" className="nomeBovino" required onChange={e => setNomeForm(e.target.value)} />
+
+            <div className="id_"><p>Fazenda</p></div>
+            <select className="vacaBovino" required onChange={e => setIdFazendaForm(e.target.value)}>
+                  <option value="">Selecione a fazenda</option>
+                  <option value="fazenda">fazenda 1</option>
+                  <option value="fazenda">fazenda 2</option>
+            </select>
+
+            <div className="id_"><p>Vaca</p></div>
+            <select className="vacaBovino" required onChange={e => setIdVacaForm(e.target.value)}>
+                  <option value="">Selecione a vaca mãe</option>
+                  <option value="vaca">Vaca 1</option>
+                  <option value="vaca">Vaca 2</option>
+            </select>
 
             <div className="id_"><p>Peso</p></div>
             <input type="number" className="pesoBovino" required onChange={e => setPesoForm(e.target.value)} />
@@ -135,8 +150,6 @@ const CadastrarBovino = () => {
                     } else {
                       setExibirInputsGestacao(false);
                       setDataInicioForm('');
-                      setDiasGestacaoForm('');
-                      setDataNascimentoForm('');
                     }
                   }}
                 >
@@ -155,21 +168,7 @@ const CadastrarBovino = () => {
                       onChange={e => setDataInicioForm(e.target.value)}
                     />
 
-                    <div className="id_"><p>Dias de Gestação</p></div>
-                    <input
-                      type="number"
-                      className="diasGestacaoBovino"
-                      required
-                      onChange={e => setDiasGestacaoForm(e.target.value)}
-                    />
-
-                    <div className="id_"><p>Data de Nascimento</p></div>
-                    <input
-                      type="date"
-                      className="dataNascimentoBovino"
-                      required
-                      onChange={e => setDataNascimentoForm(e.target.value)}
-                    />
+                  
                   </>
                 )}
               </>
