@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-//import '../../styles/css/cadastrarBovino.css';
 import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 import axios from 'axios';
@@ -52,8 +51,6 @@ const CadastrarBovino = () => {
     } catch (error) {
       console.log("Cadastro falhou!", error)
     }
-
-
 
     // Navegar para outra página após o envio do formulário
     navigate('/');

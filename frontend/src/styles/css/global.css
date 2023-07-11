@@ -26,6 +26,7 @@
 
 .container,
 .formularioLogin,
+.formularioCadastroVacina,
 .formularioCadastroBovino {
     margin: 0 auto;
     width: 600px;
@@ -37,6 +38,7 @@
 .formularioCadastroVacina {
     height: 100%;
     padding-bottom: 60px;
+    width: 700px !important;
 }
 
 .formularioIngrediente,
@@ -45,6 +47,10 @@
 .formularioCadastroBovino,
 .formularioDieta {
     width: 700px !important;
+}
+
+.formularioCadastroDose {
+    margin-bottom: 30px;
 }
 
 .sub-div {

@@ -23,7 +23,7 @@ const IngredenteHome = () => {
 
             <div className="container" style={{ background: "#F0F1DF" }}>
                 <div className="formulario">
-                    {/* Botão para navegar para a página cadastrarBovinos */}
+                    
                     <button className="botao" onClick={handleClickCadastro}>Cadastrar Ingrediente</button>
 
                     <button className="botao" onClick={handleClickListar}>Listar Ingrediente</button>

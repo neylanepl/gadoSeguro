@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Menu from '../../components/menu';
-//import '../../styles/css/alimentacaoBovino.css';
 import '../../styles/css/global.css';
 
 const ListarAlimentacao = () => {

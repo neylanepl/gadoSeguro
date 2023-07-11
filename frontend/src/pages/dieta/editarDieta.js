@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-
-//import '../../styles/css/alimentacaoBovino.css';
 import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Menu from '../../components/menu';
-
 import '../../styles/css/homeGenerica.css';
 
 const AlimentacaoHome = () => {
@@ -23,7 +22,7 @@ const AlimentacaoHome = () => {
 
             <div className="container" style={{ background: "#F0F1DF" }}>
                 <div className="formulario">
-                    {/* Botão para navegar para a página cadastrarBovinos */}
+
                     <button className="botao" onClick={handleClickCadastro}>Cadastrar Alimentacao</button>
 
                     <button className="botao" onClick={handleClickListar}>Listar Alimentação</button>
