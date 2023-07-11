@@ -83,7 +83,7 @@ class FazendaController {
 
     async delete_fazenda(request, response) {
         try {
-            const { idFazenda } = request.params.idFazenda
+            const { idFazenda } = request.params
             fazendaService.deleteFazenda(idFazenda);
             response.status(200).json({
                 msg: "Fazenda deletada com sucesso"
