@@ -4,6 +4,8 @@ import Menu from '../../components/menu';
 import '../../styles/css/global.css';
 
 const EditarBovino = () => {
+    const [idFazendaForm, setIdFazendaForm] = useState(0);
+    const [idVacaForm, setIdVacaForm] = useState(0);
     const [NomeForm, setNomeForm] = useState('');
     const [pesoForm, setPesoForm] = useState(0);
     const [dataForm, setDataForm] = useState('');
@@ -23,6 +25,20 @@ const EditarBovino = () => {
                     <div className="sub-div">
                         <div className="id_"><p>Nome</p></div>
                         <input type="text" className="nomeBovino" onChange={e => setNomeForm(e.target.value)} />
+
+                        <div className="id_"><p>Fazenda</p></div>
+                        <select className="vacaBovino" required onChange={e => setIdFazendaForm(e.target.value)}>
+                            <option value="">Selecione a fazenda</option>
+                            <option value="fazenda">fazenda 1</option>
+                            <option value="fazenda">fazenda 2</option>
+                        </select>
+
+                        <div className="id_"><p>Vaca</p></div>
+                        <select className="vacaBovino" required onChange={e => setIdVacaForm(e.target.value)}>
+                            <option value="">Selecione a vaca mãe</option>
+                            <option value="vaca">Vaca 1</option>
+                            <option value="vaca">Vaca 2</option>
+                        </select>
 
                         <div className="id_"><p>Peso</p></div>
                         <input type="number" className="pesoBovino" onChange={e => setPesoForm(e.target.value)} />
