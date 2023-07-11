@@ -27,11 +27,8 @@ async  addVaca(vacaTemp) {
 async getAllVacas() {
   try {
       const connection = await dbConnection()
-      const [doses] = await connection.query('SELECT * FROM GadoSeguro.Vaca;')
-      if(doses.length > 0){
-        Console.log(doses);
-      }
-      return doses
+      const [vacas] = await connection.query('SELECT * FROM GadoSeguro.Vaca;')
+      return vacas
   } catch (error) {
       console.log(error);
       return error
@@ -42,11 +39,8 @@ async getAllVacas() {
 async getVacaId(id) {
   try {
       const connection = await dbConnection()
-      const [doses] = await connection.query('SELECT * FROM GadoSeguro.Vaca WHERE idVaca=?;', id)
-      if(doses.length > 0){
-        Console.log(doses);
-      }
-      return doses
+      const [vacas] = await connection.query('SELECT * FROM GadoSeguro.Vaca WHERE idVaca=?;', id)
+      return vacas[0]
   } catch (error) {
       console.log(error);
       return error

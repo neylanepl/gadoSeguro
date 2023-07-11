@@ -25,7 +25,7 @@ class VacaController {
     //Retornar todas as Vacass de uma vacina
     async show_vacas(request, response) {
         try {
-            const vaca = await VacaService.getAllVacas
+            const vaca = await VacaService.getAllVacas()
             return response.status(200).json(vaca)
         } catch (err) {
             return response.status(400).json({

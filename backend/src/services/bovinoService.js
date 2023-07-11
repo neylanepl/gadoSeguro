@@ -41,7 +41,7 @@ class BovinoService {
   async getAllBovinoFem(idFazenda) {
     try {
       const connection = await dbConnection();
-      const [bovinos] = await connection.query(`SELECT bovinos.*, vacas.dar_leite, vacas.gravida, vacas.producao_leite FROM GadoSeguro.Bovino AS bovinos JOIN GadoSeguro.Vaca AS vacas ON bovinos.idBovino = vacas.idVaca WHERE bovinos.sexo = 'FEM' AND bovinos.Fazenda_idFazenda = ?;`,idFazenda);
+      const [bovinos] = await connection.query(`SELECT bovinos.*, vacas.dar_leite, vacas.gravida, vacas.producao_leite FROM GadoSeguro.Bovino AS bovinos JOIN GadoSeguro.Vaca AS vacas ON bovinos.idBovino = vacas.idVaca WHERE bovinos.sexo = 'Fêmea' AND bovinos.Fazenda_idFazenda = ?;`,idFazenda);
       console.log("Lista de Bovinos");
       return bovinos;
     } catch (error) {
@@ -52,7 +52,7 @@ class BovinoService {
   async getAllBovinoMas(idFazenda) {
     try {
       const connection = await dbConnection();
-      const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino WHERE sexo='MAS' AND Fazenda_idFazenda=?;`,idFazenda);
+      const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino WHERE sexo='Macho' AND Fazenda_idFazenda=?;`,idFazenda);
       console.log("Lista de Bovinos");
       return bovinos;
     } catch (error) {
