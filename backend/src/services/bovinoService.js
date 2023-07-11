@@ -31,7 +31,30 @@ class BovinoService {
       const connection = await dbConnection();
       const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino;`);
       console.log("Lista de Bovinos");
-      return bovinos[0];
+      return bovinos;
+    } catch (error) {
+      console.log("Erro a resgatar a lista bovino:", error);
+    }
+  }
+
+  //Pegar a lista de Bovinos 
+  async getAllBovinoFem(idFazenda) {
+    try {
+      const connection = await dbConnection();
+      const [bovinos] = await connection.query(`SELECT bovinos.*, vacas.dar_leite, vacas.gravida, vacas.producao_leite FROM GadoSeguro.Bovino AS bovinos JOIN GadoSeguro.Vaca AS vacas ON bovinos.idBovino = vacas.idVaca WHERE bovinos.sexo = 'FEM' AND bovinos.Fazenda_idFazenda = ?;`,idFazenda);
+      console.log("Lista de Bovinos");
+      return bovinos;
+    } catch (error) {
+      console.log("Erro a resgatar a lista bovino:", error);
+    }
+  }
+  //Pegar a lista de Bovinos 
+  async getAllBovinoMas(idFazenda) {
+    try {
+      const connection = await dbConnection();
+      const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino WHERE sexo='MAS' AND Fazenda_idFazenda=?;`,idFazenda);
+      console.log("Lista de Bovinos");
+      return bovinos;
     } catch (error) {
       console.log("Erro a resgatar a lista bovino:", error);
     }

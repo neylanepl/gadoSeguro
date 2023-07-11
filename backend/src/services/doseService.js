@@ -26,13 +26,10 @@ async  addDose(doseTemp) {
 }
 
 //Retornar todas as Doses de uma vacina
-async getAllDosesVac(nomeVacina) {
+async getAll() {
   try {
       const connection = await dbConnection()
-      const [doses] = await connection.query('SELECT * FROM Dose WHERE nome_vacina=?;', nomeVacina)
-      if(doses.length > 0){
-        Console.log(doses);
-      }
+      const [doses] = await connection.query('SELECT * FROM Dose')
       return doses
   } catch (error) {
       console.log(error);
@@ -41,13 +38,24 @@ async getAllDosesVac(nomeVacina) {
 }
 
 //Retornar uma Dose pelo ID 
-async getAllDosesId(idDose) {
+async getAllDoseId(idDose) {
   try {
       const connection = await dbConnection()
       const [doses] = await connection.query('SELECT * FROM Dose WHERE idDose=?;', idDose)
-      if(doses.length > 0){
-        console.log(doses);
-      }
+      return doses
+  } catch (error) {
+      console.log(error);
+      return error
+  }
+}
+
+//Retornar as doses de uma vacina
+async getAllDosesFromVacina(nome_vacina) {
+  console.log("Atras das dose de ", nome_vacina)
+  try {
+      const connection = await dbConnection()
+      const [doses] = await connection.query('SELECT * FROM Dose WHERE nome_vacina=?;', nome_vacina)
+      console.log(doses[0])
       return doses
   } catch (error) {
       console.log(error);

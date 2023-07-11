@@ -27,7 +27,7 @@ class DoseController {
     //Retornar todas as Doses de uma vacina
     async show_doses(request, response) {
         try {
-            const doses = await DoseService.getAllDosesVac()
+            const doses = await DoseService.getAll()
             return response.status(200).json(doses)
         } catch (err) {
             return response.status(400).json({
@@ -40,8 +40,21 @@ class DoseController {
     async show_dosesId(request, response) {
         const { id } = request.params
         try {
-            const dose = await DoseService.getAllDosesId(id)
+            const dose = await DoseService.getAllDoseId(id)
             return response.status(200).json(dose)
+        } catch (err) {
+            return response.status(400).json({
+                error: err
+            })
+        }
+    }
+    
+    //Retornar as dose de uma vacina 
+    async show_dose_vacinaNome(request, response) {
+        const nome_vacina = request.params.nome
+        try {
+            const bovino = await DoseService.getAllDosesFromVacina(nome_vacina)
+            return response.status(200).json(bovino)
         } catch (err) {
             return response.status(400).json({
                 error: err

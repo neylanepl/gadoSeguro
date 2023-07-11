@@ -8,6 +8,7 @@ const routesDose = require('./api/routes/doseRoutes')
 const routesBovino = require('./api/routes/bovinoRoutes')
 const routesIngrediente = require('./api/routes/ingredienteRoutes')
 const routesVacina = require('./api/routes/vacinaRoutes')
+const routeCarteiras = require('./api/routes/carteirasRoutes')
 
 const fazendaS = require('./services/fazendaService')
 const bovinoS = require('./services/bovinoService')
@@ -43,6 +44,7 @@ app.use(routesDose)
 app.use(routesBovino)
 app.use(routesIngrediente)
 app.use(routesVacina)
+app.use(routeCarteiras)
 
 app.listen(port, () => {
     console.log('Servidor rodando na porta ', port)

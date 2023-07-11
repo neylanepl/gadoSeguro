@@ -37,7 +37,7 @@ async getAllCarteiras() {
 async getCarteiraVacId(id) {
   try {
       const connection = await dbConnection();
-      const [Carteiras] = await connection.query('SELECT * FROM GadoSeguro.Ingrediente WHERE Bovino_idBovino=?;', id);
+      const [Carteiras] = await connection.query('SELECT * FROM GadoSeguro.CarteiraVacinacao WHERE Bovino_idBovino=?;', id);
       console.log("Carteira achada com sucesso!");
       return Carteiras[0];
   } catch (error) {
