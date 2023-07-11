@@ -44,6 +44,18 @@ class CarteiraController {
             })
         }
     }
+    //Retornar as doses de uma Carteira pelo ID 
+    async show_registros_carteiraId(request, response) {
+        const { id } = request.params
+        try {
+            const carteira = await CarteiraService.getCarteiraDosesBovino(id)
+            return response.status(200).json(carteira)
+        } catch (err) {
+            return response.status(400).json({
+                error: err
+            })
+        }
+    }
 
     //Deletar Carteira pelo ID
     async delete_carteira(request, response) {
