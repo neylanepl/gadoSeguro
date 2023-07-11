@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors');
 
 const routesFazenda = require('./api/routes/fazendaRoutes')
+const routesPessoa = require('./api/routes/pessoaRoutes')
 const routesDose = require('./api/routes/doseRoutes')
 const routesBovino = require('./api/routes/bovinoRoutes')
 const routesIngrediente = require('./api/routes/ingredienteRoutes')
@@ -57,6 +58,7 @@ app.use((req, res, next) => {
 });
 
 app.use(routesFazenda)
+app.use(routesPessoa)
 app.use(routesDose)
 app.use(routesBovino)
 app.use(routesIngrediente)

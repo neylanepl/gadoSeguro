@@ -26,8 +26,7 @@ const CadastrarPessoa = () => {
         try {
             const { data } = await gadoSeguro.post('/pessoa', payload);
             console.log("Cadastro realizado com sucesso!")
-            navigate('/login');
-
+            navigate('/');
         } catch (error) {
             console.log("Cadastro falhou!", error)
         }
