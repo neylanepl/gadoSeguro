@@ -36,87 +36,99 @@ const Inicio = () => {
     window.location.href = '/doses';
   };
 
-  if(isAuthenticated()) {
-    
-  return (
-    <Base title={"Administração de Bovinos"}>
-      <Form.Group className='text-center' style={{maxWidth: "400px", margin: "0 auto"}}>
-        <Row style={{paddingBottom: "5%"}}>
-          <Col className="d-grid gap-2">
-            <button 
-              className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
-              onClick={redirectToPessoaHome}>
+  const redirectToReproducaoHome = () => {
+    window.location.href = '/reproducao/reproducaoBovino';
+  };
+
+  if (isAuthenticated()) {
+
+    return (
+      <Base title={"Administração de Bovinos"}>
+        <Form.Group className='text-center' style={{ maxWidth: "400px", margin: "0 auto" }}>
+          <Row style={{ paddingBottom: "5%" }}>
+            <Col className="d-grid gap-2">
+              <button
+                className="btn btn-success"
+                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }}
+                onClick={redirectToPessoaHome}>
                 Pessoas
-            </button>
-          </Col>
-          <Col className="d-grid gap-2">
-            <button 
-              className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
-              onClick={redirectToFazendaHome}>
+              </button>
+            </Col>
+            <Col className="d-grid gap-2">
+              <button
+                className="btn btn-success"
+                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }}
+                onClick={redirectToFazendaHome}>
                 Fazendas
-            </button>
-          </Col>
-        </Row>
-        <Row style={{paddingBottom: "5%"}}>
-          <Col className="d-grid gap-2">
-            <button 
-              className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
-              onClick={redirectToBovinoHome}>
+              </button>
+            </Col>
+          </Row>
+          <Row style={{ paddingBottom: "5%" }}>
+            <Col className="d-grid gap-2">
+              <button
+                className="btn btn-success"
+                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }}
+                onClick={redirectToBovinoHome}>
                 Bovinos
-            </button>
-          </Col>
-          <Col className="d-grid gap-2">
-            <button 
-              className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
-              onClick={redirectToVacinaHome}>
+              </button>
+            </Col>
+            <Col className="d-grid gap-2">
+              <button
+                className="btn btn-success"
+                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }}
+                onClick={redirectToVacinaHome}>
                 Vacinas
-            </button>
-          </Col>
-        </Row>
-        <Row style={{paddingBottom: "5%"}}>
-          <Col className="d-grid gap-2">
-            <button 
-              className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
-              onClick={redirectToDoseHome}>
+              </button>
+            </Col>
+          </Row>
+          <Row style={{ paddingBottom: "5%" }}>
+            <Col className="d-grid gap-2">
+              <button
+                className="btn btn-success"
+                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }}
+                onClick={redirectToDoseHome}>
                 Doses
-            </button>
-          </Col>
-          <Col className="d-grid gap-2">
-            <button 
-              className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
-              onClick={redirectToAlimentacaoHome}>
+              </button>
+            </Col>
+            <Col className="d-grid gap-2">
+              <button
+                className="btn btn-success"
+                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }}
+                onClick={redirectToAlimentacaoHome}>
                 Alimentações
-            </button>
-          </Col>
-        </Row>
-        <Row style={{paddingBottom: "5%"}}>
-          <Col className="d-grid gap-2">
-            <button 
-              className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
-              onClick={redirectToDietaHome}>
+              </button>
+            </Col>
+          </Row>
+          <Row style={{ paddingBottom: "5%" }}>
+            <Col className="d-grid gap-2">
+              <button
+                className="btn btn-success"
+                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }}
+                onClick={redirectToDietaHome}>
                 Dietas
-            </button>
-          </Col>
-          <Col className="d-grid gap-2">
-            <button 
-              className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
-              onClick={redirectToIngredienteHome}>
+              </button>
+            </Col>
+            <Col className="d-grid gap-2">
+              <button
+                className="btn btn-success"
+                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }}
+                onClick={redirectToIngredienteHome}>
                 Ingredientes
-            </button>
-          </Col>
-        </Row>       
-      </Form.Group>
-    </Base>
-  );
-} 
+              </button>
+            </Col>
+            <Col className="d-grid gap-2">
+              <button
+                className="btn btn-success"
+                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }}
+                onClick={redirectToReproducaoHome}>
+                Reprodução
+              </button>
+            </Col>
+          </Row>
+        </Form.Group>
+      </Base>
+    );
+  }
 };
 
 export default Inicio;
