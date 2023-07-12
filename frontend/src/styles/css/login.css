@@ -18,7 +18,7 @@
 
 .formularioLogin {
     margin: 0 auto;
-    width: 700px;
+    max-width: 700px;
     background-color: #E0E7CA;
     padding: 2em 5em 2em 5em;
     border-radius: 1em;

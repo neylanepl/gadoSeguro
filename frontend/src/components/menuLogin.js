@@ -10,8 +10,9 @@ const MenuLogin = () => {
     };
 
     return (
-        <div style={{ backgroundColor: '#83A93A', width: '100%', height: '40px', position: 'relative' }}>
-
+        <div 
+            style={{ backgroundColor: '#83A93A', width: '100%', 
+            height: '40px', position: 'relative' }}>
         </div>
     );
 };

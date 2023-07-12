@@ -1,9 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Menu from '../../components/menu';
-import '../../styles/css/global.css';
-//import '../../styles/css/glob.css';
-//import { Table } from "react-bootstrap"
 
 const CarteriaVacinacao = () => {
     const navigate = useNavigate();

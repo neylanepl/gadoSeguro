@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Menu from '../../components/menu';
-import '../../styles/css/global.css';
+import Base from '../base/base';
+import BtnGreen from '../../components/buttongreen';
+
 import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const ListaPessoa = () => {
@@ -25,39 +26,42 @@ const ListaPessoa = () => {
     const deletarPessoa = async (cpf) => {
         try {
             const response = await gadoSeguro.delete(`/pessoa/${cpf}`);
+            window.location.reload();
         } catch (error) {
             console.error("erro ao deletar pessoa: ", error);
         }
     };
 
     return (
-        <div id="wrapper" style={{ background: "#F0F1DF" }}>
-            <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Usuários cadastrados no sistema</h1>
-            <div className="t" style={{ margin: "5%", marginLeft: "10%", marginRight: "20%" }}>
-                <div className="text-center" style={{ marginBottom: "5%" }}><button className="botaoCadastrarListar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} variant="warning"
-                    onClick={e => navigate('/pessoas/cadastrarPessoas')}>Cadastrar Usuário</button></div>
+        <Base title={"Usuários"}>
+            <div 
+                className="d-grid gap-2 d-md-flex justify-content-md-end"
+                style={{ marginBottom: "2%" }}>
+                <BtnGreen 
+                    title={"Cadastrar usuário"}
+                    route={'/pessoas/cadastrarPessoa'}
+                />
+            </div>
 
-                <table className="table table-bordered table-bordered" >
-                    <thead className="text-center" style={{ backgroundColor: "#E0E7CA" }}>
-                        <tr>
-                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Nome</th>
-                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Email</th>
-                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Cargo</th>
+            <table className="table table-bordered" >
+                <thead className="text-center" style={{ backgroundColor: "#E0E7CA" }}>
+                    <tr>
+                        <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Nome</th>
+                        <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Email</th>
+                        <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Cargo</th>
+                        <th style={{ backgroundColor: "#cdd8a9" }} ></th>
+                    </tr>
+                </thead>
 
-                            <th style={{ backgroundColor: "#cdd8a9" }} ></th>
-                        </tr>
-                    </thead>
-
-                    <tbody className="tabelaListagem text-center" >
+                    <tbody className="text-center" >
                         {pessoas.map(pessoa => (
                             <tr key={pessoa.cpf}>
                                 <td>{pessoa.nome}</td>
                                 <td>{pessoa.email}</td>
                                 <td>{pessoa.cargo}</td>
                                 <td style={{ display: "flex", justifyContent: "space-evenly" }}>
-                                    <button className="botaoEditar btn btn-primary" style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#47a2ed", border: "none" }} variant="warning"
-                                        onClick={e => navigate(`/pessoas/editarPessoas/${pessoa.cpf}`, { state: { pessoa } })}>
+                                    <button className="btn btn-primary" style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#47a2ed", border: "none" }} variant="warning"
+                                        onClick={e => navigate(`/pessoas/editarPessoa/${pessoa.cpf}`, { state: { pessoa } })}>
                                         Editar
                                         <span className="editar">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" color='white' viewBox="0 0 16 16">
@@ -67,7 +71,7 @@ const ListaPessoa = () => {
                                         </span>
                                     </button>
 
-                                    <button className="botaoApagar   btn btn-danger"
+                                    <button className="btn btn-danger"
                                         style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#d10606", border: "none" }} variant="warning" onClick={e => deletarPessoa(pessoa.cpf)}>
                                         Deletar
                                         <span>
@@ -78,14 +82,12 @@ const ListaPessoa = () => {
                                     </button>
                                 </td>
 
-                            </tr>
+                        </tr>
                         ))}
-                    </tbody>
+                </tbody>
 
-                </table>
-
-            </div>
-        </div>
+            </table>
+        </Base>
     );
 
 }

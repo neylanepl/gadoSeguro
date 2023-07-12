@@ -1,8 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../services/auth';
 
 const Menu = () => {
+  const navigate = useNavigate();
+
   const handleLogout = () => {
-    // Lógica para realizar o logout
+    logout();
+    navigate('/login');
   };
 
   const handleGoBack = () => {

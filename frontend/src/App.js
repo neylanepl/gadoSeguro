@@ -2,15 +2,8 @@ import React from 'react';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import PrivateRoute from './pages/base/privateRoute.js';
 import Inicio from './pages/inicio/inicio.js';
-import BovinoHome from './pages/bovinos/bovinoHome.js';
-import VacinaHome from './pages/vacinas/vacinaHome.js';
-import PessoaHome from './pages/pessoas/pessoaHome.js';
-import FazendaHome from './pages/fazendas/fazendaHome.js';
-import IngredienteHome from './pages/ingredientes/ingredienteHome.js';
-import AlimentacaoHome from './pages/alimentacao/alimentacaoHome.js';
-import DietaHome from './pages/dieta/dietaHome.js';
-import DoseHome from './pages/dose/doseHome.js';
 
 import CadastrarBovino from './pages/bovinos/cadastrarBovino.js';
 import EditarBovino from './pages/bovinos/editarBovino.js';
@@ -52,54 +45,42 @@ function App() {
 
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPessoa />} />
-        <Route path="/inicio/inicio" element={<Inicio />} />
-        <Route path="/bovinos/bovinoHome" element={<BovinoHome />} />
-        <Route path="/vacinas/vacinaHome" element={<VacinaHome />} />
-        <Route path="/pessoas/pessoaHome" element={<PessoaHome />} />
-        <Route path="/fazendas/fazendaHome" element={<FazendaHome />} />
-        <Route path="/ingredientes/ingredienteHome" element={<IngredienteHome />} />
-        <Route path="/alimentacao/alimentacaoHome" element={<AlimentacaoHome />} />
-        <Route path="/dieta/dietaHome" element={<DietaHome />} />
-        <Route path="/dose/doseHome" element={<DoseHome />} />
+        <Route path="/" element={<PrivateRoute><Inicio /></PrivateRoute>} />
+        <Route path="/login" element={<LoginPessoa />} />
 
-        <Route path="/bovinos/cadastrarBovino" element={<CadastrarBovino />} />
-        <Route path="/bovinos/editarBovino" element={<EditarBovino />} />
-        <Route path="/bovinos/listarBovino" element={<ListarBovino />} />
+        <Route path="/bovinos" element={<PrivateRoute><ListarBovino /></PrivateRoute>} />
+        <Route path="/bovinos/cadastrarBovino" element={<PrivateRoute><CadastrarBovino /></PrivateRoute>} />
+        <Route path="/bovinos/editarBovino/:id" element={<PrivateRoute><EditarBovino /></PrivateRoute>} />
         <Route path="/bovinos/telaListagemCarteira" element={<TelaListarCarteiraBovino />} />
         <Route path="/bovinos/carteiraVacinacao" element={<CarteiraVacinacaoBovino />} />
 
+        <Route path="/vacinas" element={<PrivateRoute><ListarVacina /></PrivateRoute>} />
+        <Route path="/vacinas/cadastrarVacina" element={<PrivateRoute><CadastrarVacina /></PrivateRoute>} />
+        <Route path="/vacinas/editarVacina" element={<PrivateRoute><EditarVacina /></PrivateRoute>} />
 
-        <Route path="/vacinas/cadastrarVacinas" element={<CadastrarVacina />} />
-        <Route path="/vacinas/editarVacinas" element={<EditarVacina />} />
-        <Route path="/vacinas/listarVacinas" element={<ListarVacina />} />
+        <Route path="/pessoas" element={<PrivateRoute><ListarPessoa /></PrivateRoute>} />
+        <Route path="/pessoas/cadastrarPessoa" element={<CadastrarPessoa />} />
+        <Route path="/pessoas/editarPessoa/:cpf" element={<PrivateRoute><EditarPessoa /></PrivateRoute>} />
 
-        <Route path="/pessoas/cadastrarPessoas" element={<CadastrarPessoa />} />
-        <Route path="/pessoas/editarPessoas/:cpf" element={<EditarPessoa />} />
-        <Route path="/pessoas/listarPessoas" element={<ListarPessoa />} />
-        <Route path="/pessoas/loginPessoa" element={<LoginPessoa />} />
+        <Route path="/fazendas" element={<PrivateRoute><ListarFazenda /></PrivateRoute>} />
+        <Route path="/fazendas/cadastrarFazenda" element={<PrivateRoute><CadastrarFazenda /></PrivateRoute>} />
+        <Route path="/fazendas/editarFazenda/:id" element={<PrivateRoute><EditarFazenda /></PrivateRoute>} />
 
-        <Route path="/fazendas/cadastrarFazenda" element={<CadastrarFazenda />} />
-        <Route path="/fazendas/listarFazenda" element={<ListarFazenda />} />
-        <Route path="/fazendas/editarFazenda/:id" element={<EditarFazenda />} />
+        <Route path="/ingredientes" element={<PrivateRoute><ListarIngrediente /></PrivateRoute>} />
+        <Route path="/ingredientes/cadastrarIngrediente" element={<PrivateRoute><CadastrarIngrediente /></PrivateRoute>} />
+        <Route path="/ingredientes/editarIngrediente/:id" element={<PrivateRoute><EditarIngrediente /></PrivateRoute>} />
 
+        <Route path="/alimentacoes" element={<PrivateRoute><ListarAlimentacao /></PrivateRoute>} />
+        <Route path="/alimentacoes/cadastrarAlimentacao" element={<PrivateRoute><CadastrarAlimentacao /></PrivateRoute>} />
+        <Route path="/alimentacoes/editarAlimentacao" element={<PrivateRoute><EditarAlimentacao /></PrivateRoute>} />
 
+        <Route path="/dietas" element={<PrivateRoute><ListarDieta /></PrivateRoute>} />
+        <Route path="/dietas/cadastrarDieta" element={<PrivateRoute><CadastrarDieta /></PrivateRoute>} />
+        <Route path="/dietas/editarDieta" element={<PrivateRoute><EditarDieta /></PrivateRoute>} />
 
-        <Route path="/ingredientes/cadastrarIngrediente" element={<CadastrarIngrediente />} />
-        <Route path="/ingredientes/editarIngrediente" element={<EditarIngrediente />} />
-        <Route path="/ingredientes/listarIngrediente" element={<ListarIngrediente />} />
-
-        <Route path="/alimentacao/cadastrarAlimentacao" element={<CadastrarAlimentacao />} />
-        <Route path="/alimentacao/editarAlimentacao" element={<EditarAlimentacao />} />
-        <Route path="/alimentacao/listarAlimentacao" element={<ListarAlimentacao />} />
-
-        <Route path="/dieta/cadastrarDieta" element={<CadastrarDieta />} />
-        <Route path="/dieta/editarDieta" element={<EditarDieta />} />
-        <Route path="/dieta/listarDieta" element={<ListarDieta />} />
-
-        <Route path="/dose/cadastrarDose" element={<CadastrarDose />} />
-        <Route path="/dose/editarDose" element={<EditarDose />} />
-        <Route path="/dose/listarDose" element={<ListarDose />} />
+        <Route path="/doses" element={<PrivateRoute><ListarDose /></PrivateRoute>} />
+        <Route path="/doses/cadastrarDose" element={<PrivateRoute><CadastrarDose /></PrivateRoute>} />
+        <Route path="/doses/editarDose" element={<PrivateRoute><EditarDose /></PrivateRoute>} />
 
       </Routes>
     </Router>
