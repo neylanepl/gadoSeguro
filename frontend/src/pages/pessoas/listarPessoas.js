@@ -26,6 +26,7 @@ const ListaPessoa = () => {
     const deletarPessoa = async (cpf) => {
         try {
             const response = await gadoSeguro.delete(`/pessoa/${cpf}`);
+            window.location.reload();
         } catch (error) {
             console.error("erro ao deletar pessoa: ", error);
         }

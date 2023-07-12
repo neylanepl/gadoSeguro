@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Menu from '../../components/menu';
+import Base from '../base/base';
 
 const CadastrarAlimentacao = () => {
     const [nomeForm, setNomeForm] = useState('');
@@ -22,9 +23,7 @@ const CadastrarAlimentacao = () => {
 
 
     return (
-        <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
-            <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastrar Alimentação </h1>
+        <Base title={"Cadastrar alimentação"}>
             <div className="formularioAlimentacao" style={{ marginBottom: "10%" }}>
                 <form className="formulario" onSubmit={handleSubmitForm}>
                     <div className="sub-div">
@@ -95,7 +94,7 @@ const CadastrarAlimentacao = () => {
                     </div>
                 </form>
             </div>
-        </div>
+        </Base>
     );
 };
 

@@ -1,0 +1,112 @@
+*body {
+    margin: 0%;
+}
+
+#wrapper {
+    min-height: 100vh;
+}
+
+.fs-1 {
+    margin-bottom: 50px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding-bottom: 60px;
+}
+
+.formularioCadastroDose,
+.formularioIngrediente,
+.formularioAlimentacao,
+.formularioDieta,
+.formulario,
+.sub-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.formularioCadastroDose,
+.formularioAlimentacao,
+.formularioIngrediente,
+.formularioDieta {
+    margin: 0 auto;
+    width: 600px;
+    background-color: #E0E7CA;
+    padding-bottom: 60px;
+    border-radius: 1em;
+}
+
+.formularioCadastroDose {
+    padding-bottom: 10px;
+}
+
+.sub-div {
+    width: fit-content;
+    margin: 0;
+}
+
+.id_ {
+    width: 40em;
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.nomeDieta,
+.restricaoAlimentarDieta,
+.idIngrediente,
+.nomeIngrediente,
+.qtdEstoqueIngrediente,
+.unidadeIngrediente,
+.nomeAlimentacao,
+.faltaConsumirAlimentacao,
+.qntDiariaRecomendadaAlimentacao,
+.descricaoDieta,
+.restricaoAlimentar {
+    width: 30em;
+    border-radius: 1em;
+    border: solid 1.5px #6D3B00;
+    background-color: #eaece2;
+    margin-top: -1em;
+    padding: 0.3em;
+}
+
+.botao {
+    background-color: #83A93A;
+    color: white;
+    margin-top: 2em;
+    width: 40em;
+    border-radius: 1em;
+    border-color: #6D3B00;
+    padding: 0.2em;
+}
+
+/*.botaoVoltar {
+    margin-left: 10px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+}*/
+
+.bi {
+    color: black;
+}
+
+.checkboxContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 70px;
+}
+
+.checkboxItem {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}

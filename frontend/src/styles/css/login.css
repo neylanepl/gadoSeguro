@@ -1,0 +1,67 @@
+*body {
+    margin: 0%;
+}
+
+.fs-1 {
+    margin-bottom: 50px;
+}
+
+.formularioLogin,
+.formulario,
+.sub-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.formularioLogin {
+    margin: 0 auto;
+    max-width: 700px;
+    background-color: #E0E7CA;
+    padding: 2em 5em 2em 5em;
+    border-radius: 1em;
+}
+
+.sub-div {
+    width: fit-content;
+    margin: 0;
+}
+
+.id_ {
+    width: 30em;
+    font-weight: bold;
+    margin-top: 1em;
+}
+
+.nomePessoa,
+.senhaPessoa {
+    width: 30em;
+    border-radius: 1em;
+    border: solid 1.5px #6D3B00;
+    background-color: #eaece2;
+    margin-top: -1em;
+    padding: 0.3em;
+}
+
+.botao {
+    background-color: #83A93A;
+    color: white;
+    margin-top: 2em;
+    width: 40em;
+    border-radius: 1em;
+    border-color: #6D3B00;
+    padding: 0.2em;
+}
+
+.botaoVoltar {
+    margin-left: 10px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.bi {
+    color: black;
+}

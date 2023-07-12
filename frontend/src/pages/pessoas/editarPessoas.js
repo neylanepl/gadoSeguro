@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import gadoSeguro from '../../services/connectionGadoSeguro';
-import Menu from '../../components/menu';
+import Base from '../base/base';
+import { Form } from 'react-bootstrap';
 
 const EditarPessoa = () => {
 
@@ -37,7 +38,7 @@ const EditarPessoa = () => {
         try {
             await gadoSeguro.put(`/pessoa/${pessoa.cpf}`, payload);
             const response = await gadoSeguro.get('/pessoa');
-            navigate('/pessoas/listarPessoas')
+            navigate('/pessoas')
             console.log('Dados atualizados com sucesso!');
         } catch (error) {
             console.error('Erro ao atualizar os dados da fazenda:', error);
@@ -45,36 +46,48 @@ const EditarPessoa = () => {
      }
 
     return (
-        <div id="wrapper" style={{ background: "#F0F1DF" }}>
-            <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Editar Usuário </h1>
-            <div className="formularioLogin" style={{ marginBottom: "10%" }}>
-                <form className="formulario" onSubmit={e => { handleSubmitForm(e) }}>
-                    <div className="sub-div">
-                        <div className="id_"><p>Nome</p></div>
-                        <input type="text" className="nomePessoa" value={nomeForm}  onChange={e => setNomeForm(e.target.value)} />
-
-                        <div className="id_"><p>CPF</p></div>
-                        <input type="text" className="cpfPessoa" value={cpfForm}  required onChange={e => setCPFForm(e.target.value)} />
-
-                        <div className="id_"><p>Email</p></div>
-                        <input type="text" className="emailPessoa" value={emailForm}  onChange={e => setEmailForm(e.target.value)} />
-
-                        <div className="id_"><p>Cargo</p></div>
-                        <input type="text" className="cargoPessoa" value={cargoForm}  onChange={e => setCargoForm(e.target.value)} />
-                        <select className="cargoPessoa" value={cargoForm}  required onChange={e => setCargoForm(e.target.value)}>
+        <Base title={"Editar usuário"}>
+            <Form onSubmit={e => { handleSubmitForm(e) }}
+                style={{margin: "0 auto", backgroundColor: "#E0E7CA", 
+                    maxWidth: "600px", marginBottom: "10%", padding: "2em 3em 2em 3em",
+                    borderRadius: "1em" }}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlNome">
+                    <Form.Label style={{ fontWeight: "bold" }}>Nome</Form.Label>
+                    <Form.Control type="name" required value={nomeForm}
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setNomeForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlCpf">
+                    <Form.Label style={{ fontWeight: "bold" }}>CPF</Form.Label>
+                    <Form.Control type="name" required value={cpfForm}
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setCPFForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlEmail">
+                    <Form.Label style={{ fontWeight: "bold" }}>E-mail</Form.Label>
+                    <Form.Control type="email" required value={emailForm}
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setEmailForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlCargo">
+                    <Form.Label style={{ fontWeight: "bold" }}>Cargo</Form.Label>
+                    <Form.Select required value={cargoForm}
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setCargoForm(e.target.value)} >
                             <option value="">Selecione o cargo</option>
                             <option value="empregado">Empregado</option>
                             <option value="veterinário">Veterinário</option>
                             <option value="fazendeiro">Fazendeiro</option>
-                        </select>
-
-
-                        <button variant="warning" type="submit" value="submit" className="botaoEditar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group className='text-center'>
+                    <button type="submit" value="submit" className="btn btn-success"
+                        style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
+                        Editar
+                    </button>
+                </Form.Group>
+            </Form>
+        </Base>
     );
 }
 

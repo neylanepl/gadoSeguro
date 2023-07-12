@@ -1,6 +1,6 @@
 import React from 'react';
 import { isAuthenticated } from '../../services/auth';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Form, Row } from 'react-bootstrap';
 import Base from '../base/base';
 
 const Inicio = () => {
@@ -40,76 +40,80 @@ const Inicio = () => {
     
   return (
     <Base title={"Administração de Bovinos"}>
-      <div>
-        <Row>
-          <Col size={3}>
+      <Form.Group className='text-center' style={{maxWidth: "400px", margin: "0 auto"}}>
+        <Row style={{paddingBottom: "5%"}}>
+          <Col className="d-grid gap-2">
             <button 
               className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
               onClick={redirectToPessoaHome}>
                 Pessoas
             </button>
           </Col>
-          <Col size={3}>
+          <Col className="d-grid gap-2">
             <button 
               className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
-              onClick={redirectToFazendaHome}>Fazendas</button>
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
+              onClick={redirectToFazendaHome}>
+                Fazendas
+            </button>
           </Col>
-          <Col size={3}>
+        </Row>
+        <Row style={{paddingBottom: "5%"}}>
+          <Col className="d-grid gap-2">
             <button 
               className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
               onClick={redirectToBovinoHome}>
                 Bovinos
             </button>
           </Col>
-        </Row>
-        <Row>
-          <Col size={3}>
+          <Col className="d-grid gap-2">
             <button 
               className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
               onClick={redirectToVacinaHome}>
                 Vacinas
             </button>
           </Col>
-          <Col size={3}>
+        </Row>
+        <Row style={{paddingBottom: "5%"}}>
+          <Col className="d-grid gap-2">
             <button 
               className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
               onClick={redirectToDoseHome}>
                 Doses
             </button>
           </Col>
-          <Col size={3}>
+          <Col className="d-grid gap-2">
             <button 
               className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
               onClick={redirectToAlimentacaoHome}>
                 Alimentações
             </button>
           </Col>
         </Row>
-        <Row>
-          <Col size={3}>
+        <Row style={{paddingBottom: "5%"}}>
+          <Col className="d-grid gap-2">
             <button 
               className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
               onClick={redirectToDietaHome}>
                 Dietas
             </button>
           </Col>
-          <Col size={3}>
+          <Col className="d-grid gap-2">
             <button 
               className="btn btn-success" 
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", width: "auto" }} 
               onClick={redirectToIngredienteHome}>
                 Ingredientes
             </button>
           </Col>
         </Row>       
-      </div>
+      </Form.Group>
     </Base>
   );
 } 
