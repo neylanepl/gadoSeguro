@@ -72,6 +72,7 @@ class VacinaServices {
 
   //Deletar Vacina pelo nome
   async deleteVacina(vacinaNome) {
+    console.log(vacinaNome)
     try {
       const connection = await dbConnection();
       await connection.query('DELETE FROM GadoSeguro.Vacina WHERE nome_vacina=?;', vacinaNome);

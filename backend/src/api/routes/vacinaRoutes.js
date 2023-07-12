@@ -8,7 +8,7 @@ router.get('/vacinas', VacinaController.show_vacinas)
 router.get('/vacina', VacinaController.show_vacinas)
 router.get('/vacina/:nome', VacinaController.show_vacinaNome)
 router.get('/vacina/:nome/doses', DoseController.show_dose_vacinaNome)
-router.put('/vacina/:id', VacinaController.update_vacina)
-router.delete('/vacina/:idVacina', VacinaController.delete_vacina)
+router.put('/vacina/:nome', VacinaController.update_vacina)
+router.delete('/vacina/:nome', VacinaController.delete_vacina)
 
 module.exports = router

@@ -49,14 +49,15 @@ class VacinaController {
 
     //Atualiza uma vacina
     async update_vacina(request, response) {
+        const nome_vacina = request.params.nome
+
         const vacinaTemp = {
-            nome_vacina: request.body.nome_vacina,
             info: request.body.info,
             fabricante: request.body.fabricante
         }
 
         try {
-            VacinaService.updateVacina(vacinaTemp);
+            VacinaService.updateVacina( nome_vacina, vacinaTemp);
             response.status(200).json({
                 msg: "Vacina atualizada com sucesso"
             })
@@ -70,8 +71,8 @@ class VacinaController {
     //Deletar vacina pelo ID
     async delete_vacina(request, response) {
         try {
-            const { idVacina } = request.params.idBovino
-            VacinaService.deleteVacina(idVacina);
+            const nome_vacina = request.params.nome
+            VacinaService.deleteVacina(nome_vacina);
             response.status(200).json({
                 msg: "Vacina deletado com sucesso"
             })

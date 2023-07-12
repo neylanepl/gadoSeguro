@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Dose` (
   CONSTRAINT `fk_Dose_Vacina`
     FOREIGN KEY (`nome_vacina`)
     REFERENCES `GadoSeguro`.`Vacina` (`nome_vacina`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -71,8 +71,8 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Vaca` (
   CONSTRAINT `fk_vaca_Bovino1`
     FOREIGN KEY (`idVaca`)
     REFERENCES `GadoSeguro`.`Bovino` (`idBovino`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -96,13 +96,13 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Bovino` (
   CONSTRAINT `fk_Bovino_Fazenda1`
     FOREIGN KEY (`Fazenda_idFazenda`)
     REFERENCES `GadoSeguro`.`Fazenda` (`idFazenda`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Bovino_Vaca1`
     FOREIGN KEY (`Vaca_idVaca`)
     REFERENCES `GadoSeguro`.`Vaca` (`idVaca`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -140,8 +140,8 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`CarteiraVacinacao` (
   CONSTRAINT `fk_CarteiraVacinacao_Bovino1`
     FOREIGN KEY (`Bovino_idBovino`)
     REFERENCES `GadoSeguro`.`Bovino` (`idBovino`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -157,13 +157,13 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Registra` (
   CONSTRAINT `fk_CarteiraVacinacao_has_Dose_CarteiraVacinacao1`
     FOREIGN KEY (`CarteiraVacinacao_Bovino_idBovino`)
     REFERENCES `GadoSeguro`.`CarteiraVacinacao` (`Bovino_idBovino`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_CarteiraVacinacao_has_Dose_Dose1`
     FOREIGN KEY (`Dose_id`)
     REFERENCES `GadoSeguro`.`Dose` (`idDose`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -176,8 +176,8 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Boi` (
   CONSTRAINT `fk_Boi_Bovino1`
     FOREIGN KEY (`Bovino_idBovino`)
     REFERENCES `GadoSeguro`.`Bovino` (`idBovino`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -196,13 +196,13 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Reproducao` (
   CONSTRAINT `fk_Reproducao_Vaca1`
     FOREIGN KEY (`Vaca_idVaca`)
     REFERENCES `GadoSeguro`.`Vaca` (`idVaca`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Reproducao_Boi1`
     FOREIGN KEY (`Boi_Bovino_idBovino`)
     REFERENCES `GadoSeguro`.`Boi` (`Bovino_idBovino`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -218,13 +218,13 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Empregados` (
   CONSTRAINT `fk_Fazenda_has_Pessoa_Fazenda1`
     FOREIGN KEY (`Fazenda_idFazenda`)
     REFERENCES `GadoSeguro`.`Fazenda` (`idFazenda`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Fazenda_has_Pessoa_Pessoa1`
     FOREIGN KEY (`Pessoa_cpf`)
     REFERENCES `GadoSeguro`.`Pessoa` (`cpf`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -261,13 +261,13 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Racas_has_Bovino` (
   CONSTRAINT `fk_Racas_has_Bovino_Racas1`
     FOREIGN KEY (`Racas_id`)
     REFERENCES `GadoSeguro`.`Racas` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Racas_has_Bovino_Bovino1`
     FOREIGN KEY (`Bovino_idBovino`)
     REFERENCES `GadoSeguro`.`Bovino` (`idBovino`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -286,13 +286,13 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Instancia_Dieta` (
   CONSTRAINT `fk_Instancia_Dieta_Dieta1`
     FOREIGN KEY (`Dieta_idDieta`)
     REFERENCES `GadoSeguro`.`Dieta` (`idDieta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Instancia_Dieta_Bovino1`
     FOREIGN KEY (`Bovino_idBovino`)
     REFERENCES `GadoSeguro`.`Bovino` (`idBovino`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -321,13 +321,13 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Alimentação_has_Ingrediente` (
   CONSTRAINT `fk_Alimentação_has_Ingrediente_Alimentação1`
     FOREIGN KEY (`Alimentação_id`)
     REFERENCES `GadoSeguro`.`Alimentação` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Alimentação_has_Ingrediente_Ingrediente1`
     FOREIGN KEY (`Ingrediente_idIngrediente`)
     REFERENCES `GadoSeguro`.`Ingrediente` (`idIngrediente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -343,13 +343,13 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Dieta_has_Alimentação` (
   CONSTRAINT `fk_Dieta_has_Alimentação_Dieta1`
     FOREIGN KEY (`Dieta_idDieta`)
     REFERENCES `GadoSeguro`.`Dieta` (`idDieta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Dieta_has_Alimentação_Alimentação1`
     FOREIGN KEY (`Alimentação_id`)
     REFERENCES `GadoSeguro`.`Alimentação` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -369,18 +369,18 @@ CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Instancia_Alimentacao` (
   CONSTRAINT `fk_Instancia_Alimentacao_Alimentação1`
     FOREIGN KEY (`Alimentação_id`)
     REFERENCES `GadoSeguro`.`Alimentação` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Instancia_Alimentacao_Bovino1`
     FOREIGN KEY (`Bovino_idBovino`)
     REFERENCES `GadoSeguro`.`Bovino` (`idBovino`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_Instancia_Alimentacao_Pessoa1`
     FOREIGN KEY (`Pessoa_cpf`)
     REFERENCES `GadoSeguro`.`Pessoa` (`cpf`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
