@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/css/global.css';
 import Menu from '../../components/menu';
-import axios from 'axios';
+import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const CadastrarBovino = () => {
   const [idFazendaForm, setIdFazendaForm] = useState(0);
@@ -45,7 +45,7 @@ const CadastrarBovino = () => {
     };
 
     try {
-      const { data } = await axios.post('http://localhost:3001/bovino', payload);
+      const { data } = await gadoSeguro.post('/bovino', payload);
       console.log("Cadastro realizado com sucesso!")
       navigate('/');
 
