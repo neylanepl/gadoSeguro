@@ -10,6 +10,7 @@ import EditarBovino from './pages/bovinos/editarBovino.js';
 import ListarBovino from './pages/bovinos/listarBovino.js';
 import TelaListarCarteiraBovino from './pages/bovinos/telaListagemCarteira.js';
 import CarteiraVacinacaoBovino from './pages/bovinos/carteiraVacinacao.js';
+import ReproducaoBovino from './pages/reproducao/reproducaoBovino.js';
 
 import CadastrarVacina from './pages/vacinas/cadastrarVacinas.js';
 import EditarVacina from './pages/vacinas/editarVacinas.js';
@@ -53,6 +54,8 @@ function App() {
         <Route path="/bovinos/editarBovino/:id" element={<PrivateRoute><EditarBovino /></PrivateRoute>} />
         <Route path="/bovinos/telaListagemCarteira" element={<TelaListarCarteiraBovino />} />
         <Route path="/bovinos/carteiraVacinacao" element={<CarteiraVacinacaoBovino />} />
+
+        <Route path="/reproducao/reproducaoBovino" element={<PrivateRoute><ReproducaoBovino /></PrivateRoute>} />
 
         <Route path="/vacinas" element={<PrivateRoute><ListarVacina /></PrivateRoute>} />
         <Route path="/vacinas/cadastrarVacina" element={<PrivateRoute><CadastrarVacina /></PrivateRoute>} />
