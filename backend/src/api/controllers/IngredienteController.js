@@ -25,7 +25,9 @@ class IngredienteController {
     //Retornar todas as Ingredientess
     async show_ingredientes(request, response) {
         try {
-            const ingrediente = await IngredienteService.getAllIngrediente()
+            console.log("eita controller");
+            const ingrediente = await ingredienteService.getAllIngrediente()
+            console.log("ingrediente: " + ingrediente);
             return response.status(200).json(ingrediente)
         } catch (err) {
             return response.status(400).json({
@@ -38,7 +40,7 @@ class IngredienteController {
     async show_ingredienteId(request, response) {
         const { id } = request.params
         try {
-            const ingrediente = await IngredienteService.getAllIngredienteId(id)
+            const ingrediente = await ingredienteService.getAllIngredienteId(id)
             return response.status(200).json(ingrediente)
         } catch (err) {
             return response.status(400).json({
@@ -56,7 +58,7 @@ class IngredienteController {
         }
 
         try {
-            IngredienteService.getUpdateIngrediente(ingredienteTemp);
+            ingredienteService.getUpdateIngrediente(ingredienteTemp);
             response.status(200).json({
                 msg: "Ingredientes atualizado com sucesso"
             })
@@ -71,7 +73,7 @@ class IngredienteController {
     async delete_ingrediente(request, response) {
         try {
             const { idIngredientes } = request.params.idIngredientes
-            IngredienteService.deleteIngrediente(idIngredientes);
+            ingredienteService.deleteIngrediente(idIngredientes);
             response.status(200).json({
                 msg: "Ingredientes deletado com sucesso"
             })

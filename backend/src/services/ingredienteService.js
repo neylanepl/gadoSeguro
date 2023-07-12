@@ -27,6 +27,7 @@ class IngredienteService {
   //Retornar todas os Ingredientes
   async getAllIngrediente() {
     try {
+      console.log("eita service");
       const connection = await dbConnection()
       const [Ingredientes] = await connection.query('SELECT * FROM GadoSeguro.Ingrediente;')
       if (Ingredientes.length > 0) {

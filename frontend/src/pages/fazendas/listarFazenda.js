@@ -23,8 +23,7 @@ const ListarFazenda = () => {
         fetchFazendas();
     }, []);
 
-    /*const updatedFazendas = fazendas.filter((fazenda) => fazenda.idFazenda !== fazendaId);
-            setFazendas(updatedFazendas);*/
+
 
     const deletarFazenda = async (fazendaId) => {
         console.log("--ID: ", fazendaId);
