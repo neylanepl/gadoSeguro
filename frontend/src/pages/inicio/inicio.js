@@ -1,77 +1,117 @@
 import React from 'react';
-import Menu from '../../components/menu';
-import NaoAutenticado from '../../components/naoAutenticado';
-import '../../styles/css/global.css';
 import { isAuthenticated } from '../../services/auth';
+import { Col, Row } from 'react-bootstrap';
+import Base from '../base/base';
 const Inicio = () => {
   const redirectToBovinoHome = () => {
-    window.location.href = '/bovinos/bovinoHome';
+    window.location.href = '/bovinos';
   };
 
   const redirectToVacinaHome = () => {
-    window.location.href = '/vacinas/vacinaHome';
+    window.location.href = '/vacinas';
   };
 
   const redirectToPessoaHome = () => {
-    window.location.href = '/pessoas/pessoaHome';
+    window.location.href = '/pessoas';
   };
 
   const redirectToFazendaHome = () => {
-    window.location.href = '/fazendas/fazendaHome';
+    window.location.href = '/fazendas';
   };
 
   const redirectToIngredienteHome = () => {
-    window.location.href = '/ingredientes/ingredienteHome';
+    window.location.href = '/ingredientes';
   };
 
   const redirectToAlimentacaoHome = () => {
-    window.location.href = '/alimentacao/alimentacaoHome';
+    window.location.href = '/alimentacoes';
   };
 
   const redirectToDietaHome = () => {
-    window.location.href = '/dieta/dietaHome';
+    window.location.href = '/dietas';
   };
 
   const redirectToDoseHome = () => {
-    window.location.href = '/dose/doseHome';
+    window.location.href = '/doses';
   };
 
   if(isAuthenticated()) {
     
   return (
-    <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
-      <Menu />
-
-      <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px", marginBottom: "5%" }}> Administração de Bovinos</h1>
-
-      <div className="container" style={{ background: "#F0F1DF" }}>
-
-        <div className="formulario">
-
-          <button className='botao' type='submit' onClick={redirectToPessoaHome}>Pessoas</button>
-
-          <button className='botao' type='submit' onClick={redirectToFazendaHome}>Fazenda</button>
-
-          <button className="botao" type="submit" onClick={redirectToBovinoHome}>Bovinos</button>
-
-          <button className='botao' type='submit' onClick={redirectToVacinaHome}>Vacinas</button>
-
-          <button className='botao' type='submit' onClick={redirectToDoseHome}>Dose</button>
-
-          <button className='botao' type='submit' onClick={redirectToAlimentacaoHome}>Alimentação</button>
-
-          <button className='botao' type='submit' onClick={redirectToDietaHome}>Dieta</button>
-
-          <button className='botao' type='submit' onClick={redirectToIngredienteHome}>Ingrediente</button>
-
-        </div>
+    <Base title={"Administração de Bovinos"}>
+      <div>
+        <Row>
+          <Col size={3}>
+            <button 
+              className="btn btn-success" 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              onClick={redirectToPessoaHome}>
+                Pessoas
+            </button>
+          </Col>
+          <Col size={3}>
+            <button 
+              className="btn btn-success" 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              onClick={redirectToFazendaHome}>Fazendas</button>
+          </Col>
+          <Col size={3}>
+            <button 
+              className="btn btn-success" 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              onClick={redirectToBovinoHome}>
+                Bovinos
+            </button>
+          </Col>
+        </Row>
+        <Row>
+          <Col size={3}>
+            <button 
+              className="btn btn-success" 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              onClick={redirectToVacinaHome}>
+                Vacinas
+            </button>
+          </Col>
+          <Col size={3}>
+            <button 
+              className="btn btn-success" 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              onClick={redirectToDoseHome}>
+                Doses
+            </button>
+          </Col>
+          <Col size={3}>
+            <button 
+              className="btn btn-success" 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              onClick={redirectToAlimentacaoHome}>
+                Alimentações
+            </button>
+          </Col>
+        </Row>
+        <Row>
+          <Col size={3}>
+            <button 
+              className="btn btn-success" 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              onClick={redirectToDietaHome}>
+                Dietas
+            </button>
+          </Col>
+          <Col size={3}>
+            <button 
+              className="btn btn-success" 
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} 
+              onClick={redirectToIngredienteHome}>
+                Ingredientes
+            </button>
+          </Col>
+        </Row>       
       </div>
-    </div>
+    </Base>
   );
 } 
-  return (
-    <NaoAutenticado />
-  )
 };
 
 export default Inicio;

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../../styles/css/login.css';
 import Menu from '../../components/menu';
 import { login } from '../../services/auth';
 import gadoSeguro from '../../services/connectionGadoSeguro';

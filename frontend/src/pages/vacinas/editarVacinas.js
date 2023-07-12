@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../styles/css/global.css';
+
 import { Form } from 'react-bootstrap';
 import Menu from '../../components/menu';
 
