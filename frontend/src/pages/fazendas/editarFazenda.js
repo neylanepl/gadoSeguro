@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import gadoSeguro from '../../services/connectionGadoSeguro';
-import Menu from '../../components/menu';
+
+import Base from '../base/base';
+import { Form } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const EditarFazenda = () => {
     const location = useLocation();
@@ -47,35 +51,56 @@ const EditarFazenda = () => {
     };
 
     return (
-        <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
-            <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastro Usuário </h1>
-            <div className="formularioLogin" style={{ marginBottom: "10%" }}>
-                <form className="formulario" onSubmit={handleSubmitForm}>
-                    <div className="sub-div">
-                        <div className="id_"><p>Nome</p></div>
-                        <input type="text" className="nomeFazenda" value={nomeForm} onChange={e => setNomeForm(e.target.value)} />
-
-                        <div className="id_"><p>Sitio</p></div>
-                        <input type="text" className="sitioFazenda" value={sitioForm} onChange={e => setSitioForm(e.target.value)} />
-
-                        <div className="id_"><p>Cidade</p></div>
-                        <input type="text" className="cidadeFazenda" value={cidadeForm} onChange={e => setCidadeForm(e.target.value)} />
-
-                        <div className="id_"><p>Cep</p></div>
-                        <input type="text" className="cepFazenda" value={cepForm} onChange={e => setCepForm(e.target.value)} />
-
-                        <div className="id_"><p>Complemento</p></div>
-                        <input type="text" className="complementoFazenda" value={complementoForm} onChange={e => setComplementoForm(e.target.value)} />
-
-                        <div className="id_"><p>Numero</p></div>
-                        <input type="text" className="numeroFazenda" value={numeroForm} onChange={e => setNumeroForm(e.target.value)} />
-
-                        <button variant="warning" type="submit" value="submit" className="botaoEditar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Editar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        <Base title={"Editar fazenda"}>
+            <Form onSubmit={e => { handleSubmitForm(e) }}
+                style={{margin: "0 auto", backgroundColor: "#E0E7CA", minWidth: "500px",
+                maxWidth: "800px", marginBottom: "10%", padding: "2em 3em 2em 3em",
+                    borderRadius: "1em" }}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlNome">
+                    <Form.Label style={{ fontWeight: "bold" }}>Nome</Form.Label>
+                    <Form.Control type="name" required value={nomeForm}
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setNomeForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlSitio">
+                    <Form.Label style={{ fontWeight: "bold" }}>Sítio</Form.Label>
+                    <Form.Control type="name" required value={sitioForm}
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setSitioForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlCidade">
+                    <Form.Label style={{ fontWeight: "bold" }}>Cidade</Form.Label>
+                    <Form.Control type="name" required value={cidadeForm}
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setCidadeForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlCep">
+                    <Form.Label style={{ fontWeight: "bold" }}>Cep</Form.Label>
+                    <Form.Control type="name" required value={cepForm}
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setCepForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlComplemento">
+                    <Form.Label style={{ fontWeight: "bold" }}>Complemento</Form.Label>
+                    <Form.Control type="name" required value={complementoForm}
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setComplementoForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlNumero">
+                    <Form.Label style={{ fontWeight: "bold" }}>Número</Form.Label>
+                    <Form.Control type="number" required value={numeroForm}
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setNumeroForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className='text-center'>
+                    <button type="submit" value="submit" className="btn btn-success"
+                        style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
+                        Cadastrar
+                    </button>
+                    <ToastContainer />
+                </Form.Group>
+            </Form>
+        </Base>
     );
 };
 

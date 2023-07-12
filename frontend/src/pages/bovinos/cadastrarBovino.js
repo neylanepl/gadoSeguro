@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Menu from '../../components/menu';
 import gadoSeguro from '../../services/connectionGadoSeguro';
+
+import Base from '../base/base';
+import { Form } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const CadastrarBovino = () => {
 
@@ -125,174 +129,170 @@ const CadastrarBovino = () => {
   };
 
   return (
-    <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
-      <Menu />
-
-      <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Cadastrar Bovinos</h1>
-
-      <div className="formularioCadastroBovino" style={{ marginBottom: "10%" }}>
-
-        <form className="formulario" onSubmit={handleSubmitForm}>
-
-          <div className="sub-div">
-            <div className="id_"><p>Nome</p></div>
-            <input type="text" className="nomeBovino" required onChange={e => setNomeForm(e.target.value)} />
-
-            <div className="id_"><p>Id do bovino</p></div>
-            <input type="text" className="nomeBovino" required onChange={e => setIdBovinoForm(e.target.value)} />
-
-            <div className="id_"><p>Fazenda</p></div>
-            <select className="vacaBovino" required onChange={e => setIdFazendaForm(e.target.value)}>
-              <option value="">Selecione a fazenda</option>
-              {fazendas.map(fazenda => (
-                    <option key={fazenda.idFazenda} value={fazenda.idFazenda}>{fazenda.nome}</option>
-              ))}
-            </select>
-
-            <div className="id_"><p>Vaca</p></div>
-            <select className="vacaBovino" required onChange={e => setIdVacaForm(e.target.value)}>
-              <option value="">Selecione a vaca mãe</option>
-              {vacas.map(vaca => (
-                    <option key={vaca.idVaca} value={vaca.idVaca}>{vaca.idVaca}</option>
-              ))}
-            </select>
-
-            <div className="id_"><p>Peso</p></div>
-            <input type="number" className="pesoBovino" required onChange={e => setPesoForm(e.target.value)} />
-
-            <div className="id_"><p>Data de nascimento</p></div>
-            <input type="date" className="idadeBovino" required onChange={e => setDataForm(e.target.value)} />
-
-            <div className="id_"><p>Sexo</p></div>
-            <select
-              name="select"
-              className="sexoBovino"
-              required
-              onChange={e => {
-                setSexoForm(e.target.value);
-                if (e.target.value === 'Femea') {
-                  setExibirInputsFemea(true);
-                } else {
-                  setExibirInputsFemea(false);
-                  setProducaoLeiteForm('');
-                  setGravidaForm('');
-                }
-              }}
-            >
-              <option value="">Selecione um sexo</option>
-              <option value="Femea">Fêmea</option>
-              <option value="Macho">Macho</option>
-            </select>
-
-            {exibirInputsFemea && (
-              <>
-                <div className="id_"><p>Produção de leite</p></div>
-                <input type="number" className="producaoLeite" required onChange={e => setProducaoLeiteForm(e.target.value)} />
-
-                <div className="id_"><p>Dando leite?</p></div>
-                <select
-                  name="select"
-                  className="dandoLeiteBovino"
-                  required
-                  onChange={e => setDandoLeiteForm(e.target.value)}
-                >
-                  <option value="">Selecione a opção</option>
-                  <option value={1}>Sim</option>
-                  <option value={0}>Não</option>
-                </select>
-
-                <div className="id_"><p>Grávida</p></div>
-                <select
-                  name="select"
-                  className="gravidaBovino"
-                  required
-                  onChange={e => {
-                    setGravidaForm(e.target.value);
-                    if (e.target.value === "1") {
-                      setExibirInputsGestacao(true);
-                    } else {
-                      setExibirInputsGestacao(false);
-                      setDataInicioForm('');
-                    }
-                  }}
-                >
-                  <option value="">Selecione a opção</option>
-                  <option value={1}>Sim</option>
-                  <option value={0}>Não</option>
-                </select>
-
-                {exibirInputsGestacao && (
+    <Base title={"Cadastro de bovino"}>
+      <Form onSubmit={e => { handleSubmitForm(e) }}
+                style={{margin: "0 auto", backgroundColor: "#E0E7CA", minWidth: "500px",
+                maxWidth: "800px", marginBottom: "10%", padding: "2em 3em 2em 3em",
+                    borderRadius: "1em" }}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlNome">
+                    <Form.Label style={{ fontWeight: "bold" }}>Nome</Form.Label>
+                    <Form.Control type="name" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setNomeForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlBovino">
+                    <Form.Label style={{ fontWeight: "bold" }}>Bovino</Form.Label>
+                    <Form.Control type="number" required // resgatar bovinos
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setIdBovinoForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlFazenda">
+                    <Form.Label style={{ fontWeight: "bold" }}>Fazenda</Form.Label>
+                    <Form.Select required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setIdFazendaForm(e.target.value)}>
+                            <option value="">Selecione a fazenda</option>{fazendas.map(fazenda => (
+                            <option key={fazenda.idFazenda} value={fazenda.idFazenda}>{fazenda.nome}</option>
+                         ))}
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlVaca">
+                    <Form.Label style={{ fontWeight: "bold" }}>Vaca</Form.Label>
+                    <Form.Select required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setIdVacaForm(e.target.value)}>
+                            <option value="">Selecione a vaca mãe</option>
+                            {vacas.map(vaca => (
+                              <option key={vaca.idVaca} value={vaca.idVaca}>{vaca.idVaca}</option>
+                            ))}
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlPeso">
+                    <Form.Label style={{ fontWeight: "bold" }}>Peso</Form.Label>
+                    <Form.Control type="number" required
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setPesoForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlSexo">
+                    <Form.Label style={{ fontWeight: "bold" }}>Sexo</Form.Label>
+                    <Form.Select required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => { setSexoForm(e.target.value); 
+                          if (e.target.value === 'Femea') {
+                          setExibirInputsFemea(true);
+                          } else {
+                            setExibirInputsFemea(false);
+                            setProducaoLeiteForm('');
+                            setGravidaForm('');
+                          }}}>
+                            <option value="">Selecione um sexo</option>
+                            <option value="Femea">Fêmea</option>
+                            <option value="Macho">Macho</option>
+                    </Form.Select>
+                </Form.Group>
+                {exibirInputsFemea && (
                   <>
-                    <div className="id_"><p>Data de Início</p></div>
-                    <input
-                      type="date"
-                      className="dataInicioBovino"
-                      required
-                      onChange={e => setDataInicioForm(e.target.value)}
-                    />
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlLeite">
+                      <Form.Label style={{ fontWeight: "bold" }}>Produção de leite</Form.Label>
+                      <Form.Control type="number" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setProducaoLeiteForm(e.target.value)} />
+                    </Form.Group>
 
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlDLeite">
+                      <Form.Label style={{ fontWeight: "bold" }}>Dando leite?</Form.Label>
+                      <Form.Select required 
+                          style={{ border: "solid 1.5px #6D3B00" }}
+                          onChange={e => setDandoLeiteForm(e.target.value)}>
+                            <option value="">Selecione a opção</option>
+                            <option value={1}>Sim</option>
+                            <option value={0}>Não</option>
+                      </Form.Select>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlGravida">
+                      <Form.Label style={{ fontWeight: "bold" }}>Grávida</Form.Label>
+                      <Form.Select required 
+                          style={{ border: "solid 1.5px #6D3B00" }}
+                          onChange={e => {
+                            setGravidaForm(e.target.value);
+                            if (e.target.value === "1") {
+                              setExibirInputsGestacao(true);
+                            } else {
+                              setExibirInputsGestacao(false);
+                              setDataInicioForm('');
+                            }
+                          }}>
+                            <option value="">Selecione a opção</option>
+                            <option value={1}>Sim</option>
+                            <option value={0}>Não</option>
+                      </Form.Select>
+                    </Form.Group>
 
+                    {exibirInputsGestacao && (
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlDataG">
+                        <Form.Label style={{ fontWeight: "bold" }}>Data de Início</Form.Label>
+                        <Form.Control type="date" required
+                            style={{ border: "solid 1.5px #6D3B00" }}
+                            onChange={e => setDataInicioForm(e.target.value)} />
+                      </Form.Group>
+                    )}
                   </>
                 )}
-              </>
-            )}
-
-            <div className="id_"><p>Reprodutor</p></div>
-            <select name="select" className="reprodutorBovino" required onChange={e => setReprodutorForm(e.target.value)}>
-              <option value="">Selecione a opção</option>
-              <option value={1}>Sim</option>
-              <option value={0}>Nao</option>
-            </select>
-
-            <div className="id_"><p>Cor</p></div>
-            <select name="select" className="corBovino" required onChange={e => setCorForm(e.target.value)}>
-              <option value="">Selecione uma cor</option>
-              <option value="Preto">Preto</option>
-              <option value="Branco">Branco</option>
-              <option value="Laranja">Laranja</option>
-              <option value="Amarelo">Amarelo</option>
-              <option value="Vermelho">Vermelho</option>
-            </select>
-
-            <div className="id_"><p>Raça</p></div>
-            <select className="racaBovino" required onChange={e => setRacaForm(e.target.value)}>
-              <option value="">Selecione a raça</option>
-              <option value="Angus">Angus</option>
-              <option value="Holandesa">Holandesa</option>
-              <option value="Nelore">Nelore</option>
-              {/* Adicione mais opções de raças aqui */}
-            </select>
-
-            <div className="id_"><p>Chifre</p></div>
-            <select
-              name="select"
-              className="chifreBovino"
-              required
-              onChange={e => {
-                e.target.value === 'Sim' ? setChifreForm(true) : setChifreForm(false);
-              }}
-            >
-              <option value="">Selecione se possui chifre</option>
-              <option value={1}>Sim</option>
-              <option value={0}>Não</option>
-            </select>
-
-            <button
-              type="submit"
-              value="submit"
-              className="botaoCadastrar btn btn-success"
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px", width: "80px", margin: "40px", padding: 4, borderRadius: "5px" }}
-            >
-              Cadastrar
-            </button>
-          </div>
-
-        </form>
-
-
-      </div>
-
-    </div>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlReprodutor">
+                  <Form.Label style={{ fontWeight: "bold" }}>Reprodutor</Form.Label>
+                  <Form.Select required 
+                      style={{ border: "solid 1.5px #6D3B00" }}
+                      onChange={e => setReprodutorForm(e.target.value)}>
+                        <option value="">Selecione a opção</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Nao">Não</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlCor">
+                  <Form.Label style={{ fontWeight: "bold" }}>Cor</Form.Label>
+                  <Form.Select required 
+                      style={{ border: "solid 1.5px #6D3B00" }}
+                      onChange={e => setCorForm(e.target.value)}>
+                        <option value="">Selecione uma cor</option>
+                        <option value="Preto">Preto</option>
+                        <option value="Branco">Branco</option>
+                        <option value="Laranja">Laranja</option>
+                        <option value="Amarelo">Amarelo</option>
+                        <option value="Vermelho">Vermelho</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlRaca">
+                  <Form.Label style={{ fontWeight: "bold" }}>Raça</Form.Label>
+                  <Form.Select required 
+                      style={{ border: "solid 1.5px #6D3B00" }}
+                      onChange={e => setRacaForm(e.target.value)}>
+                      <option value="">Selecione a raça</option>
+                      <option value="Angus">Angus</option>
+                      <option value="Holandesa">Holandesa</option>
+                      <option value="Nelore">Nelore</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlChifre">
+                  <Form.Label style={{ fontWeight: "bold" }}>Chifre</Form.Label>
+                  <Form.Select required 
+                      style={{ border: "solid 1.5px #6D3B00" }}
+                      onChange={e => {
+                        e.target.value === 'Sim' ? setChifreForm(true) : setChifreForm(false);
+                      }}>
+                        <option value="">Selecione se possui chifre</option>
+                        <option value="Sim">Sim</option>
+                        <option value="Nao">Não</option>
+                  </Form.Select>
+                </Form.Group>
+                <Form.Group className='text-center'>
+                    <button type="submit" value="submit" className="btn btn-success"
+                        style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
+                        Cadastrar
+                    </button>
+                    <ToastContainer />
+                </Form.Group>
+            </Form>
+    </Base>
   );
 };
 

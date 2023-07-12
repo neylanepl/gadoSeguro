@@ -32,13 +32,13 @@ const CadastrarVacina = () => {
                 <form className="formulario" onSubmit={e => { handleSubmitForm(e) }}>
                     <div className="sub-div">
                         <div className="id_"><p>Nome</p></div>
-                        <input style={{ padding: "5px", paddingLeft: "10px" }} type="text" required className="nomeVacina" onChange={e => setNomeForm(e.target.value)} />
+                        <input style={{ padding: "5px", paddingLeft: "10px" }} type="text" required className="form-control" onChange={e => setNomeForm(e.target.value)} />
 
                         <div className="id_"><p>Fabricante</p></div>
-                        <input style={{ padding: "5px", paddingLeft: "10px" }} type="text" required className="fabricanteVacina" onChange={e => setFabricanteForm(e.target.value)} />
+                        <input style={{ padding: "5px", paddingLeft: "10px" }} type="text" required className="form-control" onChange={e => setFabricanteForm(e.target.value)} />
 
                         <div className="id_"><p>Informações Extras</p></div>
-                        <input style={{ padding: "5px", paddingLeft: "10px" }} required type="text" className="informacaoVacina" onChange={e => setInformacoesExtrasForm(e.target.value)} />
+                        <input style={{ padding: "5px", paddingLeft: "10px" }} required type="text" className="form-control" onChange={e => setInformacoesExtrasForm(e.target.value)} />
 
                         <button variant="warning" type="submit" value="submit" className="botaoCadastrar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Cadastrar</button>
                     </div>

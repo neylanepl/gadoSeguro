@@ -41,6 +41,9 @@ import CadastrarDose from './pages/dose/cadastrarDose.js';
 import EditarDose from './pages/dose/editarDose.js';
 import ListarDose from './pages/dose/listarDose.js';
 
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
 
@@ -56,7 +59,6 @@ function App() {
         <Route path="/bovinos/carteiraVacinacao" element={<CarteiraVacinacaoBovino />} />
 
         <Route path="/reproducao/reproducaoBovino" element={<PrivateRoute><ReproducaoBovino /></PrivateRoute>} />
-
         <Route path="/vacinas" element={<PrivateRoute><ListarVacina /></PrivateRoute>} />
         <Route path="/vacinas/cadastrarVacina" element={<PrivateRoute><CadastrarVacina /></PrivateRoute>} />
         <Route path="/vacinas/editarVacina" element={<PrivateRoute><EditarVacina /></PrivateRoute>} />
@@ -86,6 +88,7 @@ function App() {
         <Route path="/doses/editarDose" element={<PrivateRoute><EditarDose /></PrivateRoute>} />
 
       </Routes>
+      <ToastContainer />
     </Router>
 
   );

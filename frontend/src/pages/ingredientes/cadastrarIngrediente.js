@@ -23,7 +23,7 @@ const CadastrarIngrediente = () => {
         try {
             const { data } = await gadoSeguro.post('/ingrediente', payload);
             console.log("Cadastro realizado com sucesso!")
-            navigate('/ingredientes/ingredienteHome');
+            navigate('/ingredientes');
 
         } catch (error) {
             console.log("Cadastro falhou!", error)

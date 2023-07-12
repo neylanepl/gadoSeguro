@@ -36,7 +36,7 @@ const ListaPessoa = () => {
         <Base title={"Usuários"}>
             <div 
                 className="d-grid gap-2 d-md-flex justify-content-md-end"
-                style={{ marginBottom: "2%" }}>
+                style={{ marginBottom: "2%", width: "auto" }}>
                 <BtnGreen 
                     title={"Cadastrar usuário"}
                     route={'/pessoas/cadastrarPessoa'}
