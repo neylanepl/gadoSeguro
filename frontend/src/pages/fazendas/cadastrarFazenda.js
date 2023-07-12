@@ -43,8 +43,8 @@ const CadastrarFazenda = () => {
     return (
         <Base title={"Cadastro de fazenda"}>
             <Form onSubmit={e => { handleSubmitForm(e) }}
-                style={{margin: "0 auto", backgroundColor: "#E0E7CA", 
-                    maxWidth: "600px", marginBottom: "10%", padding: "2em 3em 2em 3em",
+                style={{margin: "0 auto", backgroundColor: "#E0E7CA", minWidth: "500px",
+                maxWidth: "800px", marginBottom: "10%", padding: "2em 3em 2em 3em",
                     borderRadius: "1em" }}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlNome">
                     <Form.Label style={{ fontWeight: "bold" }}>Nome</Form.Label>

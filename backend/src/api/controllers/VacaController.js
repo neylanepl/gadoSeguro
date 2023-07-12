@@ -2,13 +2,13 @@ const VacaService = require('../../services/vacaService')
 
 class VacaController {
     //adicionar vaca 
-    create_vaca(request, response) {
+    async create_vaca(request, response) {
         const vacaTemp = {
-            idVaca: request.body.idVaca,
-            dar_leite: request.body.dar_leite,
+            idVaca: request.body.idBovino,
+            dar_leite: request.body.producaoLeite,
             gravida: request.body.gravida,
-            producao_leite: request.body.gravida
-        }
+            producao_leite: request.body.dandoLeite
+        };
 
         try {
             VacaService.addVaca(vacaTemp);
@@ -25,7 +25,7 @@ class VacaController {
     //Retornar todas as Vacass de uma vacina
     async show_vacas(request, response) {
         try {
-            const vaca = await VacaService.getAllVacas
+            const vaca = await VacaService.getAllVacas()
             return response.status(200).json(vaca)
         } catch (err) {
             return response.status(400).json({
@@ -38,8 +38,8 @@ class VacaController {
     async show_vacaId(request, response) {
         const { id } = request.params
         try {
-            const vaca = await VacaService.getVacaId(id)
-            return response.status(200).json(vaca)
+            const vacas = await VacaService.getVacaId(id)
+            return response.status(200).json(vacas)
         } catch (err) {
             return response.status(400).json({
                 error: err

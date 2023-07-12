@@ -3,10 +3,11 @@ const BovinoService = require('../../services/bovinoService')
 class BovinoController {
 
     //adicionar bovino
-    create_bovino(request, response) {
+    async create_bovino(request, response) {
         const bovinoTemp = {
-            Fazenda_idFazenda: request.body.Fazenda_idFazenda,
-            Vaca_idVaca: request.body.Vaca_idVaca,
+            idBovino:  request.body.idBovino,
+            Fazenda_idFazenda: request.body.idFazenda,
+            Vaca_idVaca: request.body.idVaca,
             reprodutor: request.body.reprodutor,
             sexo: request.body.sexo,
             data_nascimento: request.body.data_nascimento,
@@ -14,7 +15,7 @@ class BovinoController {
             nome: request.body.nome,
             peso: request.body.peso,
             cor: request.body.cor
-        }
+        };
 
         try {
             BovinoService.addBovino(bovinoTemp);

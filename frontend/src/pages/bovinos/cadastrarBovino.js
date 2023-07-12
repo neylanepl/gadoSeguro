@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import gadoSeguro from '../../services/connectionGadoSeguro';
@@ -9,6 +9,41 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 const CadastrarBovino = () => {
+
+    const [fazendas, setFazendas] = useState([]);
+
+    useEffect(() => {
+        const fetchFazendas = async () => {
+            try {
+                const response = await gadoSeguro.get('/fazenda');
+                console.log("response: " + response.data);
+                setFazendas(response.data);
+            } catch (error) {
+                console.error("erro ao listar fazendas: ", error);
+            }
+        };
+
+        fetchFazendas();
+    }, []);
+
+    const [vacas, setVacas] = useState([]);
+
+    useEffect(() => {
+        const fetchVacas = async () => {
+            try {
+                const vas = await gadoSeguro.get('/vaca');
+                console.log("vas: " + vas.data);
+                setVacas(vas.data);
+            } catch (error) {
+                console.error("erro ao listar vacas: ", error);
+            }
+        };
+
+        fetchVacas();
+    }, []);
+
+    console.log(vacas)
+
   const [idFazendaForm, setIdFazendaForm] = useState(0);
   const [idVacaForm, setIdVacaForm] = useState(0);
   const [idBovinoForm, setIdBovinoForm] = useState(0);
@@ -31,30 +66,60 @@ const CadastrarBovino = () => {
 
   const handleSubmitForm = async e => {
     e.preventDefault();
-    const payload = {
-      idFazenda: idFazendaForm,
-      idVaca: idVacaForm,
+    const payloadBovino = {
+      //service bovino
       idBovino: idBovinoForm,
-      nome: nomeForm,
-      aniversario: dataForm,
-      sexo: sexoForm,
+      idFazenda: idFazendaForm,
       reprodutor: reprodutorForm,
+      data_nascimento: dataForm,
+      idVaca: idVacaForm,
+      nome: nomeForm,
       cor: corForm,
       peso: pesoForm,
       chifre: chifreForm,
-      raca: racaForm,
+      sexo: sexoForm
+    };
 
-      producaoLeite: producaoLeiteForm,
-      gravida: gravidaForm,
-      dandoLeite: dandoLeiteForm,
+    const payloadRacaHasBovino = {
+      //service bovino
+      idBovino: idBovinoForm,
+      raca: racaForm,
+    };
+
+    const payloadReprodu = {
+      //service Reprodu
+      idBovino: idBovinoForm,
+      idVaca: idVacaForm,
       dataInicio: dataInicioForm
     };
 
-    try {
-      const { data } = await gadoSeguro.post('/bovino', payload);
-      console.log("Cadastro realizado com sucesso!")
-      navigate('/');
+    const payloadVaca = {
+      //service Vaca
+      idBovino: idBovinoForm,
+      producaoLeite: producaoLeiteForm,
+      gravida: gravidaForm,
+      dandoLeite: dandoLeiteForm,
+    };
 
+    const payloadBoi = {
+      //service Boi
+      idBovino: idBovinoForm,
+    };
+
+
+
+    try {
+      const { data } = await gadoSeguro.post('/bovino', payloadBovino);
+      //const { dataRB } = await gadoSeguro.post('/bovino', payloadRacaHasBovino);
+      if(sexoForm === 'Femea'){
+        const { data } = await gadoSeguro.post('/vaca', payloadVaca);
+        if(gravidaForm === "1"){
+          const { data } = await gadoSeguro.post('/reproducao', payloadReprodu);
+        }
+      }else{
+        const { data } = await gadoSeguro.post('/boi', payloadBoi);
+      }
+    
     } catch (error) {
       console.log("Cadastro falhou!", error)
     }
@@ -66,8 +131,8 @@ const CadastrarBovino = () => {
   return (
     <Base title={"Cadastro de bovino"}>
       <Form onSubmit={e => { handleSubmitForm(e) }}
-                style={{margin: "0 auto", backgroundColor: "#E0E7CA", 
-                    maxWidth: "600px", marginBottom: "10%", padding: "2em 3em 2em 3em",
+                style={{margin: "0 auto", backgroundColor: "#E0E7CA", minWidth: "500px",
+                maxWidth: "800px", marginBottom: "10%", padding: "2em 3em 2em 3em",
                     borderRadius: "1em" }}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlNome">
                     <Form.Label style={{ fontWeight: "bold" }}>Nome</Form.Label>
@@ -86,9 +151,9 @@ const CadastrarBovino = () => {
                     <Form.Select required 
                         style={{ border: "solid 1.5px #6D3B00" }}
                         onChange={e => setIdFazendaForm(e.target.value)}>
-                            <option value="">Selecione a fazenda</option>
-                            <option value="fazenda">fazenda 1</option>
-                            <option value="fazenda">fazenda 2</option>
+                            <option value="">Selecione a fazenda</option>{fazendas.map(fazenda => (
+                            <option key={fazenda.idFazenda} value={fazenda.idFazenda}>{fazenda.nome}</option>
+                         ))}
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlVaca">
@@ -97,8 +162,9 @@ const CadastrarBovino = () => {
                         style={{ border: "solid 1.5px #6D3B00" }}
                         onChange={e => setIdVacaForm(e.target.value)}>
                             <option value="">Selecione a vaca mãe</option>
-                            <option value="vaca">Vaca 1</option>
-                            <option value="vaca">Vaca 2</option>
+                            {vacas.map(vaca => (
+                              <option key={vaca.idVaca} value={vaca.idVaca}>{vaca.idVaca}</option>
+                            ))}
                     </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlPeso">
@@ -128,13 +194,9 @@ const CadastrarBovino = () => {
                   <>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlLeite">
                       <Form.Label style={{ fontWeight: "bold" }}>Produção de leite</Form.Label>
-                      <Form.Select required 
-                          style={{ border: "solid 1.5px #6D3B00" }}
-                          onChange={e => setProducaoLeiteForm(e.target.value)}>
-                            <option value="">Selecione a opção</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Nao">Não</option>
-                      </Form.Select>
+                      <Form.Control type="number" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setProducaoLeiteForm(e.target.value)} />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="exampleForm.ControlDLeite">
@@ -143,8 +205,8 @@ const CadastrarBovino = () => {
                           style={{ border: "solid 1.5px #6D3B00" }}
                           onChange={e => setDandoLeiteForm(e.target.value)}>
                             <option value="">Selecione a opção</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Nao">Não</option>
+                            <option value={1}>Sim</option>
+                            <option value={0}>Não</option>
                       </Form.Select>
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlGravida">
@@ -153,7 +215,7 @@ const CadastrarBovino = () => {
                           style={{ border: "solid 1.5px #6D3B00" }}
                           onChange={e => {
                             setGravidaForm(e.target.value);
-                            if (e.target.value === 'Sim') {
+                            if (e.target.value === "1") {
                               setExibirInputsGestacao(true);
                             } else {
                               setExibirInputsGestacao(false);
@@ -161,8 +223,8 @@ const CadastrarBovino = () => {
                             }
                           }}>
                             <option value="">Selecione a opção</option>
-                            <option value="Sim">Sim</option>
-                            <option value="Nao">Não</option>
+                            <option value={1}>Sim</option>
+                            <option value={0}>Não</option>
                       </Form.Select>
                     </Form.Group>
 

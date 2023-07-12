@@ -27,11 +27,11 @@ async  addVaca(vacaTemp) {
 async getAllVacas() {
   try {
       const connection = await dbConnection()
-      const [doses] = await connection.query('SELECT * FROM GadoSeguro.Vaca;')
-      if(doses.length > 0){
-        Console.log(doses);
+      const [vacas] = await connection.query('SELECT * FROM GadoSeguro.Vaca;')
+      if(vacas.length > 0){
+        console.log(vacas);
       }
-      return doses
+      return vacas
   } catch (error) {
       console.log(error);
       return error

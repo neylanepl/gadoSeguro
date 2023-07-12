@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import '../../styles/css/alimentacaoBovino.css';
 import Menu from '../../components/menu';
 
 const EditarIngrediente = () => {
