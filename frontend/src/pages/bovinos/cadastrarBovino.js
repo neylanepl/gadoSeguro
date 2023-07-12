@@ -187,16 +187,7 @@ const CadastrarBovino = () => {
             {exibirInputsFemea && (
               <>
                 <div className="id_"><p>Produção de leite</p></div>
-                <select
-                  name="select"
-                  className="producaoLeite"
-                  required
-                  onChange={e => setProducaoLeiteForm(e.target.value)}
-                >
-                  <option value="">Selecione a opção</option>
-                  <option value={12}>Sim</option>
-                  <option value="Nao">Não</option>
-                </select>
+                <input type="number" className="producaoLeite" required onChange={e => setProducaoLeiteForm(e.target.value)} />
 
                 <div className="id_"><p>Dando leite?</p></div>
                 <select
