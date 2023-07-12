@@ -43,7 +43,9 @@ const CadastrarBovino = () => {
 
   const handleSubmitForm = async e => {
     e.preventDefault();
-    const payload = {
+    const payloadBovino = {
+      //service bovino
+      //idBovino
       idFazenda: idFazendaForm,
       idVaca: idVacaForm,
       nome: nomeForm,
@@ -53,16 +55,48 @@ const CadastrarBovino = () => {
       cor: corForm,
       peso: pesoForm,
       chifre: chifreForm,
-      raca: racaForm,
+    };
 
-      producaoLeite: producaoLeiteForm,
-      gravida: gravidaForm,
-      dandoLeite: dandoLeiteForm,
+    const payloadRacaHasBovino = {
+      //service bovino
+      //idBovino
+      raca: racaForm,
+    };
+
+    const payloadReprodu = {
+      //service Reprodu
+      //idBovino
+      idVaca: idVacaForm,
       dataInicio: dataInicioForm
     };
 
+    const payloadVaca = {
+      //service Vaca
+      //idBovino
+      producaoLeite: producaoLeiteForm,
+      gravida: gravidaForm,
+      dandoLeite: dandoLeiteForm,
+    };
+
+    const payloadBoi = {
+      //service Boi
+      //idBovino
+    };
+
+
+
     try {
-      const { data } = await gadoSeguro.post('/bovino', payload);
+      const { data } = await gadoSeguro.post('/bovino', payloadBovino);
+      const { dataB } = await gadoSeguro.post('/bovino', payloadRacaHasBovino);
+      if(sexoForm ==='Femes'){
+        const { data } = await gadoSeguro.post('/bovino', payloadVaca);
+        if(gravida ==='Sim'){
+          const { data } = await gadoSeguro.post('/bovino', payloadReprodu);
+        }
+      }else{
+        const { data } = await gadoSeguro.post('/bovino', payloadBoi);
+      }
+
       console.log("Cadastro realizado com sucesso!")
       navigate('/');
 
