@@ -1,10 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Menu from '../../components/menu';
 import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const CadastrarBovino = () => {
+
+    const [fazendas, setFazendas] = useState([]);
+
+    useEffect(() => {
+        const fetchFazendas = async () => {
+            try {
+                const response = await gadoSeguro.get('/fazenda');
+                console.log("response: " + response.data);
+                setFazendas(response.data);
+            } catch (error) {
+                console.error("erro ao listar fazendas: ", error);
+            }
+        };
+
+        fetchFazendas();
+    }, []);
+
+    const [vacas, setVacas] = useState([]);
+
+    useEffect(() => {
+        const fetchVacas = async () => {
+            try {
+                const vas = await gadoSeguro.get('/vaca');
+                console.log("vas: " + vas.data);
+                setVacas(vas.data);
+            } catch (error) {
+                console.error("erro ao listar vacas: ", error);
+            }
+        };
+
+        fetchVacas();
+    }, []);
+
+    console.log(vacas)
+
   const [idFazendaForm, setIdFazendaForm] = useState(0);
   const [idVacaForm, setIdVacaForm] = useState(0);
   const [idBovinoForm, setIdBovinoForm] = useState(0);
@@ -27,30 +62,60 @@ const CadastrarBovino = () => {
 
   const handleSubmitForm = async e => {
     e.preventDefault();
-    const payload = {
-      idFazenda: idFazendaForm,
-      idVaca: idVacaForm,
+    const payloadBovino = {
+      //service bovino
       idBovino: idBovinoForm,
-      nome: nomeForm,
-      aniversario: dataForm,
-      sexo: sexoForm,
+      idFazenda: idFazendaForm,
       reprodutor: reprodutorForm,
+      data_nascimento: dataForm,
+      idVaca: idVacaForm,
+      nome: nomeForm,
       cor: corForm,
       peso: pesoForm,
       chifre: chifreForm,
-      raca: racaForm,
+      sexo: sexoForm
+    };
 
-      producaoLeite: producaoLeiteForm,
-      gravida: gravidaForm,
-      dandoLeite: dandoLeiteForm,
+    const payloadRacaHasBovino = {
+      //service bovino
+      idBovino: idBovinoForm,
+      raca: racaForm,
+    };
+
+    const payloadReprodu = {
+      //service Reprodu
+      idBovino: idBovinoForm,
+      idVaca: idVacaForm,
       dataInicio: dataInicioForm
     };
 
-    try {
-      const { data } = await gadoSeguro.post('/bovino', payload);
-      console.log("Cadastro realizado com sucesso!")
-      navigate('/');
+    const payloadVaca = {
+      //service Vaca
+      idBovino: idBovinoForm,
+      producaoLeite: producaoLeiteForm,
+      gravida: gravidaForm,
+      dandoLeite: dandoLeiteForm,
+    };
 
+    const payloadBoi = {
+      //service Boi
+      idBovino: idBovinoForm,
+    };
+
+
+
+    try {
+      const { data } = await gadoSeguro.post('/bovino', payloadBovino);
+      //const { dataRB } = await gadoSeguro.post('/bovino', payloadRacaHasBovino);
+      if(sexoForm === 'Femea'){
+        const { data } = await gadoSeguro.post('/vaca', payloadVaca);
+        if(gravidaForm === 1){
+          //const { data } = await gadoSeguro.post('/bovino', payloadReprodu);
+        }
+      }else{
+        //const { data } = await gadoSeguro.post('/bovino', payloadBoi);
+      }
+    
     } catch (error) {
       console.log("Cadastro falhou!", error)
     }
@@ -73,21 +138,23 @@ const CadastrarBovino = () => {
             <div className="id_"><p>Nome</p></div>
             <input type="text" className="nomeBovino" required onChange={e => setNomeForm(e.target.value)} />
 
-            <div className="id_"><p>Bovino</p></div>
+            <div className="id_"><p>Id do bovino</p></div>
             <input type="text" className="nomeBovino" required onChange={e => setIdBovinoForm(e.target.value)} />
 
             <div className="id_"><p>Fazenda</p></div>
             <select className="vacaBovino" required onChange={e => setIdFazendaForm(e.target.value)}>
               <option value="">Selecione a fazenda</option>
-              <option value="fazenda">fazenda 1</option>
-              <option value="fazenda">fazenda 2</option>
+              {fazendas.map(fazenda => (
+                    <option key={fazenda.idFazenda} value={fazenda.idFazenda}>{fazenda.nome}</option>
+              ))}
             </select>
 
             <div className="id_"><p>Vaca</p></div>
             <select className="vacaBovino" required onChange={e => setIdVacaForm(e.target.value)}>
               <option value="">Selecione a vaca mãe</option>
-              <option value="vaca">Vaca 1</option>
-              <option value="vaca">Vaca 2</option>
+              {vacas.map(vaca => (
+                    <option key={vaca.idVaca} value={vaca.idVaca}>{vaca.idVaca}</option>
+              ))}
             </select>
 
             <div className="id_"><p>Peso</p></div>
@@ -127,7 +194,7 @@ const CadastrarBovino = () => {
                   onChange={e => setProducaoLeiteForm(e.target.value)}
                 >
                   <option value="">Selecione a opção</option>
-                  <option value="Sim">Sim</option>
+                  <option value={12}>Sim</option>
                   <option value="Nao">Não</option>
                 </select>
 
@@ -139,8 +206,8 @@ const CadastrarBovino = () => {
                   onChange={e => setDandoLeiteForm(e.target.value)}
                 >
                   <option value="">Selecione a opção</option>
-                  <option value="Sim">Sim</option>
-                  <option value="Nao">Não</option>
+                  <option value={1}>Sim</option>
+                  <option value={0}>Não</option>
                 </select>
 
                 <div className="id_"><p>Grávida</p></div>
@@ -159,8 +226,8 @@ const CadastrarBovino = () => {
                   }}
                 >
                   <option value="">Selecione a opção</option>
-                  <option value="Sim">Sim</option>
-                  <option value="Nao">Não</option>
+                  <option value={1}>Sim</option>
+                  <option value={0}>Não</option>
                 </select>
 
                 {exibirInputsGestacao && (
@@ -182,8 +249,8 @@ const CadastrarBovino = () => {
             <div className="id_"><p>Reprodutor</p></div>
             <select name="select" className="reprodutorBovino" required onChange={e => setReprodutorForm(e.target.value)}>
               <option value="">Selecione a opção</option>
-              <option value="Femea">Sim</option>
-              <option value="Macho">Nao</option>
+              <option value={1}>Sim</option>
+              <option value={0}>Nao</option>
             </select>
 
             <div className="id_"><p>Cor</p></div>
@@ -215,14 +282,15 @@ const CadastrarBovino = () => {
               }}
             >
               <option value="">Selecione se possui chifre</option>
-              <option value="Sim">Sim</option>
-              <option value="Nao">Não</option>
+              <option value={1}>Sim</option>
+              <option value={0}>Não</option>
             </select>
 
             <button
               type="submit"
+              value="submit"
               className="botaoCadastrar btn btn-success"
-              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px", width: "80px", margin: "40px", padding: 4, borderRadius: "5px" }} onSubmit={e => navigate('/inicio/inicio')}
+              style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px", width: "80px", margin: "40px", padding: 4, borderRadius: "5px" }}
             >
               Cadastrar
             </button>

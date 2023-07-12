@@ -9,6 +9,7 @@ const routesBovino = require('./api/routes/bovinoRoutes')
 const routesIngrediente = require('./api/routes/ingredienteRoutes')
 const routesVacina = require('./api/routes/vacinaRoutes')
 const routeCarteiras = require('./api/routes/carteirasRoutes')
+const routeVaca = require('./api/routes/vacaRoutes')
 
 const fazendaS = require('./services/fazendaService')
 const bovinoS = require('./services/bovinoService')
@@ -37,6 +38,11 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Headers", req.header('access-control-request-headers'));
     next();
 });
+//const vacaTemp = { idVaca: 4, dar_leite: 1, gravida: 0, producao_leite: 1};
+//vacaS.addVaca(vacaTemp)
+//let bovinoTemp = { idBovino:5, Fazenda_idFazenda: 3, Vaca_idVaca: 2, reprodutor: false, sexo: "Femea", data_nascimento: "2001-12-03", chifre: false, nome: "Mimosa", peso: 251.6, cor: "Pintada" }
+//bovinoS.addBovino(bovinoTemp)
+
 
 app.use(routesFazenda)
 app.use(routesPessoa)
@@ -45,6 +51,7 @@ app.use(routesBovino)
 app.use(routesIngrediente)
 app.use(routesVacina)
 app.use(routeCarteiras)
+app.use(routeVaca)
 
 app.listen(port, () => {
     console.log('Servidor rodando na porta ', port)
