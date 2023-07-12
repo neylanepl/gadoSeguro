@@ -109,11 +109,11 @@ const CadastrarBovino = () => {
       //const { dataRB } = await gadoSeguro.post('/bovino', payloadRacaHasBovino);
       if(sexoForm === 'Femea'){
         const { data } = await gadoSeguro.post('/vaca', payloadVaca);
-        if(gravidaForm === 1){
-          //const { data } = await gadoSeguro.post('/bovino', payloadReprodu);
+        if(gravidaForm === "1"){
+          const { data } = await gadoSeguro.post('/reproducao', payloadReprodu);
         }
       }else{
-        //const { data } = await gadoSeguro.post('/bovino', payloadBoi);
+        const { data } = await gadoSeguro.post('/boi', payloadBoi);
       }
     
     } catch (error) {
@@ -208,7 +208,7 @@ const CadastrarBovino = () => {
                   required
                   onChange={e => {
                     setGravidaForm(e.target.value);
-                    if (e.target.value === 'Sim') {
+                    if (e.target.value === "1") {
                       setExibirInputsGestacao(true);
                     } else {
                       setExibirInputsGestacao(false);
