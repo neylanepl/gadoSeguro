@@ -80,7 +80,7 @@ ENGINE = InnoDB;
 -- Table `GadoSeguro`.`Bovino`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `GadoSeguro`.`Bovino` (
-  `idBovino` INT NOT NULL AUTO_INCREMENT,
+  `idBovino` INT NOT NULL,
   `Fazenda_idFazenda` INT NOT NULL,
   `Vaca_idVaca` INT NULL,
   `reprodutor` TINYINT NOT NULL,
