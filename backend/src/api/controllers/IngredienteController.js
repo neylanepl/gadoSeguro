@@ -1,17 +1,17 @@
-const IngredienteService = require('../../services/ingredienteService')
+const ingredienteService = require('../../services/ingredienteService')
 
 class IngredienteController {
 
     //adicionar dose 
-    create_ingrediente(request, response) {
+    async create_ingrediente(request, response) {
         const ingredienteTemp = {
             nome: request.body.nome,
             qnt_estoque: request.body.qnt_estoque,
             unidade: request.body.unidade
-        }
+        };
 
         try {
-            IngredienteService.addIngrediente(ingredienteTemp);
+            ingredienteService.addIngrediente(ingredienteTemp);
             response.status(200).json({
                 msg: "Ingredientes cadastrado com sucesso"
             })
