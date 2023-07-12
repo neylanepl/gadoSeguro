@@ -69,3 +69,13 @@ INSERT INTO GadoSeguro.Dose (nome_vacina, lote, info, data_aplicada, data_prev)
     VALUES  ("Vac-131","A-1","Vacina para bovinos até 50 anos","2000-09-13",null),
 			("ECx-159","B-1","Vacina qualque","2010-10-22",null),
 			("Vacx21","A-2","Sem ideia boa","2012-01-05","2013-01-05");
+
+INSERT INTO GadoSeguro.Registra (CarteiraVacinacao_Bovino_idBovino, Dose_id)
+    VALUES 	(1,1),
+			(1,2),
+            (2,1),
+            (2,3);
+INSERT INTO GadoSeguro.Pessoa (cpf, nome, email, senha, cargo)
+      VALUES ('13548','Danilo','danilo@gmail.com','$2b$10$wQ491Z0xMIeM0iF7qSBuK.vdU9ZCxrks4b6xAl8nZjiQtJY/Q/O0i','veterinário'),
+			 ('16546','baba','asdfa@hotmail.com','$2b$10$Av88ut5TEkNqIoqBZ/J6Cu3cxCbzmDHY9XsBoSZ0icFCjJwY5iN8W','empregado');
+/* Senha de Danilo senha2 e baba Acesso*/

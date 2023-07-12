@@ -46,6 +46,18 @@ async getCarteiraVacId(id) {
   }
 }
 
+async getCarteiraDosesBovino(idBovino) {
+  try {
+      const connection = await dbConnection();
+      const [Carteiras] = await connection.query('SELECT Carteira.Bovino_idBovino, Doses.* FROM GadoSeguro.CarteiraVacinacao AS Carteira, GadoSeguro.Registra AS Registros, GadoSeguro.Dose AS Doses WHERE Carteira.Bovino_idBovino=? AND Carteira.Bovino_idBovino = Registros.CarteiraVacinacao_Bovino_idBovino AND Registros.Dose_id = Doses.idDose;', idBovino);
+      console.log("Carteira achada com sucesso!");
+      return Carteiras;
+  } catch (error) {
+      console.log(error);
+      return error
+  }
+}
+
 //Deletar Carteira pelo ID
 async  deleteCarteira(id) {
   try {
