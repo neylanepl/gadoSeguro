@@ -3,10 +3,26 @@ import { useNavigate } from 'react-router-dom';
 import { Form } from 'react-bootstrap';
 import Menu from '../../components/menu';
 
+import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const ListarBovino = () => {
 
+    const [bovinos, setBovinos] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchBovinos = async () => {
+            try {
+                const response = await gadoSeguro.get('/bovino');
+                console.log("response: " + response.data);
+                setBovinos(response.data);
+            } catch (error) {
+                console.error("erro ao listar bovinos: ", error);
+            }
+        };
+
+        fetchBovinos();
+    }, []);
 
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>
@@ -34,14 +50,21 @@ const ListarBovino = () => {
 
                     <tbody className="tabelaListagem text-center" >
 
-                        <tr>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
+                    {bovinos.map(bovino => (
+                            <tr key={bovino.idBovino}>
+                                <td>{bovino.nome}</td>
+                                <td>{bovino.peso}</td>
+                                <td>{bovino.data_nascimento}</td>
+                                <td>{bovino.sexo}</td>
+                                {bovino.reprodutor === 0
+                                    ? <td>Não</td>
+                                    : <td>Sim</td>
+                                }
+                                <td>{bovino.cor}</td>
+                                {bovino.chifre === 0
+                                    ? <td>Não</td>
+                                    : <td>Sim</td>
+                                }
                             <td style={{ display: "flex", justifyContent: "space-evenly" }}>
 
                                 <button className="botaoEditar btn btn-primary" style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#47a2ed", border: "none" }} variant="warning" onClick={e => navigate('/bovinos/editarBovino')}>
@@ -66,6 +89,7 @@ const ListarBovino = () => {
 
                             </td>
                         </tr>
+                         ))}
                     </tbody>
                 </table>
 
