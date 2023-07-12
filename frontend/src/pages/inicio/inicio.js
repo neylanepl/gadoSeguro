@@ -45,7 +45,7 @@ const Inicio = () => {
     return (
       <Base title={"Administração de Bovinos"}>
         <Form.Group className='text-center' style={{ maxWidth: "400px", margin: "0 auto" }}>
-          <Row style={{ paddingBottom: "5%" }}>
+          <Row style={{ paddingBottom: "7%" }}>
             <Col className="d-grid gap-2">
               <button
                 className="btn btn-success"
@@ -54,6 +54,8 @@ const Inicio = () => {
                 Pessoas
               </button>
             </Col>
+          </Row>
+          <Row style={{ paddingBottom: "7%" }}>
             <Col className="d-grid gap-2">
               <button
                 className="btn btn-success"
@@ -63,7 +65,7 @@ const Inicio = () => {
               </button>
             </Col>
           </Row>
-          <Row style={{ paddingBottom: "5%" }}>
+          <Row style={{ paddingBottom: "7%" }}>
             <Col className="d-grid gap-2">
               <button
                 className="btn btn-success"
@@ -72,6 +74,8 @@ const Inicio = () => {
                 Bovinos
               </button>
             </Col>
+          </Row>
+          <Row style={{ paddingBottom: "7%" }}>
             <Col className="d-grid gap-2">
               <button
                 className="btn btn-success"
@@ -81,7 +85,7 @@ const Inicio = () => {
               </button>
             </Col>
           </Row>
-          <Row style={{ paddingBottom: "5%" }}>
+          <Row style={{ paddingBottom: "7%" }}>
             <Col className="d-grid gap-2">
               <button
                 className="btn btn-success"
@@ -90,6 +94,8 @@ const Inicio = () => {
                 Doses
               </button>
             </Col>
+          </Row>    
+          <Row style={{ paddingBottom: "7%" }}>
             <Col className="d-grid gap-2">
               <button
                 className="btn btn-success"
@@ -99,7 +105,7 @@ const Inicio = () => {
               </button>
             </Col>
           </Row>
-          <Row style={{ paddingBottom: "5%" }}>
+          <Row style={{ paddingBottom: "7%" }}>
             <Col className="d-grid gap-2">
               <button
                 className="btn btn-success"
@@ -108,6 +114,8 @@ const Inicio = () => {
                 Dietas
               </button>
             </Col>
+          </Row>
+          <Row style={{ paddingBottom: "7%" }}>
             <Col className="d-grid gap-2">
               <button
                 className="btn btn-success"
@@ -117,7 +125,7 @@ const Inicio = () => {
               </button>
             </Col>
           </Row>
-          <Row style={{ paddingBottom: "5%" }}>
+          <Row style={{ paddingBottom: "7%" }}>
             <Col className="d-grid gap-2">
               <button
                 className="btn btn-success"
