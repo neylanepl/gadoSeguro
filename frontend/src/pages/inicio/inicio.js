@@ -48,21 +48,21 @@ const Inicio = () => {
 
         <div className="formulario">
 
+          <button className='botao' type='submit' onClick={redirectToPessoaHome}>Pessoas</button>
+
+          <button className='botao' type='submit' onClick={redirectToFazendaHome}>Fazenda</button>
+
           <button className="botao" type="submit" onClick={redirectToBovinoHome}>Bovinos</button>
 
           <button className='botao' type='submit' onClick={redirectToVacinaHome}>Vacinas</button>
 
           <button className='botao' type='submit' onClick={redirectToDoseHome}>Dose</button>
 
-          <button className='botao' type='submit' onClick={redirectToPessoaHome}>Pessoas</button>
-
-          <button className='botao' type='submit' onClick={redirectToFazendaHome}>Fazenda</button>
-
-          <button className='botao' type='submit' onClick={redirectToIngredienteHome}>Ingrediente</button>
-
           <button className='botao' type='submit' onClick={redirectToAlimentacaoHome}>Alimentação</button>
 
           <button className='botao' type='submit' onClick={redirectToDietaHome}>Dieta</button>
+
+          <button className='botao' type='submit' onClick={redirectToIngredienteHome}>Ingrediente</button>
 
         </div>
       </div>

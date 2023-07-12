@@ -2,6 +2,7 @@ import React from 'react';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+import PrivateRoute from './pages/base/privateRoute.js';
 import Inicio from './pages/inicio/inicio.js';
 import BovinoHome from './pages/bovinos/bovinoHome.js';
 import VacinaHome from './pages/vacinas/vacinaHome.js';
@@ -50,10 +51,10 @@ function App() {
 
     <Router>
       <Routes>
-        <Route path="/" element={<LoginPessoa />} />
-        <Route path="/inicio/inicio" element={<Inicio />} />
-        <Route path="/bovinos/bovinoHome" element={<BovinoHome />} />
-        <Route path="/vacinas/vacinaHome" element={<VacinaHome />} />
+        <Route path="/" element={<PrivateRoute><Inicio /></PrivateRoute>} />
+        <Route path="/login" element={<LoginPessoa />} />
+        <Route path="/bovinos/bovinoHome" element={<PrivateRoute><BovinoHome /></PrivateRoute>} />
+        <Route path="/vacinas/vacinaHome" element={<PrivateRoute><VacinaHome /></PrivateRoute>} />
         <Route path="/pessoas/pessoaHome" element={<PessoaHome />} />
         <Route path="/fazendas/fazendaHome" element={<FazendaHome />} />
         <Route path="/ingredientes/ingredienteHome" element={<IngredienteHome />} />

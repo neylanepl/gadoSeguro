@@ -23,7 +23,7 @@ const Login = () => {
             const { data } = await gadoSeguro.post('/login', payload);
             login(data.token, data.role);
             console.log("Login válido!");
-            navigate('/inicio/inicio');
+            navigate('/');
 
         } catch (error) {
             console.log("Email ou senha inválido!", error);
