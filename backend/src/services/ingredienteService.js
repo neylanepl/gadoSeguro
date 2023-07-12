@@ -4,17 +4,19 @@ class IngredienteService {
 
   //Adicionar Ingrediente
   async addIngrediente(ingredienteTemp) {
+    console.log("service");
     try {
       const connection = await dbConnection();
       const query = `
-    INSERT INTO GadoSeguro.Ingrediente (idIngrediente, nome, qnt_estoque, unidade)
-    VALUES (?,?,?,?)
+    INSERT INTO GadoSeguro.Ingrediente (nome, qnt_estoque, unidade)
+    VALUES (?,?,?)
     `;
       const values = [
         ingredienteTemp.nome,
-        ingredienteTemp.qnt_estoque,
-        ingredienteTemp.unidade
+        Number(ingredienteTemp.qnt_estoque),
+        Number(ingredienteTemp.unidade)
       ];
+
       await connection.execute(query, values);
       console.log("Objeto Ingrediente adicionado com sucesso!");
     } catch (error) {
@@ -84,3 +86,5 @@ class IngredienteService {
     }
   }
 }
+
+module.exports = new IngredienteService();

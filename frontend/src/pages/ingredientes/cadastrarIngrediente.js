@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import gadoSeguro from '../../services/connectionGadoSeguro';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/css/global.css';
 import Menu from '../../components/menu';
@@ -15,9 +16,18 @@ const CadastrarIngrediente = () => {
         e.preventDefault();
         const payload = {
             nome: nomeForm,
-            qtdEstoque: qtdEstoqueForm,
+            qnt_estoque: qtdEstoqueForm,
             unidade: unidadeForm
         };
+
+        try {
+            const { data } = await gadoSeguro.post('/ingrediente', payload);
+            console.log("Cadastro realizado com sucesso!")
+            navigate('/ingredientes/ingredienteHome');
+
+        } catch (error) {
+            console.log("Cadastro falhou!", error)
+        }
 
     };
 
@@ -38,8 +48,8 @@ const CadastrarIngrediente = () => {
                         <input type="text" className="unidadeIngrediente" required onChange={e => setUnidadeForm(e.target.value)} />
 
                         <div>
-                            <button variant="warning" type="submit" value="submit" className="botaoCadastrar btn btn-success"
-                                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
+                            <button variant="warning" type="submit" value="submit" className="btn btn-success"
+                                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }} onSubmit={e => navigate('/inicio/inicio')}>
                                 Cadastrar
                             </button>
                         </div>
