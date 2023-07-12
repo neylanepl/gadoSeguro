@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import gadoSeguro from '../../services/connectionGadoSeguro';
 import Base from '../base/base';
 import { Form } from 'react-bootstrap';
-
+import { ToastContainer, toast } from 'react-toastify';
 
 const CadastrarPessoa = () => {
 
@@ -27,10 +27,10 @@ const CadastrarPessoa = () => {
 
         try {
             const { data } = await gadoSeguro.post('/pessoa', payload);
-            console.log("Cadastro realizado com sucesso!")
+            toast.success("Cadastro realizado com sucesso!")
             navigate('/');
         } catch (error) {
-            console.log("Cadastro falhou!", error)
+            toast.error("Cadastro falhou!");
         }
     };
 
@@ -80,6 +80,7 @@ const CadastrarPessoa = () => {
                         style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
                         Cadastrar
                     </button>
+                    <ToastContainer />
                 </Form.Group>
             </Form>
         </Base>

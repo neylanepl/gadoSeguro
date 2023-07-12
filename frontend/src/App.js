@@ -41,6 +41,9 @@ import CadastrarDose from './pages/dose/cadastrarDose.js';
 import EditarDose from './pages/dose/editarDose.js';
 import ListarDose from './pages/dose/listarDose.js';
 
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
 
@@ -85,6 +88,7 @@ function App() {
         <Route path="/doses/editarDose" element={<PrivateRoute><EditarDose /></PrivateRoute>} />
 
       </Routes>
+      <ToastContainer />
     </Router>
 
   );

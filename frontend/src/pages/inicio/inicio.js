@@ -116,6 +116,8 @@ const Inicio = () => {
                 Ingredientes
               </button>
             </Col>
+          </Row>
+          <Row style={{ paddingBottom: "5%" }}>
             <Col className="d-grid gap-2">
               <button
                 className="btn btn-success"

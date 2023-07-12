@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import gadoSeguro from '../../services/connectionGadoSeguro';
 import { useNavigate } from 'react-router-dom';
 
-import Menu from '../../components/menu';
+import Base from '../base/base';
+import { Form } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 const CadastrarFazenda = () => {
@@ -29,53 +32,66 @@ const CadastrarFazenda = () => {
 
         try {
             const { data } = await gadoSeguro.post('/fazenda', payload);
-            console.log("Cadastro realizado com sucesso!")
-            navigate('/fazendas/fazendaHome');
+            toast.success("Cadastro realizado com sucesso!")
+            navigate('/fazendas');
 
         } catch (error) {
-            console.log("Cadastro falhou!", error)
+            toast.error("Cadastro falhou!")
         }
     };
 
     return (
-        <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
-            <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastrar Fazenda </h1>
-            <div className="formularioLogin" style={{ marginBottom: "10%" }}>
-                <form className="formulario" onSubmit={e => { handleSubmitForm(e) }}>
-                    <div className="sub-div">
-                        <div className="id_"><p>Nome</p></div>
-                        <input type="text" className="nomeFazenda" required onChange={e => setNomeForm(e.target.value)} />
-
-                        <div className="id_"><p>Sitio</p></div>
-                        <input type="text" className="sitioFazenda" required onChange={e => setSitioForm(e.target.value)} />
-
-                        <div className="id_"><p>Cidade</p></div>
-                        <input type="text" className="cidadeFazenda" required onChange={e => setCidadeForm(e.target.value)} />
-
-                        <div className="id_"><p>Cep</p></div>
-                        <input type="text" className="cepFazenda" required onChange={e => setCepForm(e.target.value)} />
-
-                        <div className="id_"><p>Complemento</p></div>
-                        <input type="text" className="complementoFazenda" required onChange={e => setComplementoForm(e.target.value)} />
-
-                        <div className="id_"><p>Numero</p></div>
-                        <input type="text" className="numeroFazenda" required onChange={e => setNumeroForm(e.target.value)} />
-
-                        <div>
-                            <button variant="warning" type="submit" value="submit" className="botaoCadastrar btn btn-success"
-                                style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }} onSubmit={e => navigate('/inicio/inicio')}>
-                                Cadastrar
-                            </button>
-                        </div>
-
-                    </div>
-                </form>
-            </div>
-
-        </div>
+        <Base title={"Cadastro de fazenda"}>
+            <Form onSubmit={e => { handleSubmitForm(e) }}
+                style={{margin: "0 auto", backgroundColor: "#E0E7CA", 
+                    maxWidth: "600px", marginBottom: "10%", padding: "2em 3em 2em 3em",
+                    borderRadius: "1em" }}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlNome">
+                    <Form.Label style={{ fontWeight: "bold" }}>Nome</Form.Label>
+                    <Form.Control type="name" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setNomeForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlSitio">
+                    <Form.Label style={{ fontWeight: "bold" }}>Sítio</Form.Label>
+                    <Form.Control type="name" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setSitioForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlCidade">
+                    <Form.Label style={{ fontWeight: "bold" }}>Cidade</Form.Label>
+                    <Form.Control type="name" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setCidadeForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlCep">
+                    <Form.Label style={{ fontWeight: "bold" }}>Cep</Form.Label>
+                    <Form.Control type="name" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setCepForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlComplemento">
+                    <Form.Label style={{ fontWeight: "bold" }}>Complemento</Form.Label>
+                    <Form.Control type="name" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setComplementoForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlNumero">
+                    <Form.Label style={{ fontWeight: "bold" }}>Número</Form.Label>
+                    <Form.Control type="number" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setNumeroForm(e.target.value)} />
+                </Form.Group>
+                <Form.Group className='text-center'>
+                    <button type="submit" value="submit" className="btn btn-success"
+                        style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
+                        Editar
+                    </button>
+                    <ToastContainer />
+                </Form.Group>
+            </Form>
+        </Base>
     );
 };
 
 export default CadastrarFazenda;
-
