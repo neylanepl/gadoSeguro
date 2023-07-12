@@ -75,7 +75,7 @@ function App() {
         <Route path="/vacinas/listarVacinas" element={<ListarVacina />} />
 
         <Route path="/pessoas/cadastrarPessoas" element={<CadastrarPessoa />} />
-        <Route path="/pessoas/editarPessoas" element={<EditarPessoa />} />
+        <Route path="/pessoas/editarPessoas/:cpf" element={<EditarPessoa />} />
         <Route path="/pessoas/listarPessoas" element={<ListarPessoa />} />
         <Route path="/pessoas/loginPessoa" element={<LoginPessoa />} />
 

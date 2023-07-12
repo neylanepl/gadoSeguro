@@ -137,7 +137,7 @@ class PessoaService {
   async updatePessoa(cpf, pessoaTemp) {
     try {
       const connection = await dbConnection();
-      const query = `UPDATE GadoSeguro.Pessoa SET Fazenda_idFazenda=?, nome=?, email=?, cargo=? WHERE cpf=?`;
+      const query = `UPDATE GadoSeguro.Pessoa SET nome=?, email=?, cargo=? WHERE cpf=?`;
       const values = [
         pessoaTemp.nome,
         pessoaTemp.email,
