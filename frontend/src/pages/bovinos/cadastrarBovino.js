@@ -1,10 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../../styles/css/global.css';
 import Menu from '../../components/menu';
 import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const CadastrarBovino = () => {
+
+  const [fazendas, setFazendas] = useState([]);
+
+    useEffect(() => {
+        const fetchFazendas = async () => {
+            try {
+                const response = await gadoSeguro.get('/fazenda');
+                console.log("response: " + response.data);
+                setFazendas(response.data);
+            } catch (error) {
+                console.error("erro ao listar fazendas: ", error);
+            }
+        };
+
+        fetchFazendas();
+    }, []);
+
   const [idFazendaForm, setIdFazendaForm] = useState(0);
   const [idVacaForm, setIdVacaForm] = useState(0);
   const [nomeForm, setNomeForm] = useState('');
@@ -74,8 +91,9 @@ const CadastrarBovino = () => {
             <div className="id_"><p>Fazenda</p></div>
             <select className="vacaBovino" required onChange={e => setIdFazendaForm(e.target.value)}>
                   <option value="">Selecione a fazenda</option>
-                  <option value="fazenda">fazenda 1</option>
-                  <option value="fazenda">fazenda 2</option>
+                  {fazendas.map(fazenda => (
+                    <option key={fazenda.idFazenda} value={fazenda.nome}>{fazenda.nome}</option>
+                  ))}
             </select>
 
             <div className="id_"><p>Vaca</p></div>
