@@ -21,6 +21,17 @@ class ReproducaoController {
             })
         }
     }
+    
+    async show_reproducoes(request, response) {
+        try {
+            const reproducoes = await reproducaoService.getAllRepro()
+            return response.status(200).json(reproducoes)
+        } catch (err) {
+            return response.status(400).json({
+                error: err
+            })
+        }
+    }
 }
 
 module.exports = new ReproducaoController()
