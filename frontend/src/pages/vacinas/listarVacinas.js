@@ -4,7 +4,30 @@ import Menu from '../../components/menu';
 
 const ListarVacinas = () => {
 
+    const [vacinas, setVacinas] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchVacinas = async () => {
+            try {
+                const response = await gadoSeguro.get('/vacina');
+                console.log("response: " + response.data);
+                setVacinas(response.data);
+            } catch (error) {
+                console.error("erro ao listar vacinas: ", error);
+            }
+        };
+
+        fetchVacinas();
+    }, []);
+
+    const deletarVacina = async (nome) => {
+        try {
+            const response = await gadoSeguro.delete(`/vacina/${nome}`);
+        } catch (error) {
+            console.error("erro ao deletar nome: ", error);
+        }
+    };
 
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>
@@ -16,14 +39,13 @@ const ListarVacinas = () => {
                 <table className="table table-bordered" >
                     <thead style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
-                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Identificador</th>
                             <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Nome</th>
                             <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Fabricante</th>
                             <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Informação Extra</th>
                             <th style={{ backgroundColor: "#cdd8a9" }} scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody className="text-center" >
+                    <tbody className="tabelaListagem text-center" >
                         <tr>
                             <td></td>
                             <td></td>
@@ -31,7 +53,8 @@ const ListarVacinas = () => {
                             <td></td>
                             <td style={{ display: "flex", justifyContent: "space-evenly" }}>
                                 <button className="botaoEditar btn btn-primary"
-                                    style={{ color: "white", textDecoration: "none", border: "none", backgroundColor: "#47a2ed" }} variant="warning" onClick={e => navigate('/vacinas/editarVacinas')}>
+                                    style={{ color: "white", textDecoration: "none", border: "none", backgroundColor: "#47a2ed" }} variant="warning"
+                                     onClick={e => navigate(`/vacina/editarVacinas/${vacina.nome_vacina}`, { state: { vacina } })}>
                                     Editar
                                     <span className="editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" color='white' viewBox="0 0 16 16">

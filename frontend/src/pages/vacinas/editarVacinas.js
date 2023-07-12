@@ -5,11 +5,38 @@ import Menu from '../../components/menu';
 
 const EditarVacina = () => {
 
+    const location = useLocation();
+    const vacina = location.state.vacina;
+
     const [NomeForm, setNomeForm] = useState('');
     const [fabricanteForm, setFabricanteForm] = useState('');
     const [informacoesExtrasForm, setInformacoesExtrasForm] = useState('');
 
-    const handleSubmitForm = async e => { }
+    useEffect(() => {
+        setNomeForm(vacina.nome_vacina);
+        setFabricanteForm(vacina.fabricante);
+        setInformacoesExtrasForm(vacina.info);
+    }, [vacina]);
+
+    const navigate = useNavigate();
+
+    const handleSubmitForm = async e => {
+        e.preventDefault();
+        const payload = {
+            nome_vacina: NomeForm,
+            info: informacoesExtrasForm,
+            fabricante: fabricanteForm
+        };
+
+        try {
+            await gadoSeguro.put(`/vacina/${vacina.nome_vacina}`, payload);
+            const response = await gadoSeguro.get('/vacina');
+            navigate('/vacina/listarVacinas')
+            console.log('Dados atualizados com sucesso!');
+        } catch (error) {
+            console.error('Erro ao atualizar os dados da fazenda:', error);
+        }
+     }
 
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>

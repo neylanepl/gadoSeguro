@@ -5,6 +5,7 @@ const dbConnection = require("../database/Conect");
 class VacinaServices {
   //Adicionar Vacina
   async addVacina(vacinaTemp) {
+    console.log("Recebido: ", vacinaTemp)
     try {
       const connection = await dbConnection();
       const query = `

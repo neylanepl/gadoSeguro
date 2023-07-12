@@ -2,22 +2,37 @@ const dbConnection = require("../database/Conect");
 
 class DoseService{
 
+  formateDate(dataAjeitar){
+    console.log(dataAjeitar)
+    if(dataAjeitar!='' &&  dataAjeitar!=null){
+      let arrData = dataAjeitar.split('-');
+      console.log(arrData[2] +"|"+ arrData[1] +"|"+ arrData[0])
+      let dataAjeitada = new Date(arrData[0], arrData[1] - 1, arrData[2])
+      console.log(dataAjeitada)
+      return dataAjeitada;
+  }
+  return null;
+  }
+
   //Adicionar Dose
 async  addDose(doseTemp) {
+  doseTemp.data_aplicada = this.formateDate(doseTemp.data_aplicada)
+  doseTemp.data_prev =this.formateDate(doseTemp.data_prev)
+  console.log(doseTemp);
   try {
-    console.log(doseTemp);
     const connection = await dbConnection();
     const query = `
     INSERT INTO GadoSeguro.Dose (nome_vacina, lote, info, data_aplicada, data_prev) 
     VALUES (?,?,?,?,?)
     `;
     const values = [
-      doseTemp.nome_vacina,
+      doseTemp.nome,
       doseTemp.lote,
       doseTemp.info,
       doseTemp.data_aplicada,
       doseTemp.data_prev
     ];
+    console.log(query, values)
     await connection.execute(query, values);
     console.log("Objeto Dose adicionado com sucesso!");
   } catch (error) {
@@ -42,6 +57,7 @@ async getAllDoseId(idDose) {
   try {
       const connection = await dbConnection()
       const [doses] = await connection.query('SELECT * FROM Dose WHERE idDose=?;', idDose)
+      console.log(doses)
       return doses
   } catch (error) {
       console.log(error);
@@ -65,6 +81,8 @@ async getAllDosesFromVacina(nome_vacina) {
 
 //Atualiza uma Dose pelo ID 
 async getUpdateDose(idDose, doseTemp) {
+  doseTemp.data_aplicada = this.formateDate(doseTemp.data_aplicada)
+  doseTemp.data_prev =this.formateDate(doseTemp.data_prev)
   try {
     const connection = await dbConnection();
     const query = `
@@ -72,7 +90,7 @@ async getUpdateDose(idDose, doseTemp) {
     WHERE idDose=?
     `;
     const values = [
-      doseTemp.nome_vacina,
+      doseTemp.nome,
       doseTemp.lote,
       doseTemp.info,
       doseTemp.data_aplicada,
@@ -80,7 +98,7 @@ async getUpdateDose(idDose, doseTemp) {
       idDose
     ];
     await connection.execute(query, values);
-    Console.log("Dose Atualizada");
+    console.log("Dose Atualizada");
   } catch (error) {
       console.log("Problema em atualizar a dose",error);
       return error

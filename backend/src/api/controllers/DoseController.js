@@ -8,8 +8,8 @@ class DoseController {
             nome: request.body.nome,
             lote: request.body.lote,
             info: request.body.info,
-            dataAplicada: request.body.dataAplicada,
-            dataPrev: request.body.dataAplicada
+            data_aplicada: request.body.data_aplicada,
+            data_prev: request.body.data_prev
         }
 
         try {
@@ -64,16 +64,17 @@ class DoseController {
 
     //Atualiza uma Dose pelo ID 
     async update_dose(request, response) {
+        const idDose = request.params
         const doseTemp = {
             nome: request.body.nome,
             lote: request.body.lote,
             info: request.body.info,
-            dataAplicada: request.body.dataAplicada,
-            dataPrev: request.body.dataAplicada
+            data_aplicada: request.body.data_aplicada,
+            data_prev: request.body.data_prev
         }
-
         try {
-            DoseService.getUpdateDose(doseTemp);
+            console.log("Enviando: ", doseTemp)
+            DoseService.getUpdateDose(idDose.id, doseTemp);
             response.status(200).json({
                 msg: "Dose atualizada com sucesso"
             })
@@ -87,7 +88,7 @@ class DoseController {
     //Deletar Dose pelo ID
     async delete_dose(request, response) {
         try {
-            const { idDose } = request.params.idDose
+            const idDose = request.params.idDose
             DoseService.deleteDose(idDose);
             response.status(200).json({
                 msg: "Dose deletada com sucesso"

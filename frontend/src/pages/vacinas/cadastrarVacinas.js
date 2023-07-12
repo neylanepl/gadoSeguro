@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Menu from '../../components/menu';
+import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const CadastrarVacina = () => {
     const [nomeForm, setNomeForm] = useState('');
@@ -13,14 +14,18 @@ const CadastrarVacina = () => {
     const handleSubmitForm = async e => {
         e.preventDefault();
         const payload = {
-            nome: nomeForm,
-            informacoesExtras: informacoesExtrasForm,
+            nome_vacina: nomeForm,
+            info: informacoesExtrasForm,
             fabricante: fabricanteForm
         };
+        console.log(payload)
 
-       
-        // Navegar para outra página após o envio do formulário
-        navigate('/');
+        try {
+            const { data } = await gadoSeguro.post('/vacina', payload);
+            console.log("Cadastro realizado com sucesso!")
+        } catch (error) {
+            console.log("Cadastro falhou!", error)
+        }
     };
 
 

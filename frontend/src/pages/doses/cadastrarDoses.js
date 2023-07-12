@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Menu from '../../components/menu';
+import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const CadastrarDose = () => {
     const [nomeForm, setNomeForm] = useState('');
     const [loteForm, setLoteForm] = useState(0);
     const [infoForm, setInfoForm] = useState('');
-    const [dataAplicadaForm, setDataAplicadaForm] = useState(0);
+    const [dataAplicadaForm, setDataAplicadaForm] = useState('');
     const [dataPrevForm, setDataPrevForm] = useState('');
 
     const navigate = useNavigate();
@@ -18,12 +19,17 @@ const CadastrarDose = () => {
             nome: nomeForm,
             lote: loteForm,
             info: infoForm,
-            dataAplicada: dataAplicadaForm,
-            dataPrev: dataPrevForm
+            data_aplicada: dataAplicadaForm,
+            data_prev: dataPrevForm
         };
 
-        // Navegar para outra página após o envio do formulário
-        navigate('/');
+        try {
+            const { data } = await gadoSeguro.post('/dose', payload);
+            console.log("Cadastro realizado com sucesso!")
+            navigate('/dose/dosesHome');
+        } catch (error) {
+            console.log("Cadastro falhou!", error)
+        }
     };
 
 
@@ -67,10 +73,10 @@ const CadastrarDose = () => {
                         <input style={{ padding: "5px", paddingLeft: "10px" }} required type="text" className="infoDose" onChange={e => setInfoForm(e.target.value)} />
 
                         <div className="id_"><p>Data Aplicada</p></div>
-                        <input style={{ padding: "5px", paddingLeft: "10px" }} type="text" required className="dataAplicadaDose" onChange={e => setDataAplicadaForm(e.target.value)} />
+                        <input style={{ padding: "5px", paddingLeft: "10px" }} type="date" required className="dataAplicadaDose" onChange={e => setDataAplicadaForm(e.target.value)} />
 
                         <div className="id_"><p>Data Prev</p></div>
-                        <input style={{ padding: "5px", paddingLeft: "10px" }} required type="text" className="dataPrevDose" onChange={e => setDataPrevForm(e.target.value)} />
+                        <input style={{ padding: "5px", paddingLeft: "10px" }} type="date" className="dataPrevDose" onChange={e => setDataPrevForm(e.target.value)} />
 
                         <button variant="warning" type="submit" value="submit" className="botaoCadastrar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Cadastrar</button>
                     </div>

@@ -37,9 +37,9 @@ import CadastrarDieta from './pages/dieta/cadastrarDieta.js';
 import EditarDieta from './pages/dieta/editarDieta.js';
 import ListarDieta from './pages/dieta/listarDieta.js';
 
-import CadastrarDose from './pages/dose/cadastrarDose.js';
-import EditarDose from './pages/dose/editarDose.js';
-import ListarDose from './pages/dose/listarDose.js';
+import CadastrarDose from './pages/doses/cadastrarDoses.js';
+import EditarDose from './pages/doses/editarDoses.js';
+import ListarDose from './pages/doses/listarDoses.js';
 
 function App() {
   return (
@@ -81,9 +81,17 @@ function App() {
         <Route path="/dietas/cadastrarDieta" element={<PrivateRoute><CadastrarDieta /></PrivateRoute>} />
         <Route path="/dietas/editarDieta" element={<PrivateRoute><EditarDieta /></PrivateRoute>} />
 
-        <Route path="/doses" element={<PrivateRoute><ListarDose /></PrivateRoute>} />
-        <Route path="/doses/cadastrarDose" element={<PrivateRoute><CadastrarDose /></PrivateRoute>} />
-        <Route path="/doses/editarDose" element={<PrivateRoute><EditarDose /></PrivateRoute>} />
+        <Route path="/alimentacao/cadastrarAlimentacao" element={<CadastrarAlimentacao />} />
+        <Route path="/alimentacao/editarAlimentacao" element={<EditarAlimentacao />} />
+        <Route path="/alimentacao/listarAlimentacao" element={<ListarAlimentacao />} />
+
+        <Route path="/dieta/cadastrarDieta" element={<CadastrarDieta />} />
+        <Route path="/dieta/editarDieta" element={<EditarDieta />} />
+        <Route path="/dieta/listarDieta" element={<ListarDieta />} />
+
+        <Route path="/doses/cadastrarDose" element={<CadastrarDose />} />
+        <Route path="/doses/editarDose" element={<EditarDose />} />
+        <Route path="/doses/listarDose" element={<ListarDose />} />
 
       </Routes>
     </Router>

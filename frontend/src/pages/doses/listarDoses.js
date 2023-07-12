@@ -1,12 +1,70 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Menu from '../../components/menu';
+import '../../styles/css/global.css';
 
+import gadoSeguro from '../../services/connectionGadoSeguro';
+
+import Base from '../base/base';
+import BtnGreen from '../../components/buttongreen';
 
 const ListarDose = () => {
+    const [doses, setDoses] = useState([]);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        const fetchDoses = async () => {
+            try {
+                const response = await gadoSeguro.get('/dose');
+                console.log("response: " + response.data);
+                setDoses(response.data);
+            } catch (error) {
+                console.error("erro ao listar doeses: ", error);
+            }
+        };
+
+        fetchDoses();
+    }, []);
+
+    function formatDateToString(date) {
+        if (date instanceof Date && !isNaN(date)) {
+          const dia = String(date.getDate()).padStart(2, '0');
+          const mes = String(date.getMonth() + 1).padStart(2, '0');
+          const ano = String(date.getFullYear());
+      
+          return dia + '/' + mes + '/' + ano;
+        } else if (typeof date === 'string') {
+          const data = new Date(date);
+          if (data instanceof Date && !isNaN(data)) {
+            const dia = String(data.getDate()).padStart(2, '0');
+            const mes = String(data.getMonth() + 1).padStart(2, '0');
+            const ano = String(data.getFullYear());
+      
+            return dia + '/' + mes + '/' + ano;
+          }
+        }
+      
+        return null;
+      }
+
+    const deletarDose = async (id) => {
+        try {
+            const response = await gadoSeguro.delete(`/dose/${id}`);
+        } catch (error) {
+            console.error("erro ao deletar dose: ", error);
+        }
+    };
+
     return (
+        <Base title={"Doses"}>
+            <div 
+                className="d-grid gap-2 d-md-flex justify-content-md-end"
+                style={{ marginBottom: "2%" }}>
+                <BtnGreen 
+                    title={"Cadastrar doses"}
+                    route={'/doses/cadastrarDose'}
+                />
+            </div>
         <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Doses cadastradas no sistema</h1>
@@ -28,15 +86,17 @@ const ListarDose = () => {
                         </tr>
                     </thead>
                     <tbody className="tabelaListagem text-center" >
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                    {doses.map(dose => (
+                        <tr key={dose.idDose} >
+                            <td>{dose.nome_vacina}</td>
+                            <td>{dose.lote}</td>
+                            <td>{dose.info}</td>
+                            <td>{dose.data_aplicada ? formatDateToString(dose.data_aplicada) : ''}</td>
+                            <td>{dose.data_prev ? formatDateToString(dose.data_prev) : ''}</td>
                             <td style={{ display: "flex", justifyContent: "space-evenly" }}>
                                 <button className="botaoEditar btn btn-primary"
-                                    style={{ color: "white", textDecoration: "none", backgroundColor: "#47a2ed", border: "none" }} variant="warning" onClick={e => navigate('/dose/editarDose')}>
+                                    style={{ color: "white", textDecoration: "none", backgroundColor: "#47a2ed", border: "none" }} variant="warning" 
+                                    onClick={e => navigate(`/dose/editarDose/${dose.idDose}`, { state: { dose } })}>
                                     Editar
                                     <span className="editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" color='white' viewBox="0 0 16 16">
@@ -46,7 +106,7 @@ const ListarDose = () => {
                                     </span>
                                 </button>
 
-                                <button className="botaoApagar btn btn-danger" style={{ color: "white", textDecoration: "none", backgroundColor: "#d10606", border: "none" }} variant="warning" onClick={e => navigate('/')}>
+                                <button className="botaoApagar btn btn-danger" style={{ color: "white", textDecoration: "none", backgroundColor: "#d10606", border: "none" }} variant="warning" onClick={e => deletarDose(dose.idDose)}>
                                     Deletar
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" color='white' viewBox="0 0 16 16">
@@ -56,10 +116,12 @@ const ListarDose = () => {
                                 </button>
                             </td>
                         </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
         </div>
+        </Base>
     );
 };
 
