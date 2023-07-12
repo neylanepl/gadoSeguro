@@ -60,7 +60,7 @@ const ListaPessoa = () => {
                                 <td>{pessoa.cargo}</td>
                                 <td style={{ display: "flex", justifyContent: "space-evenly" }}>
                                     <button className="btn btn-primary" style={{ color: "white", textDecoration: "none", margin: "2%", backgroundColor: "#47a2ed", border: "none" }} variant="warning"
-                                        onClick={e => navigate(`/pessoas/editarPessoas/${pessoa.cpf}`, { state: { pessoa } })}>
+                                        onClick={e => navigate(`/pessoas/editarPessoa/${pessoa.cpf}`, { state: { pessoa } })}>
                                         Editar
                                         <span className="editar">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" color='white' viewBox="0 0 16 16">
