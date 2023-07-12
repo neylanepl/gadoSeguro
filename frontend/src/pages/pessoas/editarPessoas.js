@@ -65,8 +65,9 @@ const EditarPessoa = () => {
                         <input type="text" className="cargoPessoa" value={cargoForm}  onChange={e => setCargoForm(e.target.value)} />
                         <select className="cargoPessoa" value={cargoForm}  required onChange={e => setCargoForm(e.target.value)}>
                             <option value="">Selecione o cargo</option>
+                            <option value="empregado">Empregado</option>
                             <option value="veterinário">Veterinário</option>
-                            <option value="empregado">Fazendeiro</option>
+                            <option value="fazendeiro">Fazendeiro</option>
                         </select>
 
 
