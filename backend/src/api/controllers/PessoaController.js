@@ -28,8 +28,7 @@ class PessoaController {
         const pessoaTemp = {
             ...request.body
         }
-        const { cpf } = pessoaTemp.cpf;
-
+        const  cpf  = pessoaTemp.cpf;
         try {
             pessoaService.updatePessoa(cpf, pessoaTemp)
             response.status(200).json({
@@ -52,15 +51,16 @@ class PessoaController {
             })
         }
     }
+
     async delete_pessoa(request, response) {
         try {
-            const { cpf } = request.body.cpf
+            const cpf = request.params.cpf
             pessoaService.deletePessoa(cpf);
             response.status(200).json({
                 msg: "Pessoa deletada com sucesso"
             })
         } catch (error) {
-            console.log("nao foi possivel deletar")
+            console.log("Não foi possivel deletar")
             return response.status(400).json({
                 error: error
             })
