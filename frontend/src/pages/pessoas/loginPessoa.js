@@ -33,8 +33,10 @@ const Login = () => {
 
     return (
         <div id="wrapperBovino" style={{ background: "#F0F1DF" }}>
-            <Menu />
+            <MenuLogin />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Login </h1>
+
+
             <div className="formularioLogin" style={{ marginBottom: "10%" }}>
                 <form className="formulario" onSubmit={e => { handleSubmitForm(e) }}>
                     <div className="sub-div">

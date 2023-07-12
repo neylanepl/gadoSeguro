@@ -2,6 +2,7 @@ import React from 'react';
 import { isAuthenticated } from '../../services/auth';
 import { Col, Row } from 'react-bootstrap';
 import Base from '../base/base';
+
 const Inicio = () => {
   const redirectToBovinoHome = () => {
     window.location.href = '/bovinos';

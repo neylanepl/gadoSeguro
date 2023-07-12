@@ -8,6 +8,8 @@ import Inicio from './pages/inicio/inicio.js';
 import CadastrarBovino from './pages/bovinos/cadastrarBovino.js';
 import EditarBovino from './pages/bovinos/editarBovino.js';
 import ListarBovino from './pages/bovinos/listarBovino.js';
+import TelaListarCarteiraBovino from './pages/bovinos/telaListagemCarteira.js';
+import CarteiraVacinacaoBovino from './pages/bovinos/carteiraVacinacao.js';
 
 import CadastrarVacina from './pages/vacinas/cadastrarVacinas.js';
 import EditarVacina from './pages/vacinas/editarVacinas.js';
@@ -49,14 +51,16 @@ function App() {
         <Route path="/bovinos" element={<PrivateRoute><ListarBovino /></PrivateRoute>} />
         <Route path="/bovinos/cadastrarBovino" element={<PrivateRoute><CadastrarBovino /></PrivateRoute>} />
         <Route path="/bovinos/editarBovino/:id" element={<PrivateRoute><EditarBovino /></PrivateRoute>} />
+        <Route path="/bovinos/telaListagemCarteira" element={<TelaListarCarteiraBovino />} />
+        <Route path="/bovinos/carteiraVacinacao" element={<CarteiraVacinacaoBovino />} />
 
         <Route path="/vacinas" element={<PrivateRoute><ListarVacina /></PrivateRoute>} />
-        <Route path="/vacinas/cadastrarVacinas" element={<PrivateRoute><CadastrarVacina /></PrivateRoute>} />
-        <Route path="/vacinas/editarVacinas" element={<PrivateRoute><EditarVacina /></PrivateRoute>} />
+        <Route path="/vacinas/cadastrarVacina" element={<PrivateRoute><CadastrarVacina /></PrivateRoute>} />
+        <Route path="/vacinas/editarVacina" element={<PrivateRoute><EditarVacina /></PrivateRoute>} />
 
         <Route path="/pessoas" element={<PrivateRoute><ListarPessoa /></PrivateRoute>} />
-        <Route path="/pessoas/cadastrarPessoas" element={<PrivateRoute><CadastrarPessoa /></PrivateRoute>} />
-        <Route path="/pessoas/editarPessoas" element={<PrivateRoute><EditarPessoa /></PrivateRoute>} />
+        <Route path="/pessoas/cadastrarPessoa" element={<PrivateRoute><CadastrarPessoa /></PrivateRoute>} />
+        <Route path="/pessoas/editarPessoa/:cpf" element={<PrivateRoute><EditarPessoa /></PrivateRoute>} />
 
         <Route path="/fazendas" element={<PrivateRoute><ListarFazenda /></PrivateRoute>} />
         <Route path="/fazendas/cadastrarFazenda" element={<PrivateRoute><CadastrarFazenda /></PrivateRoute>} />

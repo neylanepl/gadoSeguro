@@ -18,9 +18,10 @@ const ListarAlimentacao = () => {
                 <table className="table table-bordered table-bordered" >
                     <thead className="text-center" style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Quantidade Estoque</th>
-                            <th scope="col">Unidade</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Nome</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Quantidade Estoque</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Unidade</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }}  ></th>
                         </tr>
                     </thead>
 

@@ -11,18 +11,20 @@ const ListarDose = () => {
             <Menu />
             <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}>Doses cadastradas no sistema</h1>
             <div style={{ margin: "5%", marginLeft: "20%", marginRight: "20%" }}>
-                <div className="text-center" style={{ marginBottom: "5%" }}><button className="botaoCadastrarListar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} variant="warning" onClick={e => navigate('/dose/cadastrarDose')}>CadastrarDose</button></div>
+
+                <div className="text-center" style={{ marginBottom: "5%" }}><button className=" btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00" }} variant="warning" onClick={e => navigate('/dose/cadastrarDose')}>Cadastrar Dose</button></div>
 
                 <table className="table table-bordered table-bordered" >
                     <thead style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
 
-                            <th scope="col" >Nome</th>
-                            <th scope="col" >Lote</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Nome</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Lote</th>
 
-                            <th scope="col" >Informação Extra</th>
-                            <th scope="col" >Data Aplicada</th>
-                            <th scope="col" >Data Prev</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Informação Extra</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Data Aplicada</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Data Prev</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} ></th>
                         </tr>
                     </thead>
                     <tbody className="tabelaListagem text-center" >

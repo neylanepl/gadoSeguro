@@ -16,11 +16,11 @@ const ListarVacinas = () => {
                 <table className="table table-bordered" >
                     <thead style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
-                            <th scope="col" >Identificador</th>
-                            <th scope="col" >Nome</th>
-                            <th scope="col" >Fabricante</th>
-                            <th scope="col" >Informação Extra</th>
-                            <th scope="col"></th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Identificador</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Nome</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Fabricante</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Informação Extra</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col"></th>
                         </tr>
                     </thead>
                     <tbody className="text-center" >
