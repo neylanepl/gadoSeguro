@@ -7,6 +7,7 @@ import gadoSeguro from '../../services/connectionGadoSeguro';
 const CadastrarBovino = () => {
   const [idFazendaForm, setIdFazendaForm] = useState(0);
   const [idVacaForm, setIdVacaForm] = useState(0);
+  const [idBovinoForm, setIdBovinoForm] = useState(0);
   const [nomeForm, setNomeForm] = useState('');
   const [pesoForm, setPesoForm] = useState(0);
   const [dataForm, setDataForm] = useState('');
@@ -29,6 +30,7 @@ const CadastrarBovino = () => {
     const payload = {
       idFazenda: idFazendaForm,
       idVaca: idVacaForm,
+      idBovino: idBovinoForm,
       nome: nomeForm,
       aniversario: dataForm,
       sexo: sexoForm,
@@ -71,18 +73,21 @@ const CadastrarBovino = () => {
             <div className="id_"><p>Nome</p></div>
             <input type="text" className="nomeBovino" required onChange={e => setNomeForm(e.target.value)} />
 
+            <div className="id_"><p>Bovino</p></div>
+            <input type="text" className="nomeBovino" required onChange={e => setIdBovinoForm(e.target.value)} />
+
             <div className="id_"><p>Fazenda</p></div>
             <select className="vacaBovino" required onChange={e => setIdFazendaForm(e.target.value)}>
-                  <option value="">Selecione a fazenda</option>
-                  <option value="fazenda">fazenda 1</option>
-                  <option value="fazenda">fazenda 2</option>
+              <option value="">Selecione a fazenda</option>
+              <option value="fazenda">fazenda 1</option>
+              <option value="fazenda">fazenda 2</option>
             </select>
 
             <div className="id_"><p>Vaca</p></div>
             <select className="vacaBovino" required onChange={e => setIdVacaForm(e.target.value)}>
-                  <option value="">Selecione a vaca mãe</option>
-                  <option value="vaca">Vaca 1</option>
-                  <option value="vaca">Vaca 2</option>
+              <option value="">Selecione a vaca mãe</option>
+              <option value="vaca">Vaca 1</option>
+              <option value="vaca">Vaca 2</option>
             </select>
 
             <div className="id_"><p>Peso</p></div>
@@ -168,7 +173,7 @@ const CadastrarBovino = () => {
                       onChange={e => setDataInicioForm(e.target.value)}
                     />
 
-                  
+
                   </>
                 )}
               </>

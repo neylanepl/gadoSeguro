@@ -5,9 +5,10 @@ class BovinoService {
   async addBovino(bovinoTemp) {
     try {
       const connection = await dbConnection();
-      const query = `INSERT INTO GadoSeguro.Bovino (Fazenda_idFazenda, Vaca_idVaca, reprodutor, sexo, data_nascimento, chifre, nome, peso, cor)
-      VALUES (?,?,?,?,?,?,?,?,?)`;
+      const query = `INSERT INTO GadoSeguro.Bovino (idBovino, Fazenda_idFazenda, Vaca_idVaca, reprodutor, sexo, data_nascimento, chifre, nome, peso, cor)
+      VALUES (?,?,?,?,?,?,?,?,?,?)`;
       const values = [
+        bovinoTemp.idBovino,
         bovinoTemp.Fazenda_idFazenda,
         bovinoTemp.Vaca_idVaca,
         bovinoTemp.reprodutor,
@@ -41,7 +42,7 @@ class BovinoService {
   async getAllBovinoFem(idFazenda) {
     try {
       const connection = await dbConnection();
-      const [bovinos] = await connection.query(`SELECT bovinos.*, vacas.dar_leite, vacas.gravida, vacas.producao_leite FROM GadoSeguro.Bovino AS bovinos JOIN GadoSeguro.Vaca AS vacas ON bovinos.idBovino = vacas.idVaca WHERE bovinos.sexo = 'FEM' AND bovinos.Fazenda_idFazenda = ?;`,idFazenda);
+      const [bovinos] = await connection.query(`SELECT bovinos.*, vacas.dar_leite, vacas.gravida, vacas.producao_leite FROM GadoSeguro.Bovino AS bovinos JOIN GadoSeguro.Vaca AS vacas ON bovinos.idBovino = vacas.idVaca WHERE bovinos.sexo = 'Fêmea' AND bovinos.Fazenda_idFazenda = ?;`,idFazenda);
       console.log("Lista de Bovinos");
       return bovinos;
     } catch (error) {
@@ -52,7 +53,7 @@ class BovinoService {
   async getAllBovinoMas(idFazenda) {
     try {
       const connection = await dbConnection();
-      const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino WHERE sexo='MAS' AND Fazenda_idFazenda=?;`,idFazenda);
+      const [bovinos] = await connection.query(`SELECT * FROM  GadoSeguro.Bovino WHERE sexo='Macho' AND Fazenda_idFazenda=?;`,idFazenda);
       console.log("Lista de Bovinos");
       return bovinos;
     } catch (error) {
@@ -90,8 +91,9 @@ class BovinoService {
   async updateBovino(idBovino, bovinoTemp) {
     try {
       const connection = await dbConnection();
-      const query = `UPDATE GadoSeguro.Bovino SET Fazenda_idFazenda=?, Vaca_idVaca=?, reprodutor=?, sexo=?, data_nascimento=?, chifre=?, nome=?, peso=?, cor=? WHERE idBovino=?`;
+      const query = `UPDATE GadoSeguro.Bovino SET idBovino=? Fazenda_idFazenda=?, Vaca_idVaca=?, reprodutor=?, sexo=?, data_nascimento=?, chifre=?, nome=?, peso=?, cor=? WHERE idBovino=?`;
       const values = [
+        bovinoTemp.idBovino,
         bovinoTemp.Fazenda_idFazenda,
         bovinoTemp.Vaca_idVaca,
         bovinoTemp.reprodutor,
