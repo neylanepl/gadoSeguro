@@ -15,6 +15,8 @@ import DoseHome from './pages/dose/doseHome.js';
 import CadastrarBovino from './pages/bovinos/cadastrarBovino.js';
 import EditarBovino from './pages/bovinos/editarBovino.js';
 import ListarBovino from './pages/bovinos/listarBovino.js';
+import TelaListarCarteiraBovino from './pages/bovinos/telaListagemCarteira.js';
+import CarteiraVacinacaoBovino from './pages/bovinos/carteiraVacinacao.js';
 
 import CadastrarVacina from './pages/vacinas/cadastrarVacinas.js';
 import EditarVacina from './pages/vacinas/editarVacinas.js';
@@ -64,6 +66,9 @@ function App() {
         <Route path="/bovinos/cadastrarBovino" element={<CadastrarBovino />} />
         <Route path="/bovinos/editarBovino" element={<EditarBovino />} />
         <Route path="/bovinos/listarBovino" element={<ListarBovino />} />
+        <Route path="/bovinos/telaListagemCarteira" element={<TelaListarCarteiraBovino />} />
+        <Route path="/bovinos/carteiraVacinacao" element={<CarteiraVacinacaoBovino />} />
+
 
         <Route path="/vacinas/cadastrarVacinas" element={<CadastrarVacina />} />
         <Route path="/vacinas/editarVacinas" element={<EditarVacina />} />

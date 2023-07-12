@@ -54,8 +54,9 @@ const CadastrarPessoa = () => {
                         <div className="id_"><p>Cargo</p></div>
                         <select className="cargoPessoa" required onChange={e => setCargoForm(e.target.value)}>
                             <option value="">Selecione o cargo</option>
+                            <option value="empregado">Empregado</option>
                             <option value="veterinário">Veterinário</option>
-                            <option value="empregado">Fazendeiro</option>
+                            <option value="fazendeiro">Fazendeiro</option>
                         </select>
 
                         <div className="id_"><p>Senha</p></div>

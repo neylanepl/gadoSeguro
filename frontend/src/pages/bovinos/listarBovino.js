@@ -21,20 +21,20 @@ const ListarBovino = () => {
                 <table className="table table-bordered table-bordered" >
                     <thead className="text-center" style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Peso</th>
-                            <th scope="col">Data Nascimento</th>
-                            <th scope="col">Sexo</th>
-                            <th scope="col">Reprodutor</th>
-                            <th scope="col">Cor</th>
-                            <th scope="col">Chifre</th>
+                            <th scope="col" style={{ backgroundColor: "#cdd8a9" }}>Nome</th>
+                            <th scope="col" style={{ backgroundColor: "#cdd8a9" }}>Peso</th>
+                            <th scope="col" style={{ backgroundColor: "#cdd8a9" }}>Data Nascimento</th>
+                            <th scope="col" style={{ backgroundColor: "#cdd8a9" }}>Sexo</th>
+                            <th scope="col" style={{ backgroundColor: "#cdd8a9" }}>Reprodutor</th>
+                            <th scope="col" style={{ backgroundColor: "#cdd8a9" }}>Cor</th>
+                            <th scope="col" style={{ backgroundColor: "#cdd8a9" }}>Chifre</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }}></th>
                         </tr>
                     </thead>
 
                     <tbody className="tabelaListagem text-center" >
 
                         <tr>
-                            <td ></td>
                             <td ></td>
                             <td ></td>
                             <td ></td>

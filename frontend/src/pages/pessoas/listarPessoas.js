@@ -16,10 +16,11 @@ const ListaPessoa = () => {
                 <table className="table table-bordered table-bordered" >
                     <thead className="text-center" style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Cargo</th>
-                            <th scope="col"></th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Nome</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Email</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Cargo</th>
+
+                            <th style={{ backgroundColor: "#cdd8a9" }} ></th>
                         </tr>
                     </thead>
 
@@ -27,7 +28,7 @@ const ListaPessoa = () => {
 
                         <tr>
                             <td ></td>
-                            <td ></td>
+
                             <td ></td>
                             <td ></td>
                             <td style={{ display: "flex", justifyContent: "space-evenly" }}>

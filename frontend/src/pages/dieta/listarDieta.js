@@ -18,8 +18,9 @@ const ListarDieta = () => {
                 <table className="table table-bordered table-bordered" >
                     <thead className="text-center" style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
-                            <th scope="col">Descrição</th>
-                            <th scope="col">Restrição Alimentar</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Descrição</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Restrição Alimentar</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }}  ></th>
                         </tr>
                     </thead>
 

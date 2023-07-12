@@ -58,12 +58,13 @@ const ListarFazenda = () => {
                 <table className="table table-bordered table-bordered" >
                     <thead className="text-center" style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Sitio</th>
-                            <th scope="col">Cidade</th>
-                            <th scope="col">Cep</th>
-                            <th scope="col">Complemento</th>
-                            <th scope="col">Número</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Nome</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Sitio</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Cidade</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Cep</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Complemento</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col">Número</th>
+                            <th style={{ backgroundColor: "#cdd8a9" }} ></th>
                         </tr>
                     </thead>
 

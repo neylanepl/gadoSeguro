@@ -14,6 +14,10 @@ const BovinoHome = () => {
         navigate('/bovinos/listarBovino');
     };
 
+    const handleClickTelaListagemCarteira = () => {
+        navigate('/bovinos/telaListagemCarteira');
+    };
+
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
@@ -24,6 +28,8 @@ const BovinoHome = () => {
                     <button className="botao" onClick={handleClickCadastro}>Cadastrar Bovinos</button>
 
                     <button className="botao" onClick={handleClickListar}>Listar Bovinos</button>
+
+                    <button className="botao" onClick={handleClickTelaListagemCarteira}>Animais com Carteira de Vacinação</button>
                 </div>
             </div>
 
