@@ -5,7 +5,7 @@ const DoseController = require('../controllers/DoseController')
 router.post('/dose', DoseController.create_dose)
 router.get('/dose', DoseController.show_doses)
 router.get('/dose/:id', DoseController.show_dosesId)
-router.put('/dose/:id', DoseController.update_dose)
+router.put('/dose/:idDose', DoseController.update_dose)
 router.delete('/dose/:idDose', DoseController.delete_dose)
 
 module.exports = router

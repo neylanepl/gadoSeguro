@@ -1,84 +1,146 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Menu from '../../components/menu';
+import gadoSeguro from '../../services/connectionGadoSeguro';
+
+import Base from '../base/base';
+import { Form } from 'react-bootstrap';
+import { ToastContainer, toast } from 'react-toastify';
 
 const CadastrarDose = () => {
+
+    const [vacinas, setVacinas] = useState([]);
+
+    useEffect(() => {
+        const fetchVacinas = async () => {
+            try {
+                const response = await gadoSeguro.get('/vacina');
+                console.log("response: " + response.data);
+                setVacinas(response.data);
+            } catch (error) {
+                console.error("erro ao listar vacinas: ", error);
+            }
+        };
+
+        fetchVacinas();
+    }, []);
+
+    const [bovinos, setBovinos] = useState([]);
+
+    useEffect(() => {
+        const fetchBovinos = async () => {
+            try {
+                const response = await gadoSeguro.get('/bovino');
+                console.log("response: " + response.data);
+                setBovinos(response.data);
+            } catch (error) {
+                console.error("erro ao listar Bovinos: ", error);
+            }
+        };
+
+        fetchBovinos();
+    }, []);
+
     const [nomeForm, setNomeForm] = useState('');
     const [loteForm, setLoteForm] = useState(0);
     const [infoForm, setInfoForm] = useState('');
     const [dataAplicadaForm, setDataAplicadaForm] = useState(0);
     const [dataPrevForm, setDataPrevForm] = useState('');
 
+    const [bovinoForm, setIdBovino] = useState('');
+
+
     const navigate = useNavigate();
+
 
     const handleSubmitForm = async e => {
         e.preventDefault();
-        const payload = {
-            nome: nomeForm,
+        const payloadDose = {
+            nome_vacina: nomeForm,
             lote: loteForm,
             info: infoForm,
-            dataAplicada: dataAplicadaForm,
-            dataPrev: dataPrevForm
+            data_aplicada: dataAplicadaForm,
+            data_prev: dataPrevForm
         };
 
+        try{
+            const { data } = await gadoSeguro.post('/dose', payloadDose);
+            console.log("cadastrando")
+        }catch (error){
+            console.error(error)
+        }
+
         // Navegar para outra página após o envio do formulário
-        navigate('/');
+        navigate('/doses');
     };
 
 
     return (
-        <div id="wrapperBovino" style={{ background: "#F0F1DF", minHeight: "100vh", paddingBottom: "7%" }}>
-            <Menu />
-            <h1 className="fs-1 text-center" style={{ background: "#E0E7CA", padding: "20px" }}> Cadastrar Dose </h1>
+        <Base title={"Cadastro de dose"}>
+      <Form onSubmit={e => { handleSubmitForm(e) }}
+                style={{margin: "0 auto", backgroundColor: "#E0E7CA", minWidth: "500px",
+                maxWidth: "800px", marginBottom: "10%", padding: "2em 3em 2em 3em",
+                    borderRadius: "1em" }}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlVacina">
+                    <Form.Label style={{ fontWeight: "bold" }}>Vacinas</Form.Label>
+                    <Form.Select required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setNomeForm(e.target.value)}>
+                            <option value="">Selecione a Vacina</option>{vacinas.map(vacina => (
+                            <option key={vacina.nome_vacina} value={vacina.nome_vacina}>{vacina.nome_vacina}</option>
+                         ))}
+                    </Form.Select>
+                </Form.Group>
 
-            <div className="formularioCadastroDose" style={{ margin: "0 auto" }}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlFazenda">
+                    <Form.Label style={{ fontWeight: "bold" }}>Bovino</Form.Label>
+                    <Form.Select required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setIdBovino(e.target.value)}>
+                            <option value="">Selecione O Bovino</option>{bovinos.map(bovino => (
+                            <option key={bovino.idBovino} value={bovino.idBovino}>{bovino.nome}</option>
+                         ))}
+                    </Form.Select>
+                </Form.Group>
 
-                <form className="formulario" onSubmit={e => { handleSubmitForm(e) }}>
-                    <div className="sub-div" style={{width: "450px"}}>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlNome">
+                    <Form.Label style={{ fontWeight: "bold" }}>Lote</Form.Label>
+                    <Form.Control type="text" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setLoteForm(e.target.value)} />
+                </Form.Group>
 
-                        <div className="id_" style={{width: "450px"}}>
-                            <p>Tipo Vacina</p>
-                        </div>
-                        {
-                            /**    ENTRAR COM OS NOMES DAS VACINAS
-                            <div className='checkboxContainer'>
-                                {vacinas.map(vacina => (
-                                    <div key={vacina.nome} className='checkboxItem'>
-                                        <label>
-                                            <input
-                                                type="checkbox"
-                                                value={vacina.nome}
-                                                checked={vacinasSelecionados.includes(vacina.nome)}
-                                                onChange={() => handleSelecionarVacina(vacina.nome)}
-                                            />
-                                            {vacina.nome}
-                                        </label>
-                                    </div>
-                                ))}
-                            </div> */
-                        }
+                <Form.Group className="mb-3" controlId="exampleForm.ControlNome">
+                    <Form.Label style={{ fontWeight: "bold" }}>Informações Extras</Form.Label>
+                    <Form.Control type="text" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setInfoForm(e.target.value)} />
+                </Form.Group>
 
-                        <div className="id_" style={{width: "450px"}}><p>Nome</p></div>
-                        <input style={{ padding: "5px", paddingLeft: "10px" }} type="text" required className="form-control" onChange={e => setNomeForm(e.target.value)} />
+                <Form.Group className="mb-3" controlId="exampleForm.ControlNome">
+                    <Form.Label style={{ fontWeight: "bold" }}>Data de Aplicação</Form.Label>
+                    <Form.Control type="date" required 
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setDataAplicadaForm(e.target.value)} />
+                </Form.Group>
 
-                        <div className="id_" style={{width: "450px"}}><p>Lote</p></div>
-                        <input style={{ padding: "5px", paddingLeft: "10px" }} type="text" required className="form-control" onChange={e => setLoteForm(e.target.value)} />
+                <Form.Group className="mb-3" controlId="exampleForm.ControlNome">
+                    <Form.Label style={{ fontWeight: "bold" }}>Data Prevista</Form.Label>
+                    <Form.Control type="date"  
+                        style={{ border: "solid 1.5px #6D3B00" }}
+                        onChange={e => setDataPrevForm(e.target.value)} />
+                </Form.Group>
+                
+                <Form.Group className='text-center'>
+                    <button type="submit" value="submit" className="btn btn-success"
+                        style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
+                        Registrar
+                    </button>
+                    <ToastContainer />
+                </Form.Group>
+            </Form>
+    </Base>
 
-                        <div className="id_" style={{width: "450px"}}><p>Informações Extras</p></div>
-                        <input style={{ padding: "5px", paddingLeft: "10px" }} required type="text" className="form-control" onChange={e => setInfoForm(e.target.value)} />
-
-                        <div className="id_" style={{width: "450px"}}><p>Data Aplicada</p></div>
-                        <input style={{ padding: "5px", paddingLeft: "10px" }} type="text" required className="form-control" onChange={e => setDataAplicadaForm(e.target.value)} />
-
-                        <div className="id_" style={{width: "450px"}}><p>Data Prev</p></div>
-                        <input style={{ padding: "5px", paddingLeft: "10px" }} required type="text" className="form-control" onChange={e => setDataPrevForm(e.target.value)} />
-
-                        <button variant="warning" type="submit" value="submit" className="botaoCadastrar btn btn-success" style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "40px" }}>Cadastrar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     );
 };
 

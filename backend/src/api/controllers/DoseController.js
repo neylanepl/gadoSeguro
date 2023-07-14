@@ -5,11 +5,11 @@ class DoseController {
     //adicionar dose 
     create_dose(request, response) {
         const doseTemp = {
-            nome: request.body.nome,
+            nome_vacina: request.body.nome_vacina,
             lote: request.body.lote,
             info: request.body.info,
-            dataAplicada: request.body.dataAplicada,
-            dataPrev: request.body.dataAplicada
+            data_aplicada: request.body.data_aplicada,
+            data_prev: request.body.data_prev
         }
 
         try {
@@ -64,16 +64,20 @@ class DoseController {
 
     //Atualiza uma Dose pelo ID 
     async update_dose(request, response) {
+        const idDose = request.params.idDose
+        console.log(request.params)
+        console.log("Valor:",idDose)
         const doseTemp = {
-            nome: request.body.nome,
+            nome_vacina: request.body.nome_vacina,
             lote: request.body.lote,
             info: request.body.info,
-            dataAplicada: request.body.dataAplicada,
-            dataPrev: request.body.dataAplicada
+            data_aplicada: request.body.data_aplicada,
+            data_prev: request.body.data_prev
         }
+        console.log("Constrol:", doseTemp)
 
         try {
-            DoseService.getUpdateDose(doseTemp);
+            DoseService.getUpdateDose(idDose, doseTemp);
             response.status(200).json({
                 msg: "Dose atualizada com sucesso"
             })
