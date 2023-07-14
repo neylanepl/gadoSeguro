@@ -6,7 +6,7 @@ async function connect() {
   //const connection = await mysql.createConnection("mysql://{usuario}:{senha}@localhost:3306/GadoSeguro");
   //const connection = await mysql.createConnection("mysql://teste:Acesso_1@localhost:3306/GadoSeguro");
   //const connection = await mysql.createConnection("mysql://root:password:3306/GadoSeguro");
-  const connection = await mysql.createConnection("mysql://teste@localhost:3306/GadoSeguro");
+  const connection = await mysql.createConnection("mysql://testes@localhost:3306/GadoSeguro");
   global.connection = connection;
   return connection;
 }

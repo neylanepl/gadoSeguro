@@ -3,9 +3,9 @@ const dbConnection = require("../database/Conect");
 class ReproducaoService {
   //Adicionar Fazenda
   async addReproducao(reproducaoTemp) {
-    reproducaoTemp.dias_gestao = 285;
+    reproducaoTemp.dias_gestao = 0;
     reproducaoTemp.data_nascimento = new Date(reproducaoTemp.data_inicio);
-    reproducaoTemp.data_nascimento.setDate(reproducaoTemp.data_nascimento.getDate() + reproducaoTemp.dias_gestao);
+    reproducaoTemp.data_nascimento.setDate(reproducaoTemp.data_nascimento.getDate() + 285);
     try {
       const connection = await dbConnection();
       const query = `

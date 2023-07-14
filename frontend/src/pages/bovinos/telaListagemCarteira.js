@@ -8,9 +8,9 @@ const TelaListagemCarteira = () => {
     const navigate = useNavigate();
 
     const data = [
-        { id: 1, col1: 'Dado 1', col2: 'Ver' },
-        { id: 2, col1: 'Dado 2', col2: 'Ver' },
-        { id: 3, col1: 'Dado 3', col2: 'Ver' }
+        { id: 1, col1: 'Mimoso', col2: 'Ver' },
+        { id: 2, col1: 'Serra Azul', col2: 'Ver' },
+        { id: 3, col1: 'Amarelinha', col2: 'Ver' }
     ];
 
     const handleButtonClick = () => {

@@ -10,6 +10,27 @@ const ListarBovino = () => {
     const [bovinos, setBovinos] = useState([]);
     const navigate = useNavigate();
 
+    function formatDateToString(date) {
+        if (date instanceof Date && !isNaN(date)) {
+          const dia = String(date.getDate()).padStart(2, '0');
+          const mes = String(date.getMonth() + 1).padStart(2, '0');
+          const ano = String(date.getFullYear());
+      
+          return dia + '/' + mes + '/' + ano;
+        } else if (typeof date === 'string') {
+          const data = new Date(date);
+          if (data instanceof Date && !isNaN(data)) {
+            const dia = String(data.getDate()).padStart(2, '0');
+            const mes = String(data.getMonth() + 1).padStart(2, '0');
+            const ano = String(data.getFullYear());
+      
+            return dia + '/' + mes + '/' + ano;
+          }
+        }
+      
+        return null;
+      }
+
     useEffect(() => {
         const fetchBovinos = async () => {
             try {
@@ -54,7 +75,7 @@ const ListarBovino = () => {
                             <tr key={bovino.idBovino}>
                                 <td>{bovino.nome}</td>
                                 <td>{bovino.peso}</td>
-                                <td>{bovino.data_nascimento}</td>
+                                <td>{formatDateToString(bovino.data_nascimento)}</td>
                                 <td>{bovino.sexo}</td>
                                 {bovino.reprodutor === 0
                                     ? <td>Não</td>

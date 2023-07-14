@@ -24,6 +24,27 @@ const ReproducaoBovino = () => {
         fetchReproducao();
     }, []);
 
+    function formatDateToString(date) {
+        if (date instanceof Date && !isNaN(date)) {
+          const dia = String(date.getDate()).padStart(2, '0');
+          const mes = String(date.getMonth() + 1).padStart(2, '0');
+          const ano = String(date.getFullYear());
+      
+          return dia + '/' + mes + '/' + ano;
+        } else if (typeof date === 'string') {
+          const data = new Date(date);
+          if (data instanceof Date && !isNaN(data)) {
+            const dia = String(data.getDate()).padStart(2, '0');
+            const mes = String(data.getMonth() + 1).padStart(2, '0');
+            const ano = String(data.getFullYear());
+      
+            return dia + '/' + mes + '/' + ano;
+          }
+        }
+      
+        return null;
+      } 
+
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>
             <Menu />
@@ -45,7 +66,7 @@ const ReproducaoBovino = () => {
                     {reproducoes.map(reproducao => (
                             <tr key={reproducao.Vaca_idVaca}>
                                 <td>{reproducao.Vaca_idVaca}</td>
-                                <td>{reproducao.data_nascimento}</td>
+                                <td>{formatDateToString(reproducao.data_nascimento)}</td>
                                 <td>{reproducao.dias_gestao}</td>
                         </tr>
  ))}

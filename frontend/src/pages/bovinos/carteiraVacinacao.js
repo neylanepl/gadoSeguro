@@ -26,11 +26,11 @@ const CarteriaVacinacao = () => {
                     <tbody className="tabelaListagem text-center" >
                         <tr>
                             <td >1</td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
+                            <td >Mimoso</td>
+                            <td >Macho</td>
+                            <td >Nelore</td>
+                            <td >300</td>
+                            <td >4</td>
                         </tr>
                     </tbody>
                 </table>
@@ -50,9 +50,14 @@ const CarteriaVacinacao = () => {
                     </thead>
                     <tbody className="tabelaListagem text-center" >
                         <tr>
-                            <td ></td>
-                            <td ></td>
-                            <td ></td>
+                            <td >Aftosa</td>
+                            <td >12/06/2023</td>
+                            <td >1º</td>
+                        </tr>
+                        <tr>
+                            <td >Raiva</td>
+                            <td >24/03/2023</td>
+                            <td >1º</td>
                         </tr>
                     </tbody>
                 </table>
