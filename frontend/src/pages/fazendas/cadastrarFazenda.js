@@ -85,7 +85,7 @@ const CadastrarFazenda = () => {
                 <Form.Group className='text-center'>
                     <button type="submit" value="submit" className="btn btn-success"
                         style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
-                        Editar
+                        Cadastrar
                     </button>
                     <ToastContainer />
                 </Form.Group>

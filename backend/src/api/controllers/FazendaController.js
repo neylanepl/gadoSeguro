@@ -63,7 +63,7 @@ class FazendaController {
 
     //Atualiza uma Fazenda pelo ID 
     async update_fazenda(request, response) {
-        const { id } = request.params;
+        const  id  = request.params.id;
         const fazendaTemp = {
             ...request.body
         }

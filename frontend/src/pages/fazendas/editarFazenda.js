@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import gadoSeguro from '../../services/connectionGadoSeguro';
-
+import { useNavigate } from 'react-router-dom';
 import Base from '../base/base';
 import { Form } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
@@ -27,6 +27,8 @@ const EditarFazenda = () => {
         setNumeroForm(fazenda.numero);
     }, [fazenda]);
 
+    const navigate = useNavigate();
+
     const handleSubmitForm = async e => {
         e.preventDefault();
         const payload = {
@@ -42,7 +44,8 @@ const EditarFazenda = () => {
             
             // Faz a requisição para atualizar os dados da fazenda
             await gadoSeguro.put(`/fazenda/${fazenda.idFazenda}`, payload);
-            // Redireciona para outra página ou faz alguma ação de sucesso
+            const response = await gadoSeguro.get('/fazenda');
+            navigate('/fazendas');
             console.log('Dados atualizados com sucesso!');
         } catch (error) {
             // Lida com possíveis erros na requisição
@@ -95,7 +98,7 @@ const EditarFazenda = () => {
                 <Form.Group className='text-center'>
                     <button type="submit" value="submit" className="btn btn-success"
                         style={{ backgroundColor: "#83A93A", borderColor: "#6D3B00", margin: "30px 30px 0 0" }}>
-                        Cadastrar
+                        Editar
                     </button>
                     <ToastContainer />
                 </Form.Group>
