@@ -61,7 +61,7 @@ function App() {
         <Route path="/reproducao/reproducaoBovino" element={<PrivateRoute><ReproducaoBovino /></PrivateRoute>} />
         <Route path="/vacinas" element={<PrivateRoute><ListarVacina /></PrivateRoute>} />
         <Route path="/vacinas/cadastrarVacina" element={<PrivateRoute><CadastrarVacina /></PrivateRoute>} />
-        <Route path="/vacinas/editarVacina" element={<PrivateRoute><EditarVacina /></PrivateRoute>} />
+        <Route path="/vacinas/editarVacina/:nome_vacina" element={<PrivateRoute><EditarVacina /></PrivateRoute>} />
 
         <Route path="/pessoas" element={<PrivateRoute><ListarPessoa /></PrivateRoute>} />
         <Route path="/pessoas/cadastrarPessoa" element={<CadastrarPessoa />} />

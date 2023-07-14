@@ -5,11 +5,10 @@ class VacinaController {
     //adicionar vacina
     create_vacina(request, response) {
         const vacinaTemp = {
-            nome_vacina: request.body.nome_vacina,
-            info: request.body.info,
+            nome_vacina: request.body.nome,
+            info: request.body.informacoesExtras,
             fabricante: request.body.fabricante
         }
-
         try {
             VacinaService.addVacina(vacinaTemp);
             response.status(200).json({
@@ -50,13 +49,12 @@ class VacinaController {
     //Atualiza uma vacina
     async update_vacina(request, response) {
         const vacinaTemp = {
-            nome_vacina: request.body.nome_vacina,
-            info: request.body.info,
+            nome_vacina: request.body.nome,
+            info: request.body.informacoesExtras,
             fabricante: request.body.fabricante
         }
-
         try {
-            VacinaService.updateVacina(vacinaTemp);
+            VacinaService.updateVacina(request.body.nome,vacinaTemp);
             response.status(200).json({
                 msg: "Vacina atualizada com sucesso"
             })
@@ -70,7 +68,7 @@ class VacinaController {
     //Deletar vacina pelo ID
     async delete_vacina(request, response) {
         try {
-            const { idVacina } = request.params.idBovino
+            const  idVacina  = request.params.nome_vacina
             VacinaService.deleteVacina(idVacina);
             response.status(200).json({
                 msg: "Vacina deletado com sucesso"
