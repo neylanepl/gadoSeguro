@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
 import Menu from '../../components/menu';
+
+import gadoSeguro from '../../services/connectionGadoSeguro';
 
 const CadastrarVacina = () => {
     const [nomeForm, setNomeForm] = useState('');
@@ -14,13 +16,16 @@ const CadastrarVacina = () => {
         e.preventDefault();
         const payload = {
             nome: nomeForm,
-            informacoesExtras: informacoesExtrasForm,
-            fabricante: fabricanteForm
+            fabricante: fabricanteForm,
+            informacoesExtras: informacoesExtrasForm
         };
 
-       
-        // Navegar para outra página após o envio do formulário
-        navigate('/');
+        try {
+            const { data } = await gadoSeguro.post('/vacina', payload);
+            navigate('/vacinas');
+        } catch (error) {
+            toast.error("Cadastro falhou!");
+        }
     };
 
 

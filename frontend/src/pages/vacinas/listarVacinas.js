@@ -2,9 +2,34 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Menu from '../../components/menu';
 
+import gadoSeguro from '../../services/connectionGadoSeguro';
+
 const ListarVacinas = () => {
 
+    const [vacinas, setVacinas] = useState([]);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchVacinas = async () => {
+            try {
+                const response = await gadoSeguro.get('/vacinas');
+                setVacinas(response.data);
+            } catch (error) {
+                console.error("erro ao listar vacinas: ", error);
+            }
+        };
+
+        fetchVacinas();
+    }, []);
+
+    const deletarVacina = async (nome_vacina) => {
+        try {
+            const response = await gadoSeguro.delete(`/vacina/${nome_vacina}`);
+            window.location.reload();
+        } catch (error) {
+            console.error("erro ao deletar pessoa: ", error);
+        }
+    };
 
     return (
         <div id="wrapper" style={{ background: "#F0F1DF" }}>
@@ -16,7 +41,6 @@ const ListarVacinas = () => {
                 <table className="table table-bordered" >
                     <thead style={{ backgroundColor: "#E0E7CA" }}>
                         <tr>
-                            <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Identificador</th>
                             <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Nome</th>
                             <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Fabricante</th>
                             <th style={{ backgroundColor: "#cdd8a9" }} scope="col" >Informação Extra</th>
@@ -24,14 +48,15 @@ const ListarVacinas = () => {
                         </tr>
                     </thead>
                     <tbody className="text-center" >
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                    {vacinas.map(vacina => (
+                            <tr key={vacina.nome_vacina}>
+                                <td>{vacina.nome_vacina}</td>
+                                <td>{vacina.fabricante}</td>
+                                <td>{vacina.info}</td>
                             <td style={{ display: "flex", justifyContent: "space-evenly" }}>
                                 <button className="botaoEditar btn btn-primary"
-                                    style={{ color: "white", textDecoration: "none", border: "none", backgroundColor: "#47a2ed" }} variant="warning" onClick={e => navigate('/vacinas/editarVacinas')}>
+                                    style={{ color: "white", textDecoration: "none", border: "none", backgroundColor: "#47a2ed" }} variant="warning" 
+                                    onClick={e => navigate(`/vacinas/editarVacina/${vacina.nome_vacina}`, { state: { vacina } })}>
                                     Editar
                                     <span className="editar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" color='white' viewBox="0 0 16 16">
@@ -41,7 +66,7 @@ const ListarVacinas = () => {
                                     </span>
                                 </button>
 
-                                <button className="botaoApagar btn btn-danger" style={{ color: "white", textDecoration: "none", border: "none", backgroundColor: "#d10606" }} variant="warning" onClick={e => navigate('/')}>
+                                <button className="botaoApagar btn btn-danger" style={{ color: "white", textDecoration: "none", border: "none", backgroundColor: "#d10606" }} variant="warning" onClick={e => deletarVacina(vacina.nome_vacina)}>
                                     Deletar
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" color='white' viewBox="0 0 16 16">
@@ -51,6 +76,7 @@ const ListarVacinas = () => {
                                 </button>
                             </td>
                         </tr>
+                         ))}
                     </tbody>
                 </table>
             </div>
