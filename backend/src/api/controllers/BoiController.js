@@ -19,6 +19,18 @@ class BoiController {
             })
         }
     }
+
+    
+     async show_boi(request, response) {
+        try {
+            const boi = await boiService.getAllBois()
+            return response.status(200).json(boi)
+        } catch (err) {
+            return response.status(400).json({
+                error: err
+            })
+        }
+    }
 }
 
 module.exports = new BoiController()

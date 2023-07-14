@@ -26,9 +26,9 @@ async getAllBois() {
       const connection = await dbConnection()
       const [bois] = await connection.query('SELECT * FROM GadoSeguro.Boi;')
       if(bois.length > 0){
-        Console.log(bois);
+        console.log(bois);
       }
-      return doses
+      return bois
   } catch (error) {
       console.log(error);
       return error

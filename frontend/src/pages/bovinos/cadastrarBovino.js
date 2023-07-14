@@ -32,7 +32,6 @@ const CadastrarBovino = () => {
         const fetchVacas = async () => {
             try {
                 const vas = await gadoSeguro.get('/vaca');
-                console.log("vas: " + vas.data);
                 setVacas(vas.data);
             } catch (error) {
                 console.error("erro ao listar vacas: ", error);
@@ -42,10 +41,23 @@ const CadastrarBovino = () => {
         fetchVacas();
     }, []);
 
-    console.log(vacas)
+    const [bois, setBois] = useState([]);
+    useEffect(() => {
+      const fetchBois = async () => {
+          try {
+              const b = await gadoSeguro.get('/boi');
+              setBois(b.data);
+          } catch (error) {
+              console.error("erro ao listar bois: ", error);
+          }
+      };
+
+      fetchBois();
+  }, []);
 
   const [idFazendaForm, setIdFazendaForm] = useState(0);
   const [idVacaForm, setIdVacaForm] = useState(0);
+  const [idBoiForm, setIdBoiForm] = useState(0);
   const [idBovinoForm, setIdBovinoForm] = useState(0);
   const [nomeForm, setNomeForm] = useState('');
   const [pesoForm, setPesoForm] = useState(0);
@@ -88,8 +100,8 @@ const CadastrarBovino = () => {
 
     const payloadReprodu = {
       //service Reprodu
-      idBovino: idBovinoForm,
-      idVaca: idVacaForm,
+      idBovino: idBoiForm,
+      idVaca: idBovinoForm,
       dataInicio: dataInicioForm
     };
 
@@ -141,7 +153,7 @@ const CadastrarBovino = () => {
                         onChange={e => setNomeForm(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlBovino">
-                    <Form.Label style={{ fontWeight: "bold" }}>Bovino</Form.Label>
+                    <Form.Label style={{ fontWeight: "bold" }}>Id do Bovino</Form.Label>
                     <Form.Control type="number" required // resgatar bovinos
                         style={{ border: "solid 1.5px #6D3B00" }}
                         onChange={e => setIdBovinoForm(e.target.value)} />
@@ -172,6 +184,13 @@ const CadastrarBovino = () => {
                     <Form.Control type="number" required
                         style={{ border: "solid 1.5px #6D3B00" }}
                         onChange={e => setPesoForm(e.target.value)} />
+                </Form.Group>
+              
+                <Form.Group className="mb-3" controlId="exampleForm.ControlDataG">
+                    <Form.Label style={{ fontWeight: "bold" }}>Data de nascimento</Form.Label>
+                    <Form.Control type="date" required
+                            style={{ border: "solid 1.5px #6D3B00" }}
+                            onChange={e => setDataForm(e.target.value)} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlSexo">
                     <Form.Label style={{ fontWeight: "bold" }}>Sexo</Form.Label>
@@ -229,12 +248,26 @@ const CadastrarBovino = () => {
                     </Form.Group>
 
                     {exibirInputsGestacao && (
+                      <>
                       <Form.Group className="mb-3" controlId="exampleForm.ControlDataG">
                         <Form.Label style={{ fontWeight: "bold" }}>Data de Início</Form.Label>
                         <Form.Control type="date" required
                             style={{ border: "solid 1.5px #6D3B00" }}
                             onChange={e => setDataInicioForm(e.target.value)} />
                       </Form.Group>
+
+                      <Form.Group className="mb-3" controlId="exampleForm.ControlVaca">
+                        <Form.Label style={{ fontWeight: "bold" }}>Boi</Form.Label>
+                        <Form.Select  
+                            style={{ border: "solid 1.5px #6D3B00" }}
+                            onChange={e => setIdBoiForm(e.target.value)}>
+                                <option value="">Selecione o boi que é o pai</option>
+                                {bois.map(boi => (
+                                  <option key={boi.Bovino_idBovino} value={boi.Bovino_idBovino}>{boi.Bovino_idBovino}</option>
+                                ))}
+                        </Form.Select>
+                      </Form.Group>
+                      </>
                     )}
                   </>
                 )}
@@ -244,8 +277,8 @@ const CadastrarBovino = () => {
                       style={{ border: "solid 1.5px #6D3B00" }}
                       onChange={e => setReprodutorForm(e.target.value)}>
                         <option value="">Selecione a opção</option>
-                        <option value="Sim">Sim</option>
-                        <option value="Nao">Não</option>
+                        <option value={1}>Sim</option>
+                        <option value={0}>Não</option>
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlCor">
@@ -280,8 +313,8 @@ const CadastrarBovino = () => {
                         e.target.value === 'Sim' ? setChifreForm(true) : setChifreForm(false);
                       }}>
                         <option value="">Selecione se possui chifre</option>
-                        <option value="Sim">Sim</option>
-                        <option value="Nao">Não</option>
+                        <option value={1}>Sim</option>
+                        <option value={0}>Não</option>
                   </Form.Select>
                 </Form.Group>
                 <Form.Group className='text-center'>
