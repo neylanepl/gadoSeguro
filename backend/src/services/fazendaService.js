@@ -65,7 +65,6 @@ class FazendaService {
       ];
       await connection.execute(query, values);
       console.log("Objeto fazenda atualizado com sucesso!");
-      connection.end();
     } catch (error) {
       console.error("Erro ao atualizar o objeto fazenda:", error);
     }

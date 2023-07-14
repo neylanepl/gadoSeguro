@@ -27,12 +27,9 @@ const ListarFazenda = () => {
             setFazendas(updatedFazendas);*/
 
     const deletarFazenda = async (fazendaId) => {
-        console.log("--ID: ", fazendaId);
         try {
             const response = await gadoSeguro.delete(`/fazenda/${fazendaId}`);
-            console.log("eita apagou: ", response.data);
             window.location.reload();
-            console.log("apagou com sucesso");
         } catch (error) {
             console.error("erro ao deletar fazenda: ", error);
         }
